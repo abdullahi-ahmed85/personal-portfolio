@@ -8,33 +8,120 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title="Abdirahman Said Dhore | Mechanical Engineer" description="Personal portfolio of Abdirahman Said Dhore, Dual-Master's Mechanical Engineer." />
+		<BaseHead title="Abdirahman Said Dhore | Mechanical Engineer" description="Professional Engineering Portfolio" />
+		<style>
+			body {
+				background-color: #0f172a;
+				color: #f1f5f9;
+				font-family: 'Courier New', Courier, monospace, system-ui;
+			}
+			main { 
+				max-width: 900px; 
+				margin: 0 auto; 
+				padding: 3em 2em; 
+			}
+			.hero-container {
+				border: 1px solid #334155;
+				background-color: #1e293b;
+				padding: 2.5em;
+				border-radius: 12px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+				border-left: 6px solid #3b82f6;
+			}
+			.title { 
+				font-size: 2.8em; 
+				color: #ffffff; 
+				margin: 0; 
+				font-weight: 800;
+			}
+			.subtitle { 
+				font-size: 1.3em; 
+				color: #3b82f6; 
+				margin-top: 0.3em; 
+				font-weight: 600;
+				text-transform: uppercase;
+			}
+			.contact-bar { 
+				color: #94a3b8; 
+				font-size: 0.9em; 
+				margin-top: 1em;
+				padding: 0.5em 0;
+				border-top: 1px dashed #334155;
+			}
+			.summary-text { 
+				font-size: 1.1em; 
+				line-height: 1.7; 
+				color: #cbd5e1; 
+				margin-top: 1.5em; 
+			}
+			.section-header { 
+				font-size: 1.6em; 
+				color: #ffffff; 
+				margin-top: 2.5em; 
+				border-bottom: 2px solid #334155; 
+				padding-bottom: 0.4em;
+			}
+			.dashboard-grid { 
+				display: grid; 
+				grid-template-columns: 1fr 1fr; 
+				gap: 20px; 
+				margin-top: 1.5em; 
+			}
+			.console-box { 
+				background: #1e293b; 
+				padding: 1.5em; 
+				border-radius: 8px; 
+				border: 1px solid #334155;
+			}
+			.console-box h4 { 
+				margin: 0 0 0.6em 0; 
+				color: #3b82f6; 
+				font-size: 1.15em; 
+			}
+			.console-box p { 
+				margin: 0; 
+				font-size: 0.95em; 
+				color: #94a3b8; 
+				line-height: 1.5; 
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🛠️ Abdirahman Said Dhore</h1>
-			<p><strong>Dual-Master's Mechanical Engineer & Researcher</strong></p>
-			
-			<p>
-				Welcome to my professional engineering portfolio. I am a Dual-Master's Mechanical Engineer with advanced credentials from <strong>Politecnico di Milano</strong> and the <strong>SKILLBILL European Specialization Program</strong>[cite: 1]. My expertise sits at the intersection of industrial automation, sustainable energy infrastructures, and production planning[cite: 1].
-			</p>
+			<div class="hero-container">
+				<h1 class="title">Abdirahman Said Dhore</h1>
+				<div class="subtitle">System Status: Mechanical Engineer & Researcher</div>
+				<div class="contact-bar">
+					💾 LOC: Milano, Italy | 🌐 NET: Abdirahmans.dhore@gmail.com | 🛠️ SYS: LinkedIn/dhore
+				</div>
+				<p class="summary-text">
+					Dual-Master's engineer holding advanced specializations from <strong>Politecnico di Milano</strong> and the <strong>SKILLBILL European Specialization Program</strong>. Expert at integrating physical mechanical systems with core software frameworks, specializing in industrial automation, clean-tech infrastructures, and digital twins.
+				</p>
+			</div>
 
-			<p>
-				I have a proven background in engineering digital twin frameworks, developing PLC-controlled systems, and performing systematic discrete event simulations to optimize complex operational lines[cite: 1]. Additionally, my research focuses heavily on clean energy transitions, specifically analyzing solar-hybrid grid integration and the dynamic performance of hydrogen energy storage systems[cite: 1].
-			</p>
-
-			<h3>Key Fields of Expertise:</h3>
-			<ul>
-				<li><strong>Simulation & Digital Twins:</strong> Arena Rockwell, Python modeling, and MQTT real-time synchronization[cite: 1].</li>
-				<li><strong>Automation & Design:</strong> PLC Programming (Ladder Logic), SolidWorks, AutoCAD, and mechatronics[cite: 1].</li>
-				<li><strong>Sustainable Energy:</strong> Hydrogen storage tank analysis and solar-hybrid grid strategic optimization[cite: 1].</li>
-			</ul>
-
-			<p>
-				Please feel free to browse the <strong>Blog/Projects</strong> tab above to view my detailed research case studies, academic outputs, and technical project history[cite: 1]. 
-			</p>
+			<section style="margin-bottom: 3em;">
+				<h3 class="section-header">[01] TECHNICAL CORE MATRIX</h3>
+				<div class="dashboard-grid">
+					<div class="console-box">
+						<h4>Simulation & Digital Twins</h4>
+						<p>Arena Rockwell, Factory I/O, Discrete Event Simulation (DES), MQTT protocols, InfluxDB time-series databases.</p>
+					</div>
+					<div class="console-box">
+						<h4>Design & Automation</h4>
+						<p>PLC Programming (Ladder Logic), Mechatronic Control Loops, SolidWorks, AutoCAD customization, ABAQUS structural stress testing.</p>
+					</div>
+					<div class="console-box">
+						<h4>Data Analysis Pipeline</h4>
+						<p>Python script optimization (Pandas, NumPy, SciPy, Flask API hosting), MATLAB workflows (Simulink control models, Stochastic modeling).</p>
+					</div>
+					<div class="console-box">
+						<h4>Industrial Operations</h4>
+						<p>Industrial Risk Management, OEE efficiency analytics, Condition-Based Smart Maintenance (CBM), ISO 22301 business frameworks.</p>
+					</div>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
-</html>
+</html>npm run dev

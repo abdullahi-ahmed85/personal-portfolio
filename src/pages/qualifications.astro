@@ -1,0 +1,172 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Qualifications | ${SITE_TITLE}`} description="Academic degrees and technical credentials." />
+		<style>
+			body {
+				background-color: #0f172a; /* Deep tech slate-dark */
+				color: #f1f5f9; /* Crisp white-gray text */
+				font-family: 'Courier New', Courier, monospace, system-ui; /* Industrial console theme */
+			}
+			
+			main { 
+				max-width: 900px; 
+				margin: 0 auto; 
+				padding: 3em 2em; 
+			}
+
+			.page-title {
+				font-size: 2.5em;
+				color: #ffffff;
+				margin: 0;
+				font-weight: 800;
+			}
+
+			.page-subtitle {
+				color: #94a3b8;
+				margin-top: 0.2em;
+				margin-bottom: 2.5em;
+				font-size: 1.1em;
+			}
+
+			.section-header { 
+				font-size: 1.6em; 
+				color: #ffffff; 
+				margin-top: 2.5em; 
+				border-bottom: 2px solid #334155; 
+				padding-bottom: 0.4em;
+				letter-spacing: 0.5px;
+			}
+
+			.console-card { 
+				background: #1e293b; 
+				padding: 1.8em; 
+				border-radius: 8px; 
+				border: 1px solid #334155;
+				margin-bottom: 1.5em;
+				border-left: 4px solid #3b82f6; /* Electric Blue Accent Line */
+			}
+
+			.console-card h3 { 
+				margin: 0 0 0.3em 0; 
+				color: #ffffff; 
+				font-size: 1.3em; 
+			}
+
+			.meta-tag { 
+				color: #3b82f6; 
+				font-size: 0.9em; 
+				font-weight: bold;
+				margin-bottom: 0.8em;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+
+			ul { 
+				padding-left: 1.2em; 
+				line-height: 1.6; 
+				color: #cbd5e1; 
+			}
+
+			li { 
+				margin-bottom: 0.5em; 
+			}
+
+			.grid-matrix { 
+				display: grid; 
+				grid-template-columns: 1fr 1fr; 
+				gap: 15px; 
+				list-style-type: none; 
+				padding: 0; 
+				margin-top: 1.5em;
+			}
+
+			.matrix-item { 
+				background: #111827; 
+				padding: 0.8em; 
+				border-radius: 6px; 
+				font-size: 0.95em; 
+				color: #cbd5e1; 
+				border: 1px dashed #475569;
+			}
+			
+			.matrix-item strong {
+				color: #3b82f6;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title">[02] QUALIFICATIONS & EDUCATION</h1>
+			<p class="page-subtitle">Verified academic log files and professional development certifications.</p>
+
+			<!-- Education Matrix -->
+			<section>
+				<h3 class="section-header">ACADEMIC LOGS</h3>
+				
+				<div class="console-card">
+					<h3>M.Sc. in Mechanical Engineering</h3>
+					<div class="meta-tag">Politecnico di Milano, Italy | Sep 2022 - Oct 2025</div>
+					<ul>
+						<li><strong>Core Specialization:</strong> Integrated Manufacturing Systems, Production Planning & Control, Industrial Risk Management, Data Analysis for Mechanical Systems, and Energy Systems.</li>
+						<li><strong>Thesis output:</strong> Real-time validation and online input parameters calibration within a digital twin framework: an approach based on bootstrap particle filtering.</li>
+					</ul>
+				</div>
+
+				<div class="console-card">
+					<h3>First Level Master in Sustainable Energy</h3>
+					<div class="meta-tag">University of Tuscia, Italy (SKILLBILL Specialization) | Sep 2024 - Present</div>
+					<ul>
+						<li><strong>Thesis Focus:</strong> Investigation of the Dynamic Behaviour of Hydrogen Storage Tanks During Refilling at H70 and H35 Under Various Operating Conditions.</li>
+					</ul>
+				</div>
+
+				<div class="console-card">
+					<h3>Laurea (B.Sc.) in Mechanical Engineering</h3>
+					<div class="meta-tag">Somali National University, Somalia | Aug 2017 - Mar 2022</div>
+					<ul>
+						<li><strong>Thesis output:</strong> Structural design and execution of an Automatic Conveyor Belt utilizing PLC architecture.</li>
+					</ul>
+				</div>
+
+				<div class="console-card">
+					<h3>Professional Diploma in Project Management</h3>
+					<div class="meta-tag">Mogadishu University, Somalia | Sep 2019 - Sep 2020</div>
+				</div>
+			</section>
+
+			<!-- Certifications Array -->
+			<section>
+				<h3 class="section-header">PROFESSIONAL CERTIFICATIONS</h3>
+				<div style="background: #111827; padding: 1.5em; border: 1px dashed #475569; border-radius: 6px; margin-top: 1.5em;">
+					<ul>
+						<li><strong>Autodesk Certified Professional:</strong> AutoCAD (Registry ID: 2023).</li>
+						<li><strong>Infrastructure & Operations:</strong> Infrastructure Operations and Maintenance (ADBI, 2024); Solar Energy Systems Overview (University at Buffalo, 2022); Green Investments: Renewable Energy (ADBI, 2021).</li>
+						<li><strong>Sustainability Loops:</strong> Circular Economy: Designing Out Waste (ADBI, 2024); Cybersecurity Frameworks (ADBI, 2024).</li>
+						<li><strong>Management Kernels:</strong> Planning for Monitoring and Evaluation (2020); Managing Project Finances (2021).</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- Language Matrix -->
+			<section style="margin-bottom: 3em;">
+				<h3 class="section-header">COMMUNICATION MATRIX</h3>
+				<ul class="grid-matrix">
+					<li class="matrix-item">🗣️ <strong>English:</strong> Full Professional Proficiency (C1)</li>
+					<li class="matrix-item">🗣️ <strong>Somali:</strong> Native / Mother Tongue</li>
+					<li class="matrix-item">🗣️ <strong>Arabic:</strong> Intermediate Competency (B1)</li>
+					<li class="matrix-item">🗣️ <strong>Italian:</strong> Elementary Integration (A2)</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

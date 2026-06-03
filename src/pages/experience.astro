@@ -1,0 +1,139 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`Experience | ${SITE_TITLE}`} description="Professional engineering operations and logistics timeline." />
+		<style>
+			body {
+				background-color: #0f172a; /* Deep tech slate-dark */
+				color: #f1f5f9; /* Crisp white-gray text */
+				font-family: 'Courier New', Courier, monospace, system-ui;
+			}
+			
+			main { 
+				max-width: 900px; 
+				margin: 0 auto; 
+				padding: 3em 2em; 
+			}
+
+			.page-title {
+				font-size: 2.5em;
+				color: #ffffff;
+				margin: 0;
+				font-weight: 800;
+			}
+
+			.page-subtitle {
+				color: #94a3b8;
+				margin-top: 0.2em;
+				margin-bottom: 3em;
+				font-size: 1.1em;
+			}
+
+			/* Timeline Node Architecture */
+			.timeline-container {
+				position: relative;
+				border-left: 2px solid #334155;
+				padding-left: 1.8em;
+				margin-left: 0.5em;
+			}
+
+			.timeline-node {
+				position: relative;
+				margin-bottom: 3em;
+			}
+
+			.timeline-node::before {
+				content: '';
+				position: absolute;
+				left: calc(-1.8em - 7px);
+				top: 6px;
+				width: 12px;
+				height: 12px;
+				background-color: #0f172a;
+				border: 2px solid #3b82f6; /* Electric Blue Node Ring */
+				border-radius: 50%;
+			}
+
+			.job-title {
+				font-size: 1.4em;
+				color: #ffffff;
+				margin: 0 0 0.2em 0;
+				font-weight: 700;
+			}
+
+			.company-meta {
+				color: #3b82f6;
+				font-size: 0.95em;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+				margin-bottom: 1em;
+			}
+
+			ul {
+				padding-left: 1.2em;
+				line-height: 1.7;
+				color: #cbd5e1;
+			}
+
+			li {
+				margin-bottom: 0.6em;
+			}
+			
+			strong {
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1 class="page-title">[03] INDUSTRIAL EXPERIENCE</h1>
+			<p class="page-subtitle">Chronological tracking files for operational logistics, inventory data auditing, and site coordination.</p>
+
+			<div class="timeline-container">
+
+				<!-- Job 1 -->
+				<div class="timeline-node">
+					<h2 class="job-title">Inventory & Operations Auditor</h2>
+					<div class="company-meta">RGIS Specialisti in Inventari SRL — Milan, Italy | Dec 2025 - Mar 2026</div>
+					<ul>
+						<li>Conducted systematic asset verification and hardware stock detection across diverse commercial sectors utilizing dedicated handheld digital data capture terminals.</li>
+						<li>Monitored supply chain counts and generated automated quantitative discrepancy reports to support regional logistics pipelines.</li>
+						<li>Demonstrated adaptability and precision under tight auditing deadlines, rigorously enforcing protocol parameters.</li>
+					</ul>
+				</div>
+
+				<!-- Job 2 -->
+				<div class="timeline-node">
+					<h2 class="job-title">Technical Inventory Collaborator</h2>
+					<div class="company-meta">INVENTORY SRL — Alessandria, Italy | Jan 2025 - Feb 2026</div>
+					<ul>
+						<li>Managed autonomous field asset tracking assignments, executing physical counting sweeps and transmitting synchronized records to central processing servers.</li>
+						<li>Applied systematic reconciliation methodologies to flag variations between live floor stock and backend database logs.</li>
+					</ul>
+				</div>
+
+				<!-- Job 3 -->
+				<div class="timeline-node">
+					<h2 class="job-title">Inventory Operations Associate</h2>
+					<div class="company-meta">BRC Italia — Milan, Italy | Aug 2024 - Jan 2026</div>
+					<ul>
+						<li>Executed high-volume tracking routines and configuration counts inside large-scale warehouse ecosystems and industrial hubs.</li>
+						<li>Operated electronic scanning apparatus and precision weight data instrumentation to audit heavy item batches securely.</li>
+						<li>Maintained constant compliance with safety requirements while working across active industrial logistics lines.</li>
+					</ul>
+				</div>
+
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
