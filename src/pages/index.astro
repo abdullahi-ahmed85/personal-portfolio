@@ -1,127 +1,214 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title="Abdirahman Said Dhore | Mechanical Engineer" description="Professional Engineering Portfolio" />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		
 		<style>
 			body {
-				background-color: #0f172a;
-				color: #f1f5f9;
-				font-family: 'Courier New', Courier, monospace, system-ui;
+				background-color: #0d0d0e; /* True deep obsidian background matching image_ee867f.jpg */
+				color: #ffffff;
+				font-family: 'Inter', system-ui, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				margin: 0;
 			}
-			main { 
-				max-width: 900px; 
-				margin: 0 auto; 
-				padding: 3em 2em; 
+			
+			main {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 5rem 2rem;
 			}
-			.hero-container {
-				border: 1px solid #334155;
-				background-color: #1e293b;
-				padding: 2.5em;
-				border-radius: 12px;
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-				border-left: 6px solid #3b82f6;
+
+			/* Symmetrical Split Section */
+			.hero-split {
+				display: grid;
+				grid-template-columns: 1.2fr 0.8fr;
+				gap: 4rem;
+				align-items: center;
+				margin-bottom: 5rem;
 			}
-			.title { 
-				font-size: 2.8em; 
-				color: #ffffff; 
-				margin: 0; 
-				font-weight: 800;
-			}
-			.subtitle { 
-				font-size: 1.3em; 
-				color: #3b82f6; 
-				margin-top: 0.3em; 
-				font-weight: 600;
+
+			.badge-status {
+				color: #ff5a2b; /* Balanced vibrant coral orange */
+				font-size: 0.85rem;
+				font-weight: 700;
 				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin-bottom: 1.2rem;
 			}
-			.contact-bar { 
-				color: #94a3b8; 
-				font-size: 0.9em; 
-				margin-top: 1em;
-				padding: 0.5em 0;
-				border-top: 1px dashed #334155;
+
+			.main-headline {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 4.2rem;
+				font-weight: 800;
+				line-height: 1.1;
+				letter-spacing: -0.03em;
+				margin: 0 0 1.5rem 0;
 			}
-			.summary-text { 
-				font-size: 1.1em; 
-				line-height: 1.7; 
-				color: #cbd5e1; 
-				margin-top: 1.5em; 
+
+			.main-headline span {
+				color: #ff5a2b; /* Matching coral orange accent typography */
 			}
-			.section-header { 
-				font-size: 1.6em; 
-				color: #ffffff; 
-				margin-top: 2.5em; 
-				border-bottom: 2px solid #334155; 
-				padding-bottom: 0.4em;
+
+			.sub-bio {
+				color: #a1a1aa; /* Calibrated soft gray text opacity */
+				font-size: 1.15rem;
+				line-height: 1.6;
+				margin-bottom: 2.5rem;
+				max-width: 540px;
 			}
-			.dashboard-grid { 
-				display: grid; 
-				grid-template-columns: 1fr 1fr; 
-				gap: 20px; 
-				margin-top: 1.5em; 
+
+			.sub-bio strong {
+				color: #ffffff;
 			}
-			.console-box { 
-				background: #1e293b; 
-				padding: 1.5em; 
-				border-radius: 8px; 
-				border: 1px solid #334155;
+
+			/* Pill Button Row */
+			.btn-row {
+				display: flex;
+				gap: 1rem;
 			}
-			.console-box h4 { 
-				margin: 0 0 0.6em 0; 
-				color: #3b82f6; 
-				font-size: 1.15em; 
+
+			.pill-btn {
+				display: inline-flex;
+				align-items: center;
+				padding: 0.8rem 1.8rem;
+				border-radius: 9999px; /* Absolute round edge */
+				font-size: 0.95rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition: all 0.2s ease;
 			}
-			.console-box p { 
-				margin: 0; 
-				font-size: 0.95em; 
-				color: #94a3b8; 
-				line-height: 1.5; 
+
+			.btn-white {
+				background-color: #ffffff;
+				color: #0d0d0e;
+			}
+
+			.btn-white:hover {
+				background-color: #e2e8f0;
+			}
+
+			.btn-outline {
+				background-color: transparent;
+				color: #ffffff;
+				border: 1px solid #27272a; /* Thin slate boundary outline */
+			}
+
+			.btn-outline:hover {
+				background-color: #18181b;
+				border-color: #3f3f46;
+			}
+
+			/* Right Panel Interactive Media Card */
+			.media-container {
+				position: relative;
+			}
+
+			.photo-card {
+				width: 100%;
+				aspect-ratio: 1 / 1;
+				background-color: #1a1a1c; /* Lighter charcoal frame panel background */
+				background-image: url('/my-portrait.jpg'); /* Placed inside the public/ folder */
+				background-size: cover;
+				background-position: center;
+				border-radius: 28px; /* Smooth card corners matching image */
+				box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+			}
+
+			.floating-tag {
+				position: absolute;
+				bottom: -12px;
+				left: -12px;
+				background-color: #ff5a2b;
+				color: #ffffff;
+				padding: 0.6rem 1.2rem;
+				border-radius: 12px;
+				font-size: 0.9rem;
+				font-weight: 700;
+				text-decoration: none;
+				box-shadow: 0 4px 12px rgba(255, 90, 43, 0.3);
+			}
+
+			/* Layout Metric Block Divider Line */
+			.counter-row {
+				display: flex;
+				gap: 4rem;
+				border-top: 1px solid #1a1a1c; /* Subdued dividing line */
+				padding-top: 3rem;
+			}
+
+			.counter-block h4 {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 2.2rem;
+				font-weight: 800;
+				margin: 0 0 0.2rem 0;
+				letter-spacing: -0.02em;
+			}
+
+			.counter-block p {
+				color: #71717a; /* Subdued gray labels matching image typography */
+				font-size: 0.9rem;
+				margin: 0;
+				font-weight: 500;
+			}
+
+			@media (max-width: 968px) {
+				.hero-split { grid-template-columns: 1fr; gap: 3rem; }
+				.counter-row { gap: 2rem; flex-wrap: wrap; }
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<div class="hero-container">
-				<h1 class="title">Abdirahman Said Dhore</h1>
-				<div class="subtitle">System Status: Mechanical Engineer & Researcher</div>
-				<div class="contact-bar">
-					💾 LOC: Milano, Italy | 🌐 NET: Abdirahmans.dhore@gmail.com | 🛠️ SYS: LinkedIn/dhore
+			
+			<div class="hero-split">
+				<!-- Content block text -->
+				<div class="hero-intro">
+					<div class="badge-status">Available for Work</div>
+					<h1 class="main-headline">Hi, I'm <span>Abdirahman</span></h1>
+					<p class="sub-bio">
+						Mechanical Engineer & <strong>Energy Systems Analyst</strong>. I model and design digital twin optimization frameworks and dynamic renewable asset configurations that are clean, efficient, and resilient.
+					</p>
+					<div class="btn-row">
+						<a href="/blog" class="pill-btn btn-white">View my work ↓</a>
+						<a href="mailto:your-email@example.com" class="pill-btn btn-outline">Get in touch</a>
+					</div>
 				</div>
-				<p class="summary-text">
-					Dual-Master's engineer holding advanced specializations from <strong>Politecnico di Milano</strong> and the <strong>SKILLBILL European Specialization Program</strong>. Expert at integrating physical mechanical systems with core software frameworks, specializing in industrial automation, clean-tech infrastructures, and digital twins.
-				</p>
+
+				<!-- Right Asset Container Image Frame -->
+				<div class="media-container">
+					<div class="photo-card"></div>
+					<a href="/blog" class="floating-tag">Open to projects</a>
+				</div>
 			</div>
 
-			<section style="margin-bottom: 3em;">
-				<h3 class="section-header">[01] TECHNICAL CORE MATRIX</h3>
-				<div class="dashboard-grid">
-					<div class="console-box">
-						<h4>Simulation & Digital Twins</h4>
-						<p>Arena Rockwell, Factory I/O, Discrete Event Simulation (DES), MQTT protocols, InfluxDB time-series databases.</p>
-					</div>
-					<div class="console-box">
-						<h4>Design & Automation</h4>
-						<p>PLC Programming (Ladder Logic), Mechatronic Control Loops, SolidWorks, AutoCAD customization, ABAQUS structural stress testing.</p>
-					</div>
-					<div class="console-box">
-						<h4>Data Analysis Pipeline</h4>
-						<p>Python script optimization (Pandas, NumPy, SciPy, Flask API hosting), MATLAB workflows (Simulink control models, Stochastic modeling).</p>
-					</div>
-					<div class="console-box">
-						<h4>Industrial Operations</h4>
-						<p>Industrial Risk Management, OEE efficiency analytics, Condition-Based Smart Maintenance (CBM), ISO 22301 business frameworks.</p>
-					</div>
+			<!-- Static Matrix Counter Grid Footer -->
+			<div class="counter-row">
+				<div class="counter-block">
+					<h4>3+</h4>
+					<p>Core research frameworks</p>
 				</div>
-			</section>
+				<div class="counter-block">
+					<h4>M.Sc.</h4>
+					<p>Politecnico di Milano</p>
+				</div>
+				<div class="counter-block">
+					<h4>5y</h4>
+					<p>Technical expertise track</p>
+				</div>
+			</div>
+
 		</main>
 		<Footer />
 	</body>
-</html>npm run dev
+</html>

@@ -3,119 +3,291 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-
-// Pull the collection safely
-const posts = await getCollection('blog');
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Projects | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-		<style>
-			body {
-				background-color: #0f172a;
-				color: #f1f5f9;
-				font-family: 'Courier New', Courier, monospace, system-ui;
-			}
-			main {
-				max-width: 900px;
-				margin: 0 auto;
-				padding: 3em 2em;
-			}
-			.page-title {
-				font-size: 2.5em;
-				color: #ffffff;
-				margin: 0 0 0.2em 0;
-				font-weight: 800;
-			}
-			.page-subtitle {
-				color: #94a3b8;
-				margin-bottom: 3em;
-				font-size: 1.1em;
-			}
-			.project-list {
-				display: flex;
-				flex-direction: column;
-				gap: 24px;
-				padding: 0;
-				list-style-type: none;
-			}
-			.project-card {
-				background: #1e293b;
-				border: 1px solid #334155;
-				border-radius: 8px;
-				padding: 1.8em;
-				transition: all 0.3s ease;
-			}
-			.project-card:hover {
-				border-color: #3b82f6;
-				transform: translateY(-2px);
-			}
-			.project-title {
+		<BaseHead title={`Work & Projects | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		
+		<style is:inline>
+			/* Overrides clashing global stylesheets completely */
+			html, body {
+				background-color: #0d0d0e !important; /* True pitch black matching your images */
+				background-image: none !important;    /* Wipes out the clashing grey gradient */
+				color: #ffffff !important;
+				font-family: 'Inter', system-ui, sans-serif;
+				-webkit-font-smoothing: antialiased;
 				margin: 0;
-				font-size: 1.4em;
+				padding: 0;
 			}
-			.project-title a {
-				color: #ffffff;
-				text-decoration: none;
+			
+			main {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 6rem 2rem;
+				background-color: #0d0d0e !important;
+			}
+
+			/* Page Header Structure */
+			.page-header {
+				margin-bottom: 5rem;
+				border-left: 5px solid #ff5a2b; /* Precise orange accent bar */
+				padding-left: 2rem;
+			}
+
+			.page-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 3.5rem;
+				font-weight: 800;
+				color: #ffffff !important;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.03em;
+				line-height: 1.1;
+			}
+
+			.page-subtitle {
+				color: #a1a1aa !important; /* Highly legible grey description text */
+				font-size: 1.3rem;
+				font-weight: 500;
+				margin: 0;
+				max-width: 700px;
+				line-height: 1.6;
+			}
+
+			.section-heading {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.8rem;
+				color: #ffffff !important;
+				margin-top: 5rem;
+				margin-bottom: 2rem;
 				font-weight: 700;
+				letter-spacing: -0.02em;
 			}
-			.project-title a:hover {
-				color: #3b82f6;
+
+			/* Eliott-style Case Study Project Cards */
+			.project-card {
+				background: #1a1a1c !important; /* Lighter charcoal card surface */
+				border: 1px solid #27272a !important;
+				border-radius: 20px;
+				padding: 2.5rem;
+				margin-bottom: 2rem;
 			}
+
 			.project-meta {
-				color: #3b82f6;
-				font-size: 0.85em;
-				font-weight: bold;
+				color: #ff5a2b !important; /* Signature coral orange */
+				font-size: 0.9rem;
+				font-weight: 700;
 				text-transform: uppercase;
-				letter-spacing: 1px;
-				margin-top: 0.5em;
+				letter-spacing: 0.08em;
+				margin-bottom: 0.6rem;
 			}
+
+			.project-card h3 {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.8rem;
+				font-weight: 700;
+				color: #ffffff !important;
+				margin: 0 0 1rem 0;
+				letter-spacing: -0.01em;
+			}
+
 			.project-desc {
-				color: #cbd5e1;
-				margin-top: 0.8em;
-				margin-bottom: 0;
-				font-size: 0.95em;
-				line-height: 1.5;
+				color: #d1d5db !important;
+				font-size: 1.05rem;
+				line-height: 1.7;
+				margin-bottom: 2rem;
+			}
+
+			/* Asset Buttons Layout inside cards */
+			.asset-action-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 12px;
+				border-top: 1px solid #27272a;
+				padding-top: 1.5rem;
+			}
+
+			.action-pill {
+				display: inline-flex;
+				align-items: center;
+				padding: 0.6rem 1.4rem;
+				border-radius: 9999px; /* Absolute capsule border radius */
+				font-size: 0.9rem;
+				font-weight: 600;
+				text-decoration: none;
+				transition: all 0.2s ease;
+			}
+
+			.pill-orange {
+				background-color: #ff5a2b;
+				color: #ffffff;
+			}
+
+			.pill-orange:hover {
+				background-color: #e0481b;
+			}
+
+			.pill-dark {
+				background-color: transparent;
+				color: #ffffff;
+				border: 1px solid #27272a;
+			}
+
+			.pill-dark:hover {
+				background-color: #27272a;
+			}
+
+			/* --- Dedicated Contact Form Panel --- */
+			.contact-wrapper {
+				background: #1a1a1c !important;
+				border: 1px solid #27272a !important;
+				border-radius: 24px;
+				padding: 3rem;
+				margin-top: 4rem;
+			}
+
+			.contact-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 3rem;
+			}
+
+			.contact-info p {
+				color: #a1a1aa !important;
+				font-size: 1.1rem;
+				line-height: 1.6;
+				margin-bottom: 2rem;
+			}
+
+			.contact-method {
+				font-size: 1.2rem;
+				font-weight: 600;
+				color: #ffffff;
+				margin-bottom: 0.5rem;
+			}
+
+			.contact-method a {
+				color: #ff5a2b;
+				text-decoration: none;
+			}
+
+			/* Minimal Form Styling */
+			.form-group {
+				margin-bottom: 1.5rem;
+			}
+
+			.form-group label {
+				display: block;
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: #a1a1aa;
+				margin-bottom: 0.5rem;
+			}
+
+			.form-group input, .form-group textarea {
+				width: 100%;
+				padding: 0.8rem 1rem;
+				background-color: #0d0d0e;
+				border: 1px solid #27272a;
+				border-radius: 8px;
+				color: #ffffff;
+				font-family: inherit;
+				box-sizing: border-box;
+			}
+
+			.form-group input:focus, .form-group textarea:focus {
+				border-color: #ff5a2b;
+				outline: none;
+			}
+
+			@media (max-width: 768px) {
+				.page-title { font-size: 2.8rem; }
+				.contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+				.contact-wrapper { padding: 1.8rem; }
+				.project-card { padding: 1.8rem; }
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1 class="page-title">[03] RESEARCH & PROJECTS</h1>
-			<p class="page-subtitle">Index of structural analyses, automation deployments, and cleaner tech case studies.</p>
 			
+			<div class="page-header">
+				<h1 class="page-title">Selected Works</h1>
+				<p class="page-subtitle">Technical reports, automation structures, and alternative infrastructure layout frameworks.</p>
+			</div>
+
 			<section>
-				<ul class="project-list">
-					<!-- Static Render Block to guarantee data passes through cleanly -->
-					<li class="project-card">
-						<h2 class="project-title">
-							<a href="/blog/digital-twin/">Digital Twin Real-Time Input Parameter Calibration</a>
-						</h2>
-						<div class="project-meta">LOG TIMELINE: JUN 2025 - OCT 2025</div>
-						<p class="project-desc">Developing automated synchronization between live manufacturing lines and discrete event simulation engines using bootstrap particle filtering at Politecnico di Milano.</p>
-					</li>
+				<h2 class="section-heading">Case Studies & Engineering Reports</h2>
 
-					<li class="project-card">
-						<h2 class="project-title">
-							<a href="/blog/hydrogen-storage/">Dynamic Behaviour of Solid Metal Hydride & Gas Hydrogen Storage Tanks</a>
-						</h2>
-						<div class="project-meta">LOG TIMELINE: SEP 2024 - PRESENT</div>
-						<p class="project-desc">Thermodynamic and fluid-structure transient assessment of refilling characteristics under high-pressure variable scenarios within the SKILLBILL European Program.</p>
-					</li>
+				<!-- Project 1 -->
+				<div class="project-card">
+					<div class="project-meta">Politecnico di Milano • Case Study</div>
+					<h3>Digital Twin Real-Time Input Parameter Calibration</h3>
+					<p class="project-desc">Developing automated synchronization layers mapping dynamic production components to simulation systems using specialized Bootstrap Particle Filtering tracking structures.</p>
+					<div class="asset-action-row">
+						<!-- Make sure these files exist inside your public/ folder -->
+						<a href="/digital-twin-report.pdf" target="_blank" class="action-pill pill-orange">📄 View PDF Report</a>
+						<a href="/twin-schematic.jpg" target="_blank" class="action-pill pill-dark">🖼️ System Diagram</a>
+					</div>
+				</div>
 
-					<li class="project-card">
-						<h2 class="project-title">
-							<a href="/blog/somalia-grid/">Sustainable Energy Transitions: Macro Somalia Grid Optimization</a>
-						</h2>
-						<div class="project-meta">LOG TIMELINE: MAY 2025</div>
-						<p class="project-desc">Strategic techno-economic analysis modeling the transition of high-cost decentralized diesel grids to smart hybrid solar-photovoltaic networks using BECO data.</p>
-					</li>
-				</ul>
+				<!-- Project 2 -->
+				<div class="project-card">
+					<div class="project-meta">University of Tuscia • Master Research</div>
+					<h3>Dynamic Behaviour of Solid Metal Hydride & Gas Hydrogen Storage Tanks</h3>
+					<p class="project-desc">Thermodynamic and fluid-structure transient engineering analysis inspecting alternative local pressure thresholds under quick high-pressure refilling cycles.</p>
+					<div class="asset-action-row">
+						<a href="/hydrogen-storage-analysis.pdf" target="_blank" class="action-pill pill-orange">📄 View PDF Analysis</a>
+					</div>
+				</div>
+
+				<!-- Project 3 -->
+				<div class="project-card">
+					<div class="project-meta">Energy Infrastructure Framework</div>
+					<h3>Sustainable Energy Transitions: Macro Somalia Grid Optimization</h3>
+					<p class="project-desc">Techno-economic asset modeling evaluating transitions from costly decentralized diesel configurations into smart hybrid solar utility networks.</p>
+					<div class="asset-action-row">
+						<a href="/somalia-grid-transition.pdf" target="_blank" class="action-pill pill-orange">📄 View PDF Report</a>
+					</div>
+				</div>
 			</section>
+
+			<!-- --- Dedicated Contact Form Section --- -->
+			<section>
+				<h2 class="section-heading">Get In Touch</h2>
+				<div class="contact-wrapper">
+					<div class="contact-grid">
+						<div class="contact-info">
+							<p>Have a project proposal, an operational challenge, or looking to discuss engineering contract tracks? Let's build something efficient together.</p>
+							<div class="contact-method">Email: <a href="mailto:your.email@example.com">your.email@example.com</a></div>
+							<div class="contact-method">Location: <span style="color: #ffffff;">Lombardy, Italy</span></div>
+						</div>
+						
+						<!-- Client Feedback Form -->
+						<form action="https://formspree.io/f/your-id" method="POST">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" id="name" name="name" required placeholder="Your name" />
+							</div>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" id="email" name="email" required placeholder="your@email.com" />
+							</div>
+							<div class="form-group">
+								<label for="message">Message</label>
+								<textarea id="message" name="message" rows="4" required placeholder="Describe your project..."></textarea>
+							</div>
+							<button type="submit" class="action-pill pill-orange" style="border:none; cursor:pointer; width:100%; justify-content:center; font-size:1rem; padding:0.8rem;">Send Message →</button>
+						</form>
+					</div>
+				</div>
+			</section>
+
 		</main>
 		<Footer />
 	</body>

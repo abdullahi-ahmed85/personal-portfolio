@@ -8,164 +8,223 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Qualifications | ${SITE_TITLE}`} description="Academic degrees and technical credentials." />
-		<style>
-			body {
-				background-color: #0f172a; /* Deep tech slate-dark */
-				color: #f1f5f9; /* Crisp white-gray text */
-				font-family: 'Courier New', Courier, monospace, system-ui; /* Industrial console theme */
+		<BaseHead title={`Qualifications | ${SITE_TITLE}`} description="Academic degrees and credentials." />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		
+		<style is:inline>
+			/* Overrides clashing global stylesheets completely */
+			html, body {
+				background-color: #0d0d0e !important; /* True pitch black matching image_ee867f.jpg */
+				background-image: none !important;    /* Forces the grey gradient to disappear */
+				color: #ffffff !important;
+				font-family: 'Inter', system-ui, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				margin: 0;
+				padding: 0;
 			}
 			
-			main { 
-				max-width: 900px; 
-				margin: 0 auto; 
-				padding: 3em 2em; 
+			main {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 6rem 2rem;
+				background-color: #0d0d0e !important;
+			}
+
+			/* Header Block */
+			.page-header {
+				margin-bottom: 5rem;
+				border-left: 5px solid #ff5a2b; /* Precise orange accent bar */
+				padding-left: 2rem;
 			}
 
 			.page-title {
-				font-size: 2.5em;
-				color: #ffffff;
-				margin: 0;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 3.5rem;
 				font-weight: 800;
+				color: #ffffff !important;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.03em;
+				line-height: 1.1;
 			}
 
 			.page-subtitle {
-				color: #94a3b8;
-				margin-top: 0.2em;
-				margin-bottom: 2.5em;
-				font-size: 1.1em;
+				color: #a1a1aa !important; /* Highly legible grey description text */
+				font-size: 1.3rem;
+				font-weight: 500;
+				margin: 0;
+				max-width: 700px;
+				line-height: 1.6;
 			}
 
-			.section-header { 
-				font-size: 1.6em; 
-				color: #ffffff; 
-				margin-top: 2.5em; 
-				border-bottom: 2px solid #334155; 
-				padding-bottom: 0.4em;
-				letter-spacing: 0.5px;
+			.section-heading {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.8rem;
+				color: #ffffff !important;
+				margin-top: 5rem;
+				margin-bottom: 2rem;
+				font-weight: 700;
+				letter-spacing: -0.02em;
 			}
 
-			.console-card { 
-				background: #1e293b; 
-				padding: 1.8em; 
-				border-radius: 8px; 
-				border: 1px solid #334155;
-				margin-bottom: 1.5em;
-				border-left: 4px solid #3b82f6; /* Electric Blue Accent Line */
+			/* Clean Eliott-style Cards */
+			.qual-card {
+				background: #1a1a1c !important; /* Lighter charcoal card surface */
+				border: 1px solid #27272a !important;
+				border-radius: 20px;
+				padding: 2.5rem;
+				margin-bottom: 1.5rem;
 			}
 
-			.console-card h3 { 
-				margin: 0 0 0.3em 0; 
-				color: #ffffff; 
-				font-size: 1.3em; 
+			.qual-card h3 {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.6rem;
+				font-weight: 700;
+				color: #ffffff !important;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.01em;
 			}
 
-			.meta-tag { 
-				color: #3b82f6; 
-				font-size: 0.9em; 
-				font-weight: bold;
-				margin-bottom: 0.8em;
-				text-transform: uppercase;
-				letter-spacing: 0.5px;
+			.meta-tag-line {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				color: #ff5a2b !important; /* Signature coral orange */
+				font-weight: 600;
+				font-size: 1rem;
+				margin-bottom: 1.5rem;
 			}
 
-			ul { 
-				padding-left: 1.2em; 
-				line-height: 1.6; 
-				color: #cbd5e1; 
+			.qual-card-details {
+				color: #d1d5db !important;
+				font-size: 1.05rem;
+				line-height: 1.8;
 			}
 
-			li { 
-				margin-bottom: 0.5em; 
+			.qual-card-details strong {
+				color: #ffffff !important;
 			}
 
-			.grid-matrix { 
-				display: grid; 
-				grid-template-columns: 1fr 1fr; 
-				gap: 15px; 
-				list-style-type: none; 
-				padding: 0; 
-				margin-top: 1.5em;
+			/* Credentials List Wrapper */
+			.certifications-container {
+				background: #1a1a1c !important;
+				border: 1px solid #27272a !important;
+				border-radius: 20px;
+				padding: 2.5rem;
 			}
 
-			.matrix-item { 
-				background: #111827; 
-				padding: 0.8em; 
-				border-radius: 6px; 
-				font-size: 0.95em; 
-				color: #cbd5e1; 
-				border: 1px dashed #475569;
+			.cert-list {
+				display: flex;
+				flex-direction: column;
+				gap: 1.2rem;
+				margin: 0;
+				padding: 0;
+				list-style: none;
 			}
-			
-			.matrix-item strong {
-				color: #3b82f6;
+
+			.cert-item {
+				color: #d1d5db !important;
+				font-size: 1.05rem;
+				line-height: 1.6;
+			}
+
+			.cert-item strong {
+				color: #ffffff !important;
+				display: inline-block;
+				min-width: 140px;
+			}
+
+			/* Languages Framework Layout Grid */
+			.language-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 1rem;
+			}
+
+			.language-block {
+				background: #1a1a1c !important;
+				border: 1px solid #27272a !important;
+				border-radius: 14px;
+				padding: 1.5rem;
+			}
+
+			.language-block strong {
+				color: #ffffff !important;
+				font-size: 1.1rem;
+				display: block;
+				margin-bottom: 0.2rem;
+			}
+
+			.language-block span {
+				color: #a1a1aa !important;
+				font-size: 0.95rem;
+			}
+
+			@media (max-width: 768px) {
+				.page-title { font-size: 2.8rem; }
+				.qual-card { padding: 1.8rem; }
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1 class="page-title">[02] QUALIFICATIONS & EDUCATION</h1>
-			<p class="page-subtitle">Verified academic log files and professional development certifications.</p>
+			
+			<div class="page-header">
+				<h1 class="page-title">Educational Pipeline</h1>
+				<p class="page-subtitle">Academic timeline milestones, technical master tracks, and localized credentials.</p>
+			</div>
 
-			<!-- Education Matrix -->
 			<section>
-				<h3 class="section-header">ACADEMIC LOGS</h3>
+				<h2 class="section-heading">University Degrees & Specializations</h2>
 				
-				<div class="console-card">
+				<!-- Degree 1 -->
+				<div class="qual-card">
 					<h3>M.Sc. in Mechanical Engineering</h3>
-					<div class="meta-tag">Politecnico di Milano, Italy | Sep 2022 - Oct 2025</div>
-					<ul>
-						<li><strong>Core Specialization:</strong> Integrated Manufacturing Systems, Production Planning & Control, Industrial Risk Management, Data Analysis for Mechanical Systems, and Energy Systems.</li>
-						<li><strong>Thesis output:</strong> Real-time validation and online input parameters calibration within a digital twin framework: an approach based on bootstrap particle filtering.</li>
-					</ul>
+					<div class="meta-tag-line">
+						<span>●</span> Politecnico di Milano, Italy — Sep 2022 - Oct 2025
+					</div>
+					<div class="qual-card-details">
+						<p><strong>Core Focus:</strong> Integrated Manufacturing Systems, Production Planning, Industrial Risk Management, and Advanced Energy Systems.</p>
+						<p><strong>Thesis output:</strong> Real-time validation and online input parameters calibration within a digital twin framework using bootstrap particle filtering.</p>
+					</div>
 				</div>
 
-				<div class="console-card">
+				<!-- Degree 2 -->
+				<div class="qual-card">
 					<h3>First Level Master in Sustainable Energy</h3>
-					<div class="meta-tag">University of Tuscia, Italy (SKILLBILL Specialization) | Sep 2024 - Present</div>
-					<ul>
-						<li><strong>Thesis Focus:</strong> Investigation of the Dynamic Behaviour of Hydrogen Storage Tanks During Refilling at H70 and H35 Under Various Operating Conditions.</li>
-					</ul>
-				</div>
-
-				<div class="console-card">
-					<h3>Laurea (B.Sc.) in Mechanical Engineering</h3>
-					<div class="meta-tag">Somali National University, Somalia | Aug 2017 - Mar 2022</div>
-					<ul>
-						<li><strong>Thesis output:</strong> Structural design and execution of an Automatic Conveyor Belt utilizing PLC architecture.</li>
-					</ul>
-				</div>
-
-				<div class="console-card">
-					<h3>Professional Diploma in Project Management</h3>
-					<div class="meta-tag">Mogadishu University, Somalia | Sep 2019 - Sep 2020</div>
+					<div class="meta-tag-line">
+						<span>●</span> University of Tuscia, Italy — SKILLBILL Master Track
+					</div>
+					<div class="qual-card-details">
+						<p><strong>Thesis Focus:</strong> Fluid-structure transient investigation of solid metal hydride and gas hydrogen storage tanks during dynamic variable-pressure refilling cycles.</p>
+					</div>
 				</div>
 			</section>
 
-			<!-- Certifications Array -->
 			<section>
-				<h3 class="section-header">PROFESSIONAL CERTIFICATIONS</h3>
-				<div style="background: #111827; padding: 1.5em; border: 1px dashed #475569; border-radius: 6px; margin-top: 1.5em;">
-					<ul>
-						<li><strong>Autodesk Certified Professional:</strong> AutoCAD (Registry ID: 2023).</li>
-						<li><strong>Infrastructure & Operations:</strong> Infrastructure Operations and Maintenance (ADBI, 2024); Solar Energy Systems Overview (University at Buffalo, 2022); Green Investments: Renewable Energy (ADBI, 2021).</li>
-						<li><strong>Sustainability Loops:</strong> Circular Economy: Designing Out Waste (ADBI, 2024); Cybersecurity Frameworks (ADBI, 2024).</li>
-						<li><strong>Management Kernels:</strong> Planning for Monitoring and Evaluation (2020); Managing Project Finances (2021).</li>
+				<h2 class="section-heading">Professional Credentials</h2>
+				<div class="certifications-container">
+					<ul class="cert-list">
+						<li class="cert-item"><strong>AutoCAD Professional:</strong> Autodesk Registry Validation (ID: 2023)</li>
+						<li class="cert-item"><strong>Infrastructure O&M:</strong> ADBI Operational Maintenance & Strategy (2024)</li>
+						<li class="cert-item"><strong>Solar Energy Systems:</strong> SUNY Buffalo Overview (2022)</li>
+						<li class="cert-item"><strong>Circular Economy:</strong> ADBI Designing Out Waste Framework (2024)</li>
 					</ul>
 				</div>
 			</section>
 
-			<!-- Language Matrix -->
-			<section style="margin-bottom: 3em;">
-				<h3 class="section-header">COMMUNICATION MATRIX</h3>
-				<ul class="grid-matrix">
-					<li class="matrix-item">🗣️ <strong>English:</strong> Full Professional Proficiency (C1)</li>
-					<li class="matrix-item">🗣️ <strong>Somali:</strong> Native / Mother Tongue</li>
-					<li class="matrix-item">🗣️ <strong>Arabic:</strong> Intermediate Competency (B1)</li>
-					<li class="matrix-item">🗣️ <strong>Italian:</strong> Elementary Integration (A2)</li>
-				</ul>
+			<section>
+				<h2 class="section-heading">Communication Frameworks</h2>
+				<div class="language-grid">
+					<div class="language-block"><strong>English</strong> <span>Full Professional (C1)</span></div>
+					<div class="language-block"><strong>Somali</strong> <span>Native Proficiency</span></div>
+					<div class="language-block"><strong>Arabic</strong> <span>Intermediate (B1)</span></div>
+					<div class="language-block"><strong>Italian</strong> <span>Elementary (A2)</span></div>
+				</div>
 			</section>
+
 		</main>
 		<Footer />
 	</body>

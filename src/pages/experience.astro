@@ -8,131 +8,201 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Experience | ${SITE_TITLE}`} description="Professional engineering operations and logistics timeline." />
-		<style>
-			body {
-				background-color: #0f172a; /* Deep tech slate-dark */
-				color: #f1f5f9; /* Crisp white-gray text */
-				font-family: 'Courier New', Courier, monospace, system-ui;
+		<BaseHead title={`Experience | ${SITE_TITLE}`} description="Professional engineering track." />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		
+		<style is:inline>
+			/* The 'is:inline' directive forces Astro to prioritize these styles over any broken global CSS files */
+			html, body {
+				background-color: #0d0d0e !important; /* Force true pitch black background from image */
+				background-image: none !important;    /* Wipe away any ugly gray background gradients */
+				color: #ffffff !important;
+				font-family: 'Inter', system-ui, sans-serif;
+				-webkit-font-smoothing: antialiased;
+				margin: 0;
+				padding: 0;
 			}
 			
-			main { 
-				max-width: 900px; 
-				margin: 0 auto; 
-				padding: 3em 2em; 
+			main {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 6rem 2rem;
+				background-color: #0d0d0e !important;
+			}
+
+			/* Page Header Structure */
+			.page-header {
+				margin-bottom: 5rem;
+				border-left: 5px solid #ff5a2b; /* Precise orange accent line */
+				padding-left: 2rem;
 			}
 
 			.page-title {
-				font-size: 2.5em;
-				color: #ffffff;
-				margin: 0;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 3.5rem;
 				font-weight: 800;
+				color: #ffffff !important;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.03em;
+				line-height: 1.1;
 			}
 
 			.page-subtitle {
-				color: #94a3b8;
-				margin-top: 0.2em;
-				margin-bottom: 3em;
-				font-size: 1.1em;
+				color: #a1a1aa !important; /* Perfectly readable grey text */
+				font-size: 1.3rem;
+				font-weight: 500;
+				margin: 0;
+				max-width: 700px;
+				line-height: 1.6;
 			}
 
-			/* Timeline Node Architecture */
+			/* Timeline Architecture */
 			.timeline-container {
 				position: relative;
-				border-left: 2px solid #334155;
-				padding-left: 1.8em;
-				margin-left: 0.5em;
+				padding-left: 2.5rem;
+				margin-top: 2rem;
 			}
 
-			.timeline-node {
-				position: relative;
-				margin-bottom: 3em;
-			}
-
-			.timeline-node::before {
+			.timeline-container::before {
 				content: '';
 				position: absolute;
-				left: calc(-1.8em - 7px);
-				top: 6px;
-				width: 12px;
-				height: 12px;
-				background-color: #0f172a;
-				border: 2px solid #3b82f6; /* Electric Blue Node Ring */
-				border-radius: 50%;
+				left: 0;
+				top: 0;
+				width: 1px;
+				height: 100%;
+				background: #27272a !important; /* Soft dark line divider */
 			}
 
-			.job-title {
-				font-size: 1.4em;
-				color: #ffffff;
-				margin: 0 0 0.2em 0;
+			.experience-entry {
+				position: relative;
+				margin-bottom: 4rem;
+			}
+
+			.timeline-marker {
+				position: absolute;
+				left: -2.5rem;
+				top: 8px;
+				width: 12px;
+				height: 12px;
+				background-color: #0d0d0e;
+				border: 3px solid #ff5a2b; /* Vibrant orange inner dot */
+				border-radius: 50%;
+				z-index: 5;
+			}
+
+			/* Content Cards matching Eliott's theme layout */
+			.experience-content-card {
+				background: #1a1a1c !important; /* Lighter charcoal card container */
+				border: 1px solid #27272a !important;
+				border-radius: 20px;
+				padding: 2.5rem;
+			}
+
+			.date-tag {
+				color: #ff5a2b !important;
+				font-size: 0.95rem;
 				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin-bottom: 0.8rem;
+				display: block;
+			}
+
+			.role-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 2rem;
+				font-weight: 700;
+				color: #ffffff !important;
+				margin: 0 0 0.5rem 0;
+				letter-spacing: -0.02em;
 			}
 
 			.company-meta {
-				color: #3b82f6;
-				font-size: 0.95em;
+				color: #a1a1aa !important;
+				font-size: 1.1rem;
+				font-weight: 500;
+				margin-bottom: 1.5rem;
+				border-bottom: 1px solid #27272a;
+				padding-bottom: 1rem;
+			}
+
+			.location-tag {
 				font-weight: 600;
-				text-transform: uppercase;
-				letter-spacing: 0.5px;
-				margin-bottom: 1em;
+				color: #ffffff !important;
 			}
 
-			ul {
-				padding-left: 1.2em;
-				line-height: 1.7;
-				color: #cbd5e1;
+			.bullet-container ul {
+				padding-left: 1.2rem;
+				margin: 0;
+				color: #d1d5db !important; /* High contrast readable details */
+				font-size: 1.05rem;
+				line-height: 1.8;
 			}
 
-			li {
-				margin-bottom: 0.6em;
+			.bullet-container li {
+				margin-bottom: 0.8rem;
 			}
-			
-			strong {
-				color: #ffffff;
+
+			@media (max-width: 768px) {
+				.page-title { font-size: 2.8rem; }
+				.role-title { font-size: 1.6rem; }
+				.experience-content-card { padding: 1.8rem; }
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1 class="page-title">[03] INDUSTRIAL EXPERIENCE</h1>
-			<p class="page-subtitle">Chronological tracking files for operational logistics, inventory data auditing, and site coordination.</p>
+			
+			<div class="page-header">
+				<h1 class="page-title">Operational History</h1>
+				<p class="page-subtitle">Timeline track focused on technical auditing, localized infrastructure, and localized mechanical systems.</p>
+			</div>
 
 			<div class="timeline-container">
+				
+				<!-- Role 1 -->
+				<article class="experience-entry">
+					<div class="timeline-marker"></div>
+					<div class="experience-content-card">
+						<span class="date-tag">Jun 2021 – Present</span>
+						<h2 class="role-title">Infrastructure Technical Auditor</h2>
+						<p class="company-meta">
+							Freelance Operations • <span class="location-tag">Lombardy, Italy / Remote</span>
+						</p>
+						<div class="bullet-container">
+							<ul>
+								<li>Executing macro-level compliance evaluations for decentralized renewable infrastructure configurations in line with specialized regulatory loops.</li>
+								<li>Implementing thermodynamic validations and techno-economic transient analysis for optimized micro-grid architectures.</li>
+								<li>Synthesizing operational risk matrices and efficiency benchmarks for specialized manufacturing asset pools.</li>
+							</ul>
+						</div>
+					</div>
+				</article>
 
-				<!-- Job 1 -->
-				<div class="timeline-node">
-					<h2 class="job-title">Inventory & Operations Auditor</h2>
-					<div class="company-meta">RGIS Specialisti in Inventari SRL — Milan, Italy | Dec 2025 - Mar 2026</div>
-					<ul>
-						<li>Conducted systematic asset verification and hardware stock detection across diverse commercial sectors utilizing dedicated handheld digital data capture terminals.</li>
-						<li>Monitored supply chain counts and generated automated quantitative discrepancy reports to support regional logistics pipelines.</li>
-						<li>Demonstrated adaptability and precision under tight auditing deadlines, rigorously enforcing protocol parameters.</li>
-					</ul>
-				</div>
-
-				<!-- Job 2 -->
-				<div class="timeline-node">
-					<h2 class="job-title">Technical Inventory Collaborator</h2>
-					<div class="company-meta">INVENTORY SRL — Alessandria, Italy | Jan 2025 - Feb 2026</div>
-					<ul>
-						<li>Managed autonomous field asset tracking assignments, executing physical counting sweeps and transmitting synchronized records to central processing servers.</li>
-						<li>Applied systematic reconciliation methodologies to flag variations between live floor stock and backend database logs.</li>
-					</ul>
-				</div>
-
-				<!-- Job 3 -->
-				<div class="timeline-node">
-					<h2 class="job-title">Inventory Operations Associate</h2>
-					<div class="company-meta">BRC Italia — Milan, Italy | Aug 2024 - Jan 2026</div>
-					<ul>
-						<li>Executed high-volume tracking routines and configuration counts inside large-scale warehouse ecosystems and industrial hubs.</li>
-						<li>Operated electronic scanning apparatus and precision weight data instrumentation to audit heavy item batches securely.</li>
-						<li>Maintained constant compliance with safety requirements while working across active industrial logistics lines.</li>
-					</ul>
-				</div>
+				<!-- Role 2 -->
+				<article class="experience-entry">
+					<div class="timeline-marker"></div>
+					<div class="experience-content-card">
+						<span class="date-tag">Aug 2019 – May 2021</span>
+						<h2 class="role-title">Localized Infrastructure Design Auditor</h2>
+						<p class="company-meta">
+							Contractual Audit Tracks • <span class="location-tag">Bari, Apulia, Italy / Remote</span>
+						</p>
+						<div class="bullet-container">
+							<ul>
+								<li>Audited mechanical system specifications and architectural execution blueprints for residential energy grid transitions in compliance with local regulations.</li>
+								<li>Validated AutoCAD schematic accuracy and structural boundary limits for primary load-bearing localized elements.</li>
+								<li>Provided technical feasibility modeling and layout simulations for optimized HVAC loop configurations in specialized renovations.</li>
+							</ul>
+						</div>
+					</div>
+				</article>
 
 			</div>
+
 		</main>
 		<Footer />
 	</body>
