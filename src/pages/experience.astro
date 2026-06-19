@@ -14,10 +14,9 @@ import { SITE_TITLE } from '../consts';
 		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 		
 		<style is:inline>
-			/* The 'is:inline' directive forces Astro to prioritize these styles over any broken global CSS files */
 			html, body {
-				background-color: #0d0d0e !important; /* Force true pitch black background from image */
-				background-image: none !important;    /* Wipe away any ugly gray background gradients */
+				background-color: #0d0d0e !important;
+				background-image: none !important;
 				color: #ffffff !important;
 				font-family: 'Inter', system-ui, sans-serif;
 				-webkit-font-smoothing: antialiased;
@@ -28,37 +27,36 @@ import { SITE_TITLE } from '../consts';
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
-				padding: 6rem 2rem;
+				padding: 7rem 2rem;
 				background-color: #0d0d0e !important;
 			}
 
-			/* Page Header Structure */
 			.page-header {
 				margin-bottom: 5rem;
-				border-left: 5px solid #ff5a2b; /* Precise orange accent line */
+				border-left: 5px solid #ff5a2b;
 				padding-left: 2rem;
 			}
 
 			.page-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 3.5rem;
+				font-size: 3.8rem;
 				font-weight: 800;
 				color: #ffffff !important;
-				margin: 0 0 0.5rem 0;
-				letter-spacing: -0.03em;
-				line-height: 1.1;
+				margin: 0 0 0.6rem 0;
+				letter-spacing: -0.04em;
+				line-height: 1.05;
 			}
 
 			.page-subtitle {
-				color: #a1a1aa !important; /* Perfectly readable grey text */
-				font-size: 1.3rem;
+				color: #a1a1aa !important;
+				font-size: 1.2rem;
 				font-weight: 500;
 				margin: 0;
 				max-width: 700px;
-				line-height: 1.6;
+				line-height: 1.65;
+				letter-spacing: -0.01em;
 			}
 
-			/* Timeline Architecture */
 			.timeline-container {
 				position: relative;
 				padding-left: 2.5rem;
@@ -72,12 +70,12 @@ import { SITE_TITLE } from '../consts';
 				top: 0;
 				width: 1px;
 				height: 100%;
-				background: #27272a !important; /* Soft dark line divider */
+				background: #27272a !important;
 			}
 
 			.experience-entry {
 				position: relative;
-				margin-bottom: 4rem;
+				margin-bottom: 4.5rem;
 			}
 
 			.timeline-marker {
@@ -87,22 +85,26 @@ import { SITE_TITLE } from '../consts';
 				width: 12px;
 				height: 12px;
 				background-color: #0d0d0e;
-				border: 3px solid #ff5a2b; /* Vibrant orange inner dot */
+				border: 3px solid #ff5a2b;
 				border-radius: 50%;
 				z-index: 5;
 			}
 
-			/* Content Cards matching Eliott's theme layout */
 			.experience-content-card {
-				background: #1a1a1c !important; /* Lighter charcoal card container */
+				background: #1a1a1c !important;
 				border: 1px solid #27272a !important;
-				border-radius: 20px;
-				padding: 2.5rem;
+				border-radius: 22px;
+				padding: 2.8rem;
+				transition: border-color 0.25s ease;
+			}
+
+			.experience-content-card:hover {
+				border-color: #ff5a2b !important;
 			}
 
 			.date-tag {
 				color: #ff5a2b !important;
-				font-size: 0.95rem;
+				font-size: 0.9rem;
 				font-weight: 700;
 				text-transform: uppercase;
 				letter-spacing: 0.1em;
@@ -112,7 +114,7 @@ import { SITE_TITLE } from '../consts';
 
 			.role-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 2rem;
+				font-size: 1.8rem;
 				font-weight: 700;
 				color: #ffffff !important;
 				margin: 0 0 0.5rem 0;
@@ -121,11 +123,11 @@ import { SITE_TITLE } from '../consts';
 
 			.company-meta {
 				color: #a1a1aa !important;
-				font-size: 1.1rem;
+				font-size: 1.05rem;
 				font-weight: 500;
-				margin-bottom: 1.5rem;
+				margin-bottom: 1.8rem;
 				border-bottom: 1px solid #27272a;
-				padding-bottom: 1rem;
+				padding-bottom: 1.2rem;
 			}
 
 			.location-tag {
@@ -136,19 +138,24 @@ import { SITE_TITLE } from '../consts';
 			.bullet-container ul {
 				padding-left: 1.2rem;
 				margin: 0;
-				color: #d1d5db !important; /* High contrast readable details */
+				color: #d1d5db !important;
 				font-size: 1.05rem;
 				line-height: 1.8;
+				letter-spacing: -0.01em;
 			}
 
 			.bullet-container li {
 				margin-bottom: 0.8rem;
 			}
+			
+			.bullet-container li:last-child {
+				margin-bottom: 0;
+			}
 
 			@media (max-width: 768px) {
 				.page-title { font-size: 2.8rem; }
-				.role-title { font-size: 1.6rem; }
-				.experience-content-card { padding: 1.8rem; }
+				.role-title { font-size: 1.5rem; }
+				.experience-content-card { padding: 2rem; }
 			}
 		</style>
 	</head>
@@ -158,44 +165,82 @@ import { SITE_TITLE } from '../consts';
 			
 			<div class="page-header">
 				<h1 class="page-title">Operational History</h1>
-				<p class="page-subtitle">Timeline track focused on technical auditing, localized infrastructure, and localized mechanical systems.</p>
+				<p class="page-subtitle">Professional track specialized in industrial quality control, equipment inspection, and logistics systems data analysis.</p>
 			</div>
 
 			<div class="timeline-container">
 				
-				<!-- Role 1 -->
+				<!-- Role 1: Freelance Technical Inspector -->
 				<article class="experience-entry">
 					<div class="timeline-marker"></div>
 					<div class="experience-content-card">
-						<span class="date-tag">Jun 2021 – Present</span>
-						<h2 class="role-title">Infrastructure Technical Auditor</h2>
+						<span class="date-tag">Oct 2022 – Present</span>
+						<h2 class="role-title">Freelance Technical Inspector (Mechanical & Industrial Equipment)</h2>
 						<p class="company-meta">
-							Freelance Operations • <span class="location-tag">Lombardy, Italy / Remote</span>
+							Independent Operations • <span class="location-tag">Mogadishu, Somalia / Remote</span>[cite: 1]
 						</p>
 						<div class="bullet-container">
 							<ul>
-								<li>Executing macro-level compliance evaluations for decentralized renewable infrastructure configurations in line with specialized regulatory loops.</li>
-								<li>Implementing thermodynamic validations and techno-economic transient analysis for optimized micro-grid architectures.</li>
-								<li>Synthesizing operational risk matrices and efficiency benchmarks for specialized manufacturing asset pools.</li>
+								<li>Conducted high-level inspections of rotary and stationary equipment, including axial/centrifugal compressors and oil rig rotary tables, ensuring compliance with ISO 10438, API 617, and API 6D[cite: 1].</li>
+								<li>Performed Factory Acceptance Tests (FAT), functional testing, and hydrostatic leak testing on various valve types (Globe, Butterfly, Control) and piping systems (HDPE, Welded, SMLS) per ASME B31.3 and ASTM F2164[cite: 1].</li>
+								<li>Executed comprehensive quality control for instrumentation and coating, including surface preparation inspections according to NACE MR0175 and ISO 12944[cite: 1].</li>
+								<li>Verified technical documentation (WPS-PQR) and material certificates for ferrous and non-ferrous materials as per ASME Sec. IX and DIN standards[cite: 1].</li>
+								<li>Witnessed operational and calibration tests for control valve actuators, including bore-scope inspections and vibration/noise measurement for gearboxes[cite: 1].</li>
 							</ul>
 						</div>
 					</div>
 				</article>
 
-				<!-- Role 2 -->
+				<!-- Role 2: RGIS -->
 				<article class="experience-entry">
 					<div class="timeline-marker"></div>
 					<div class="experience-content-card">
-						<span class="date-tag">Aug 2019 – May 2021</span>
-						<h2 class="role-title">Localized Infrastructure Design Auditor</h2>
+						<span class="date-tag">Dec 2025 – Mar 2026</span>
+						<h2 class="role-title">Inventory & Operations Auditor</h2>
 						<p class="company-meta">
-							Contractual Audit Tracks • <span class="location-tag">Bari, Apulia, Italy / Remote</span>
+							RGIS Specialisti in Inventari SRL • <span class="location-tag">Milan, Italy</span>[cite: 1]
 						</p>
 						<div class="bullet-container">
 							<ul>
-								<li>Audited mechanical system specifications and architectural execution blueprints for residential energy grid transitions in compliance with local regulations.</li>
-								<li>Validated AutoCAD schematic accuracy and structural boundary limits for primary load-bearing localized elements.</li>
-								<li>Provided technical feasibility modeling and layout simulations for optimized HVAC loop configurations in specialized renovations.</li>
+								<li>Conducted systematic stock verification and product detection across multiple commercial sites, utilizing digital inventory systems to ensure data integrity[cite: 1].</li>
+								<li>Monitored supply chain levels and reported quantitative discrepancies, supporting broader logistics and retail operations[cite: 1].</li>
+							</ul>
+						</div>
+					</div>
+				</article>
+
+				<!-- Role 3: INVENTORY SRL -->
+				<article class="experience-entry">
+					<div class="timeline-marker"></div>
+					<div class="experience-content-card">
+						<span class="date-tag">Jan 2025 – Feb 2026</span>
+						<h2 class="role-title">Technical Inventory Collaborator</h2>
+						<p class="company-meta">
+							INVENTORY SRL • <span class="location-tag">Alessandria, Italy</span>[cite: 1]
+						</p>
+						<div class="bullet-container">
+							<ul>
+								<li>Managed autonomous inventory data collection projects, coordinating directly with headquarters to ensure timely and accurate execution of stock audits[cite: 1].</li>
+								<li>Applied systematic approaches to reconcile physical assets with digital records, minimizing tracking errors for client organizations[cite: 1].</li>
+							</ul>
+						</div>
+					</div>
+				</article>
+
+				<!-- Role 4: BRC Italia -->
+				<article class="experience-entry">
+					<div class="timeline-marker"></div>
+					<div class="experience-content-card">
+						<span class="date-tag">Aug 2024 – Jan 2026</span>
+						<h2 class="role-title">Inventory Operations Associate</h2>
+						<p class="company-meta">
+							BRC Italia • <span class="location-tag">Milan, Italy</span>[cite: 1]
+						</p>
+						<div class="bullet-container">
+							<ul>
+								<li>Executed qualitative and differential stock analyses for large-scale retail and commercial distribution centers[cite: 1].</li>
+								<li>Operated specialized weighing and scanning equipment to validate warehouse inventory, maintaining high standards of quality control[cite: 1].</li>
+								<li>Ensured continuous compliance with workplace safety standards while processing logistical data under strict deadlines[cite: 1].</li>
 							</ul>
 						</div>
 					</div>

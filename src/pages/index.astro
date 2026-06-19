@@ -13,79 +13,90 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 		
-		<style>
-			body {
-				background-color: #0d0d0e; /* True deep obsidian background matching image_ee867f.jpg */
-				color: #ffffff;
+		<style is:inline>
+			html, body {
+				background-color: #0d0d0e !important;
+				background-image: none !important;
+				color: #ffffff !important;
 				font-family: 'Inter', system-ui, sans-serif;
 				-webkit-font-smoothing: antialiased;
 				margin: 0;
+				padding: 0;
 			}
 			
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
-				padding: 5rem 2rem;
+				padding: 7rem 2rem;
+				background-color: #0d0d0e !important;
 			}
 
-			/* Symmetrical Split Section */
+			/* Asymmetric Grid Layout */
 			.hero-split {
 				display: grid;
-				grid-template-columns: 1.2fr 0.8fr;
-				gap: 4rem;
+				grid-template-columns: 1.25fr 0.75fr;
+				gap: 5rem;
 				align-items: center;
-				margin-bottom: 5rem;
+				margin-bottom: 6rem;
 			}
 
+			/* Text Format: Clean Tracking for Status Badge */
 			.badge-status {
-				color: #ff5a2b; /* Balanced vibrant coral orange */
-				font-size: 0.85rem;
+				color: #ff5a2b !important;
+				font-size: 0.8rem;
 				font-weight: 700;
 				text-transform: uppercase;
-				letter-spacing: 0.08em;
-				margin-bottom: 1.2rem;
+				letter-spacing: 0.14em; /* Wide tracking for modern tech badge feel */
+				margin-bottom: 1.5rem;
 			}
 
+			/* Text Format: Tight, Compressed, Bold Headline */
 			.main-headline {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 4.2rem;
+				font-size: 4.6rem;
 				font-weight: 800;
-				line-height: 1.1;
-				letter-spacing: -0.03em;
-				margin: 0 0 1.5rem 0;
+				line-height: 1.05; /* Keeps large headings tightly stacked */
+				letter-spacing: -0.04em; /* High-end compressed tracking */
+				margin: 0 0 1.8rem 0;
+				color: #ffffff !important;
 			}
 
 			.main-headline span {
-				color: #ff5a2b; /* Matching coral orange accent typography */
+				color: #ff5a2b !important;
+				letter-spacing: -0.02em;
 			}
 
+			/* Text Format: Balanced Line Height for Sub-Bios */
 			.sub-bio {
-				color: #a1a1aa; /* Calibrated soft gray text opacity */
-				font-size: 1.15rem;
-				line-height: 1.6;
-				margin-bottom: 2.5rem;
-				max-width: 540px;
+				color: #a1a1aa !important;
+				font-size: 1.2rem;
+				line-height: 1.7; /* Extra room for optimal paragraph reading */
+				letter-spacing: -0.01em; /* Subtle compression */
+				margin-bottom: 3rem;
+				max-width: 560px;
 			}
 
 			.sub-bio strong {
-				color: #ffffff;
+				color: #ffffff !important;
+				font-weight: 600;
 			}
 
-			/* Pill Button Row */
+			/* Pill Action Controls */
 			.btn-row {
 				display: flex;
-				gap: 1rem;
+				gap: 1.2rem;
 			}
 
 			.pill-btn {
 				display: inline-flex;
 				align-items: center;
-				padding: 0.8rem 1.8rem;
-				border-radius: 9999px; /* Absolute round edge */
+				padding: 0.9rem 2rem;
+				border-radius: 9999px;
 				font-size: 0.95rem;
 				font-weight: 600;
+				letter-spacing: -0.01em;
 				text-decoration: none;
-				transition: all 0.2s ease;
+				transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 			}
 
 			.btn-white {
@@ -95,75 +106,104 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			.btn-white:hover {
 				background-color: #e2e8f0;
+				transform: translateY(-2px);
 			}
 
 			.btn-outline {
 				background-color: transparent;
 				color: #ffffff;
-				border: 1px solid #27272a; /* Thin slate boundary outline */
+				border: 1px solid #27272a;
 			}
 
 			.btn-outline:hover {
-				background-color: #18181b;
-				border-color: #3f3f46;
+				background-color: #141416;
+				border-color: #444446;
+				transform: translateY(-2px);
 			}
 
-			/* Right Panel Interactive Media Card */
+			/* Portrait Side Panel */
 			.media-container {
 				position: relative;
 			}
 
+			.media-container::after {
+				content: '';
+				position: absolute;
+				top: -15%;
+				right: -15%;
+				width: 130%;
+				height: 130%;
+				background: radial-gradient(circle, rgba(255, 90, 43, 0.09) 0%, transparent 65%);
+				z-index: 1;
+				pointer-events: none;
+			}
+
 			.photo-card {
+				position: relative;
+				z-index: 2;
 				width: 100%;
 				aspect-ratio: 1 / 1;
-				background-color: #1a1a1c; /* Lighter charcoal frame panel background */
-				background-image: url('/my-portrait.jpg'); /* Placed inside the public/ folder */
+				background-color: #1a1a1c;
+				background-image: url('/my-portrait.jpg');
 				background-size: cover;
-				background-position: center;
-				border-radius: 28px; /* Smooth card corners matching image */
-				box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+				background-position: center 20%;
+				background-repeat: no-repeat;
+				border-radius: 32px;
+				box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
 			}
 
 			.floating-tag {
 				position: absolute;
-				bottom: -12px;
-				left: -12px;
+				bottom: -10px;
+				left: -10px;
 				background-color: #ff5a2b;
 				color: #ffffff;
-				padding: 0.6rem 1.2rem;
-				border-radius: 12px;
-				font-size: 0.9rem;
+				padding: 0.6rem 1.4rem;
+				border-radius: 14px;
+				font-size: 0.85rem;
 				font-weight: 700;
+				letter-spacing: 0.02em;
 				text-decoration: none;
-				box-shadow: 0 4px 12px rgba(255, 90, 43, 0.3);
+				z-index: 3;
+				box-shadow: 0 6px 20px rgba(255, 90, 43, 0.35);
+				transition: transform 0.2s ease;
 			}
 
-			/* Layout Metric Block Divider Line */
+			.floating-tag:hover {
+				transform: scale(1.04);
+			}
+
+			/* Horizontal Summary Line Splitter */
 			.counter-row {
 				display: flex;
-				gap: 4rem;
-				border-top: 1px solid #1a1a1c; /* Subdued dividing line */
-				padding-top: 3rem;
+				gap: 5rem;
+				border-top: 1px solid #1a1a1c;
+				padding-top: 3.5rem;
 			}
 
+			/* Text Format: Big Counter Numbers */
 			.counter-block h4 {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 2.2rem;
+				font-size: 2.6rem;
 				font-weight: 800;
 				margin: 0 0 0.2rem 0;
-				letter-spacing: -0.02em;
+				letter-spacing: -0.03em; /* Tight number formatting */
+				color: #ffffff !important;
 			}
 
+			/* Text Format: Tiny, clean counter labels */
 			.counter-block p {
-				color: #71717a; /* Subdued gray labels matching image typography */
+				color: #71717a;
 				font-size: 0.9rem;
 				margin: 0;
 				font-weight: 500;
+				letter-spacing: -0.01em;
 			}
 
 			@media (max-width: 968px) {
-				.hero-split { grid-template-columns: 1fr; gap: 3rem; }
-				.counter-row { gap: 2rem; flex-wrap: wrap; }
+				.hero-split { grid-template-columns: 1fr; gap: 4rem; }
+				.counter-row { gap: 2.5rem; flex-wrap: wrap; }
+				.main-headline { font-size: 3.2rem; }
 			}
 		</style>
 	</head>
@@ -172,31 +212,36 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<main>
 			
 			<div class="hero-split">
-				<!-- Content block text -->
 				<div class="hero-intro">
-					<div class="badge-status">Available for Work</div>
+					<div class="badge-status">Available for Contracts</div>
 					<h1 class="main-headline">Hi, I'm <span>Abdirahman</span></h1>
 					<p class="sub-bio">
-						Mechanical Engineer & <strong>Energy Systems Analyst</strong>. I model and design digital twin optimization frameworks and dynamic renewable asset configurations that are clean, efficient, and resilient.
+						Mechanical Engineer & <strong>Energy Systems Analyst</strong>. I model dynamic digital twin frameworks and build sustainable energy infrastructure configurations that are clean, data-validated, and highly resilient.
 					</p>
+					
 					<div class="btn-row">
 						<a href="/blog" class="pill-btn btn-white">View my work ↓</a>
-						<a href="mailto:your-email@example.com" class="pill-btn btn-outline">Get in touch</a>
+						<a 
+							href="https://www.linkedin.com/in/dhore" 
+							target="_blank" 
+							rel="noopener noreferrer" 
+							class="pill-btn btn-outline"
+						>
+							Get in touch ↗
+						</a>
 					</div>
 				</div>
 
-				<!-- Right Asset Container Image Frame -->
 				<div class="media-container">
 					<div class="photo-card"></div>
 					<a href="/blog" class="floating-tag">Open to projects</a>
 				</div>
 			</div>
 
-			<!-- Static Matrix Counter Grid Footer -->
 			<div class="counter-row">
 				<div class="counter-block">
 					<h4>3+</h4>
-					<p>Core research frameworks</p>
+					<p>Advanced research frameworks</p>
 				</div>
 				<div class="counter-block">
 					<h4>M.Sc.</h4>
@@ -204,7 +249,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 				<div class="counter-block">
 					<h4>5y</h4>
-					<p>Technical expertise track</p>
+					<p>Technical engineering track</p>
 				</div>
 			</div>
 

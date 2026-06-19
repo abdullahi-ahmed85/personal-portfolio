@@ -5,7 +5,7 @@ import HeaderLink from './HeaderLink.astro';
 <header>
 	<nav class="nav-container">
 		<div class="brand">
-			<a href="/">eliott<span class="dot">.</span></a>
+			<a href="/">Dhore<span class="dot">.</span></a>
 		</div>
 		<div class="internal-links">
 			<HeaderLink href="/">Services</HeaderLink>
@@ -14,14 +14,14 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/experience">Experience</HeaderLink>
 		</div>
 		<div class="nav-cta">
-			<a href="mailto:your-email@example.com" class="hire-btn">Hire me →</a>
+			<a href="mailto:your.email@example.com" class="hire-btn">Hire me →</a>
 		</div>
 	</nav>
 </header>
 
 <style>
 	header {
-		background-color: #0d0d0e; /* Matte obsidian header container matching image background */
+		background-color: #0d0d0e;
 		padding: 1.5rem 0;
 		position: sticky;
 		top: 0;
@@ -44,14 +44,14 @@ import HeaderLink from './HeaderLink.astro';
 		letter-spacing: -0.03em;
 	}
 	.brand .dot {
-		color: #ff5a2b; /* Calibrated high-contrast coral orange dot */
+		color: #ff5a2b;
 	}
 	.internal-links {
 		display: flex;
 		gap: 2rem;
 	}
 	.internal-links :global(a) {
-		color: #71717a; /* Muted slate gray matching image navbar text */
+		color: #71717a;
 		text-decoration: none;
 		font-size: 0.95rem;
 		font-weight: 500;
@@ -61,11 +61,11 @@ import HeaderLink from './HeaderLink.astro';
 		color: #ffffff;
 	}
 	.hire-btn {
-		background-color: #ff5a2b; /* Vibrant coral orange background */
+		background-color: #ff5a2b;
 		color: #ffffff;
 		text-decoration: none;
 		padding: 0.6rem 1.4rem;
-		border-radius: 9999px; /* Pill capsule styling */
+		border-radius: 9999px;
 		font-size: 0.9rem;
 		font-weight: 600;
 		transition: background-color 0.2s ease;
