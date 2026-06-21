@@ -1,14 +1,13 @@
-﻿---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+```astro
+---
+
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead
-                        title="Experience | Abdullahi Abubakar Ahmed"
+			title="Experience | Abdullahi Abubakar Ahmed"
 			description="Professional and research experience in mechanical engineering, hydrogen modelling, sustainable energy, additive manufacturing, maintenance, and QA/QC inspection."
 		/>
 
@@ -82,7 +81,12 @@ import Header from '../components/Header.astro';
 				margin: 5.5rem 0 2.5rem;
 			}
 
-			.section-header:first-of-type {
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---			.section-header.first-section {
 				margin-top: 0;
 			}
 
@@ -113,7 +117,7 @@ import Header from '../components/Header.astro';
 				top: 0.5rem;
 				width: 1px;
 				height: calc(100% - 1rem);
-				background: #27272a !important;
+				background: #27272a;
 			}
 
 			.experience-entry {
@@ -373,7 +377,7 @@ import Header from '../components/Header.astro';
 			</div>
 
 			<section>
-				<div class="section-header">
+				<div class="section-header first-section">
 					<h2 class="section-title">Professional Experience</h2>
 					<div class="section-line"></div>
 				</div>
@@ -385,7 +389,7 @@ import Header from '../components/Header.astro';
 						<div class="experience-content-card">
 							<div class="entry-topline">
 								<span class="date-tag">
-									October 2023 â€“ Present
+									October 2023 – Present
 								</span>
 
 								<span class="entry-type">
@@ -401,7 +405,7 @@ import Header from '../components/Header.astro';
 								<span class="company-name">
 									Freelance Consultant
 								</span>
-								â€¢
+								•
 								<span class="location-tag">
 									Italy / International
 								</span>
@@ -460,7 +464,7 @@ import Header from '../components/Header.astro';
 						<div class="experience-content-card">
 							<div class="entry-topline">
 								<span class="date-tag">
-									February 2022 â€“ August 2022
+									February 2022 – August 2022
 								</span>
 
 								<span class="entry-type">
@@ -474,7 +478,7 @@ import Header from '../components/Header.astro';
 								<span class="company-name">
 									Tamarso Company
 								</span>
-								â€¢
+								•
 								<span class="location-tag">
 									Mogadishu, Somalia
 								</span>
@@ -530,7 +534,7 @@ import Header from '../components/Header.astro';
 						<div class="experience-content-card">
 							<div class="entry-topline">
 								<span class="date-tag">
-									May 2020 â€“ November 2021
+									May 2020 – November 2021
 								</span>
 
 								<span class="entry-type">
@@ -546,7 +550,7 @@ import Header from '../components/Header.astro';
 								<span class="company-name">
 									Somtel International Ltd
 								</span>
-								â€¢
+								•
 								<span class="location-tag">
 									Mogadishu, Somalia
 								</span>
@@ -584,9 +588,7 @@ import Header from '../components/Header.astro';
 								<span class="skill-tag">
 									Preventive Maintenance
 								</span>
-								<span class="skill-tag">
-									Fault Diagnosis
-								</span>
+								<span class="skill-tag">Fault Diagnosis</span>
 								<span class="skill-tag">Generators</span>
 								<span class="skill-tag">HVAC</span>
 								<span class="skill-tag">
@@ -611,7 +613,7 @@ import Header from '../components/Header.astro';
 						<div class="experience-content-card">
 							<div class="entry-topline">
 								<span class="date-tag">
-									October 2024 â€“ February 2025
+									October 2024 – February 2025
 								</span>
 
 								<span class="entry-type">
@@ -620,7 +622,7 @@ import Header from '../components/Header.astro';
 							</div>
 
 							<h3 class="role-title">
-								Research Intern â€” Additive Manufacturing &
+								Research Intern  Additive Manufacturing &
 								Reverse Engineering
 							</h3>
 
@@ -628,7 +630,7 @@ import Header from '../components/Header.astro';
 								<span class="company-name">
 									University of Tuscia
 								</span>
-								â€¢
+								•
 								<span class="location-tag">
 									Viterbo, Italy
 								</span>
@@ -682,7 +684,7 @@ import Header from '../components/Header.astro';
 
 						<div class="experience-content-card">
 							<div class="entry-topline">
-								<span class="date-tag">2024 â€“ 2025</span>
+								<span class="date-tag">2024 – 2025</span>
 
 								<span class="entry-type">
 									Hydrogen Modelling
@@ -690,7 +692,7 @@ import Header from '../components/Header.astro';
 							</div>
 
 							<h3 class="role-title">
-								Research Project â€” Dynamic Modelling of
+								Research Project — Dynamic Modelling of
 								Hydrogen Storage Blowdown
 							</h3>
 
@@ -698,7 +700,7 @@ import Header from '../components/Header.astro';
 								<span class="company-name">
 									SkillBill Sustainable Energy Programme
 								</span>
-								â€¢
+								•
 								<span class="location-tag">
 									European Specialisation Programme
 								</span>
@@ -721,7 +723,7 @@ import Header from '../components/Header.astro';
 
 									<li>
 										Compared a fixed-step fourth-order
-										Rungeâ€“Kutta method with MATLABâ€™s adaptive
+										Runge–Kutta method with MATLAB’s adaptive
 										ode45 solver.
 									</li>
 
@@ -781,6 +783,3 @@ import Header from '../components/Header.astro';
 	</body>
 </html>
 ```
-
-
-
