@@ -2,258 +2,608 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-		
+		<BaseHead
+			title="Abdullahi Abubakar Ahmed | Mechanical Engineer"
+			description="Mechanical Engineer specialising in hydrogen storage modelling, sustainable energy systems, additive manufacturing, and QA/QC inspection."
+		/>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+
 		<style is:inline>
-			html, body {
-				background-color: #0d0d0e !important;
-				background-image: none !important;
-				color: #ffffff !important;
+			:root {
+				--background: #0d0d0e;
+				--surface: #171719;
+				--surface-soft: #1d1d20;
+				--border: #2b2b30;
+				--text: #ffffff;
+				--muted: #a1a1aa;
+				--accent: #ff5a2b;
+				--accent-soft: rgba(255, 90, 43, 0.12);
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+				background: var(--background);
+			}
+
+			body {
+				margin: 0;
+				background:
+					radial-gradient(circle at 85% 10%, rgba(255, 90, 43, 0.08), transparent 28rem),
+					var(--background);
+				color: var(--text);
 				font-family: 'Inter', system-ui, sans-serif;
 				-webkit-font-smoothing: antialiased;
-				margin: 0;
-				padding: 0;
 			}
-			
+
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
-				padding: 7rem 2rem;
-				background-color: #0d0d0e !important;
+				padding: 6.5rem 2rem 5rem;
 			}
 
-			/* Asymmetric Grid Layout */
-			.hero-split {
+			.hero {
 				display: grid;
-				grid-template-columns: 1.25fr 0.75fr;
+				grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
 				gap: 5rem;
 				align-items: center;
-				margin-bottom: 6rem;
 			}
 
-			/* Text Format: Clean Tracking for Status Badge */
-			.badge-status {
-				color: #ff5a2b !important;
-				font-size: 0.8rem;
+			.eyebrow {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.7rem;
+				margin-bottom: 1.4rem;
+				color: var(--accent);
+				font-size: 0.78rem;
 				font-weight: 700;
+				letter-spacing: 0.14em;
 				text-transform: uppercase;
-				letter-spacing: 0.14em; /* Wide tracking for modern tech badge feel */
-				margin-bottom: 1.5rem;
 			}
 
-			/* Text Format: Tight, Compressed, Bold Headline */
-			.main-headline {
+			.eyebrow::before {
+				content: '';
+				width: 2.2rem;
+				height: 2px;
+				background: var(--accent);
+			}
+
+			h1,
+			h2,
+			h3 {
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 4.6rem;
+			}
+
+			h1 {
+				max-width: 780px;
+				margin: 0;
+				font-size: clamp(3.1rem, 7vw, 5.4rem);
 				font-weight: 800;
-				line-height: 1.05; /* Keeps large headings tightly stacked */
-				letter-spacing: -0.04em; /* High-end compressed tracking */
-				margin: 0 0 1.8rem 0;
-				color: #ffffff !important;
+				line-height: 1.02;
+				letter-spacing: -0.055em;
 			}
 
-			.main-headline span {
-				color: #ff5a2b !important;
-				letter-spacing: -0.02em;
+			h1 span {
+				color: var(--accent);
 			}
 
-			/* Text Format: Balanced Line Height for Sub-Bios */
-			.sub-bio {
-				color: #a1a1aa !important;
-				font-size: 1.2rem;
-				line-height: 1.7; /* Extra room for optimal paragraph reading */
-				letter-spacing: -0.01em; /* Subtle compression */
-				margin-bottom: 3rem;
-				max-width: 560px;
+			.hero-copy {
+				max-width: 700px;
+				margin: 1.8rem 0 0;
+				color: var(--muted);
+				font-size: 1.16rem;
+				line-height: 1.78;
 			}
 
-			.sub-bio strong {
-				color: #ffffff !important;
+			.hero-copy strong {
+				color: var(--text);
 				font-weight: 600;
 			}
 
-			/* Pill Action Controls */
-			.btn-row {
+			.actions {
 				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+				margin-top: 2.5rem;
+			}
+
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 3.2rem;
+				padding: 0.85rem 1.45rem;
+				border-radius: 999px;
+				font-size: 0.92rem;
+				font-weight: 700;
+				text-decoration: none;
+				transition:
+					transform 0.2s ease,
+					background 0.2s ease,
+					border-color 0.2s ease;
+			}
+
+			.button:hover {
+				transform: translateY(-2px);
+			}
+
+			.button-primary {
+				background: var(--accent);
+				color: #ffffff;
+			}
+
+			.button-primary:hover {
+				background: #ff7149;
+			}
+
+			.button-secondary {
+				border: 1px solid var(--border);
+				background: rgba(255, 255, 255, 0.02);
+				color: var(--text);
+			}
+
+			.button-secondary:hover {
+				border-color: #505057;
+				background: rgba(255, 255, 255, 0.05);
+			}
+
+			.portrait-wrap {
+				position: relative;
+			}
+
+			.portrait-wrap::before {
+				content: '';
+				position: absolute;
+				inset: 12% -12% -12% 12%;
+				border-radius: 32px;
+				background: var(--accent-soft);
+				filter: blur(10px);
+			}
+
+			.portrait {
+				position: relative;
+				width: 100%;
+				aspect-ratio: 4 / 5;
+				border: 1px solid var(--border);
+				border-radius: 30px;
+				background:
+					linear-gradient(to top, rgba(13, 13, 14, 0.22), transparent 35%),
+					url('/my-portrait.jpg') center 20% / cover no-repeat,
+					var(--surface);
+				box-shadow: 0 30px 80px rgba(0, 0, 0, 0.48);
+			}
+
+			.portrait-note {
+				position: absolute;
+				right: -1rem;
+				bottom: 1.4rem;
+				padding: 0.75rem 1rem;
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				border-radius: 14px;
+				background: rgba(23, 23, 25, 0.88);
+				backdrop-filter: blur(12px);
+				font-size: 0.82rem;
+				font-weight: 700;
+				box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+			}
+
+			.portrait-note span {
+				display: block;
+				margin-top: 0.25rem;
+				color: var(--accent);
+				font-size: 0.72rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+			}
+
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1rem;
+				margin-top: 5rem;
+				padding-top: 2rem;
+				border-top: 1px solid var(--border);
+			}
+
+			.stat {
+				padding: 1.5rem;
+				border: 1px solid var(--border);
+				border-radius: 18px;
+				background: rgba(255, 255, 255, 0.015);
+			}
+
+			.stat strong {
+				display: block;
+				margin-bottom: 0.35rem;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 2rem;
+				letter-spacing: -0.04em;
+			}
+
+			.stat span {
+				color: var(--muted);
+				font-size: 0.88rem;
+				line-height: 1.5;
+			}
+
+			.section {
+				margin-top: 7rem;
+			}
+
+			.section-heading {
+				display: flex;
+				align-items: end;
+				justify-content: space-between;
+				gap: 2rem;
+				margin-bottom: 2rem;
+			}
+
+			.section-heading h2 {
+				margin: 0;
+				font-size: clamp(2rem, 4vw, 3.1rem);
+				letter-spacing: -0.04em;
+			}
+
+			.section-heading p {
+				max-width: 600px;
+				margin: 0;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+
+			.focus-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
 				gap: 1.2rem;
 			}
 
-			.pill-btn {
-				display: inline-flex;
-				align-items: center;
-				padding: 0.9rem 2rem;
-				border-radius: 9999px;
-				font-size: 0.95rem;
-				font-weight: 600;
-				letter-spacing: -0.01em;
-				text-decoration: none;
-				transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+			.focus-card {
+				padding: 2rem;
+				border: 1px solid var(--border);
+				border-radius: 22px;
+				background: var(--surface);
+				transition:
+					transform 0.2s ease,
+					border-color 0.2s ease;
 			}
 
-			.btn-white {
-				background-color: #ffffff;
-				color: #0d0d0e;
+			.focus-card:hover {
+				transform: translateY(-4px);
+				border-color: rgba(255, 90, 43, 0.65);
 			}
 
-			.btn-white:hover {
-				background-color: #e2e8f0;
-				transform: translateY(-2px);
-			}
-
-			.btn-outline {
-				background-color: transparent;
-				color: #ffffff;
-				border: 1px solid #27272a;
-			}
-
-			.btn-outline:hover {
-				background-color: #141416;
-				border-color: #444446;
-				transform: translateY(-2px);
-			}
-
-			/* Portrait Side Panel */
-			.media-container {
-				position: relative;
-			}
-
-			.media-container::after {
-				content: '';
-				position: absolute;
-				top: -15%;
-				right: -15%;
-				width: 130%;
-				height: 130%;
-				background: radial-gradient(circle, rgba(255, 90, 43, 0.09) 0%, transparent 65%);
-				z-index: 1;
-				pointer-events: none;
-			}
-
-			.photo-card {
-				position: relative;
-				z-index: 2;
-				width: 100%;
-				aspect-ratio: 1 / 1;
-				background-color: #1a1a1c;
-				background-image: url('/my-portrait.jpg');
-				background-size: cover;
-				background-position: center 20%;
-				background-repeat: no-repeat;
-				border-radius: 32px;
-				box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
-			}
-
-			.floating-tag {
-				position: absolute;
-				bottom: -10px;
-				left: -10px;
-				background-color: #ff5a2b;
-				color: #ffffff;
-				padding: 0.6rem 1.4rem;
-				border-radius: 14px;
-				font-size: 0.85rem;
-				font-weight: 700;
-				letter-spacing: 0.02em;
-				text-decoration: none;
-				z-index: 3;
-				box-shadow: 0 6px 20px rgba(255, 90, 43, 0.35);
-				transition: transform 0.2s ease;
-			}
-
-			.floating-tag:hover {
-				transform: scale(1.04);
-			}
-
-			/* Horizontal Summary Line Splitter */
-			.counter-row {
-				display: flex;
-				gap: 5rem;
-				border-top: 1px solid #1a1a1c;
-				padding-top: 3.5rem;
-			}
-
-			/* Text Format: Big Counter Numbers */
-			.counter-block h4 {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 2.6rem;
+			.card-number {
+				color: var(--accent);
+				font-size: 0.76rem;
 				font-weight: 800;
-				margin: 0 0 0.2rem 0;
-				letter-spacing: -0.03em; /* Tight number formatting */
-				color: #ffffff !important;
+				letter-spacing: 0.12em;
 			}
 
-			/* Text Format: Tiny, clean counter labels */
-			.counter-block p {
-				color: #71717a;
-				font-size: 0.9rem;
+			.focus-card h3 {
+				margin: 1rem 0 0.8rem;
+				font-size: 1.35rem;
+				letter-spacing: -0.025em;
+			}
+
+			.focus-card p {
 				margin: 0;
-				font-weight: 500;
-				letter-spacing: -0.01em;
+				color: var(--muted);
+				line-height: 1.7;
 			}
 
-			@media (max-width: 968px) {
-				.hero-split { grid-template-columns: 1fr; gap: 4rem; }
-				.counter-row { gap: 2.5rem; flex-wrap: wrap; }
-				.main-headline { font-size: 3.2rem; }
+			.profile-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.2rem;
+			}
+
+			.profile-card {
+				padding: 1.7rem;
+				border: 1px solid var(--border);
+				border-radius: 20px;
+				background: var(--surface-soft);
+				color: var(--text);
+				text-decoration: none;
+				transition:
+					transform 0.2s ease,
+					border-color 0.2s ease;
+			}
+
+			.profile-card:hover {
+				transform: translateY(-3px);
+				border-color: var(--accent);
+			}
+
+			.profile-card small {
+				color: var(--accent);
+				font-size: 0.74rem;
+				font-weight: 700;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+
+			.profile-card h3 {
+				margin: 0.7rem 0 0.6rem;
+				font-size: 1.2rem;
+			}
+
+			.profile-card p {
+				margin: 0;
+				color: var(--muted);
+				line-height: 1.6;
+			}
+
+			.cta {
+				display: grid;
+				grid-template-columns: 1fr auto;
+				gap: 2rem;
+				align-items: center;
+				margin-top: 7rem;
+				padding: 2.5rem;
+				border: 1px solid rgba(255, 90, 43, 0.35);
+				border-radius: 26px;
+				background:
+					linear-gradient(135deg, rgba(255, 90, 43, 0.14), rgba(255, 90, 43, 0.03)),
+					var(--surface);
+			}
+
+			.cta h2 {
+				margin: 0 0 0.7rem;
+				font-size: clamp(1.8rem, 4vw, 2.6rem);
+				letter-spacing: -0.035em;
+			}
+
+			.cta p {
+				max-width: 700px;
+				margin: 0;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+
+			@media (max-width: 950px) {
+				main {
+					padding-top: 5rem;
+				}
+
+				.hero {
+					grid-template-columns: 1fr;
+				}
+
+				.portrait-wrap {
+					max-width: 540px;
+				}
+
+				.focus-grid,
+				.profile-grid {
+					grid-template-columns: 1fr 1fr;
+				}
+			}
+
+			@media (max-width: 700px) {
+				main {
+					padding: 4rem 1.2rem;
+				}
+
+				.hero {
+					gap: 3rem;
+				}
+
+				.actions {
+					flex-direction: column;
+				}
+
+				.button {
+					width: 100%;
+				}
+
+				.stats,
+				.focus-grid,
+				.profile-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.section {
+					margin-top: 5rem;
+				}
+
+				.section-heading {
+					align-items: flex-start;
+					flex-direction: column;
+				}
+
+				.cta {
+					grid-template-columns: 1fr;
+					padding: 2rem;
+				}
+
+				.portrait-note {
+					right: 0.8rem;
+				}
 			}
 		</style>
 	</head>
+
 	<body>
 		<Header />
+
 		<main>
-			
-			<div class="hero-split">
-				<div class="hero-intro">
-					<div class="badge-status">Available for Contracts</div>
-					<h1 class="main-headline">Hi, I'm <span>Abdirahman</span></h1>
-					<p class="sub-bio">
-						Mechanical Engineer & <strong>Energy Systems Analyst</strong>. I model dynamic digital twin frameworks and build sustainable energy infrastructure configurations that are clean, data-validated, and highly resilient.
+			<section class="hero">
+				<div>
+					<span class="eyebrow">Mechanical Engineer · Sustainable Energy</span>
+
+					<h1>
+						Engineering safer, cleaner, and more
+						<span>sustainable systems.</span>
+					</h1>
+
+					<p class="hero-copy">
+						I am <strong>Abdullahi Abubakar Ahmed</strong>, a Mechanical
+						Engineer specialising in hydrogen-storage modelling, sustainable
+						energy systems, additive manufacturing, mechanical inspection,
+						and QA/QC documentation.
 					</p>
-					
-					<div class="btn-row">
-						<a href="/blog" class="pill-btn btn-white">View my work ↓</a>
-						<a 
-							href="https://www.linkedin.com/in/dhore" 
-							target="_blank" 
-							rel="noopener noreferrer" 
-							class="pill-btn btn-outline"
+
+					<div class="actions">
+						<a class="button button-primary" href="/blog">
+							View my projects
+						</a>
+
+						<a class="button button-secondary" href="/experience">
+							Explore my experience
+						</a>
+
+						<a
+							class="button button-secondary"
+							href="mailto:abdullahiabubakar.ahmed85@gmail.com"
 						>
-							Get in touch ↗
+							Contact me
 						</a>
 					</div>
 				</div>
 
-				<div class="media-container">
-					<div class="photo-card"></div>
-					<a href="/blog" class="floating-tag">Open to projects</a>
-				</div>
-			</div>
+				<div class="portrait-wrap">
+					<div
+						class="portrait"
+						role="img"
+						aria-label="Professional portrait of Abdullahi Abubakar Ahmed"
+					>
+					</div>
 
-			<div class="counter-row">
-				<div class="counter-block">
-					<h4>3+</h4>
-					<p>Advanced research frameworks</p>
+					<div class="portrait-note">
+						Abdullahi Abubakar Ahmed
+						<span>Mechanical Engineer</span>
+					</div>
 				</div>
-				<div class="counter-block">
-					<h4>M.Sc.</h4>
-					<p>Politecnico di Milano</p>
-				</div>
-				<div class="counter-block">
-					<h4>5y</h4>
-					<p>Technical engineering track</p>
-				</div>
-			</div>
+			</section>
 
+			<section class="stats" aria-label="Selected academic and project highlights">
+				<div class="stat">
+					<strong>700 bar</strong>
+					<span>Type IV hydrogen-storage tank modelling project</span>
+				</div>
+
+				<div class="stat">
+					<strong>98/110</strong>
+					<span>M.Sc. Mechanical Engineering, University of Tuscia</span>
+				</div>
+
+				<div class="stat">
+					<strong>Grade A</strong>
+					<span>Postgraduate specialisation in Sustainable Energy</span>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="section-heading">
+					<h2>Engineering focus</h2>
+					<p>
+						My work brings together modelling, experimental research,
+						technical documentation, and practical engineering support.
+					</p>
+				</div>
+
+				<div class="focus-grid">
+					<article class="focus-card">
+						<span class="card-number">01</span>
+						<h3>Hydrogen storage modelling</h3>
+						<p>
+							Transient thermodynamic analysis of a 700-bar Type IV
+							hydrogen tank using MATLAB, RK4, and ode45.
+						</p>
+					</article>
+
+					<article class="focus-card">
+						<span class="card-number">02</span>
+						<h3>Additive manufacturing</h3>
+						<p>
+							Research on non-contact methods for estimating distortion in
+							polymeric FDM components.
+						</p>
+					</article>
+
+					<article class="focus-card">
+						<span class="card-number">03</span>
+						<h3>Energy and industrial quality</h3>
+						<p>
+							Solar-PV engineering, mechanical maintenance, inspection,
+							QA/QC, and structured technical reporting.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="section">
+				<div class="section-heading">
+					<h2>Explore my profile</h2>
+					<p>
+						Learn more about my education, professional experience, research,
+						and technical capabilities.
+					</p>
+				</div>
+
+				<div class="profile-grid">
+					<a class="profile-card" href="/about">
+						<small>Profile</small>
+						<h3>About me</h3>
+						<p>
+							My engineering background, interests, and professional
+							direction.
+						</p>
+					</a>
+
+					<a class="profile-card" href="/experience">
+						<small>Career</small>
+						<h3>Experience</h3>
+						<p>
+							Mechanical inspection, solar energy, maintenance, and
+							research experience.
+						</p>
+					</a>
+
+					<a class="profile-card" href="/qualifications">
+						<small>Education</small>
+						<h3>Qualifications</h3>
+						<p>
+							Degrees, postgraduate specialisation, certifications, and
+							scholarships.
+						</p>
+					</a>
+				</div>
+			</section>
+
+			<section class="cta">
+				<div>
+					<h2>Open to engineering and research opportunities</h2>
+					<p>
+						I am interested in hydrogen technologies, sustainable energy,
+						mechanical engineering, modelling, additive manufacturing,
+						industrial quality, and technical inspection roles.
+					</p>
+				</div>
+
+				<a
+					class="button button-primary"
+					href="mailto:abdullahiabubakar.ahmed85@gmail.com"
+				>
+					Start a conversation
+				</a>
+			</section>
 		</main>
+
 		<Footer />
 	</body>
 </html>
