@@ -1,3 +1,4 @@
+```astro
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
@@ -8,13 +9,22 @@ import { SITE_TITLE } from '../consts';
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Experience | ${SITE_TITLE}`} description="Professional engineering track." />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-		
+		<BaseHead
+			title={`Experience | ${SITE_TITLE}`}
+			description="Professional and research experience in mechanical engineering, hydrogen modelling, sustainable energy, additive manufacturing, maintenance, and QA/QC inspection."
+		/>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+
 		<style is:inline>
-			html, body {
+			html,
+			body {
 				background-color: #0d0d0e !important;
 				background-image: none !important;
 				color: #ffffff !important;
@@ -23,7 +33,7 @@ import { SITE_TITLE } from '../consts';
 				margin: 0;
 				padding: 0;
 			}
-			
+
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
@@ -37,12 +47,22 @@ import { SITE_TITLE } from '../consts';
 				padding-left: 2rem;
 			}
 
+			.page-label {
+				display: block;
+				color: #ff5a2b !important;
+				font-size: 0.8rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.14em;
+				margin-bottom: 1rem;
+			}
+
 			.page-title {
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				font-size: 3.8rem;
 				font-weight: 800;
 				color: #ffffff !important;
-				margin: 0 0 0.6rem 0;
+				margin: 0 0 0.8rem;
 				letter-spacing: -0.04em;
 				line-height: 1.05;
 			}
@@ -52,42 +72,72 @@ import { SITE_TITLE } from '../consts';
 				font-size: 1.2rem;
 				font-weight: 500;
 				margin: 0;
-				max-width: 700px;
-				line-height: 1.65;
+				max-width: 780px;
+				line-height: 1.7;
 				letter-spacing: -0.01em;
+			}
+
+			.section-header {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				margin: 5.5rem 0 2.5rem;
+			}
+
+			.section-header:first-of-type {
+				margin-top: 0;
+			}
+
+			.section-title {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.9rem;
+				font-weight: 700;
+				color: #ffffff !important;
+				margin: 0;
+				letter-spacing: -0.03em;
+			}
+
+			.section-line {
+				flex: 1;
+				height: 1px;
+				background: #27272a;
 			}
 
 			.timeline-container {
 				position: relative;
 				padding-left: 2.5rem;
-				margin-top: 2rem;
 			}
 
 			.timeline-container::before {
 				content: '';
 				position: absolute;
 				left: 0;
-				top: 0;
+				top: 0.5rem;
 				width: 1px;
-				height: 100%;
+				height: calc(100% - 1rem);
 				background: #27272a !important;
 			}
 
 			.experience-entry {
 				position: relative;
-				margin-bottom: 4.5rem;
+				margin-bottom: 3rem;
+			}
+
+			.experience-entry:last-child {
+				margin-bottom: 0;
 			}
 
 			.timeline-marker {
 				position: absolute;
 				left: -2.5rem;
-				top: 8px;
-				width: 12px;
-				height: 12px;
+				top: 1.4rem;
+				width: 13px;
+				height: 13px;
 				background-color: #0d0d0e;
 				border: 3px solid #ff5a2b;
 				border-radius: 50%;
 				z-index: 5;
+				transform: translateX(-6px);
 			}
 
 			.experience-content-card {
@@ -95,21 +145,45 @@ import { SITE_TITLE } from '../consts';
 				border: 1px solid #27272a !important;
 				border-radius: 22px;
 				padding: 2.8rem;
-				transition: border-color 0.25s ease;
+				transition:
+					border-color 0.25s ease,
+					transform 0.25s ease;
 			}
 
 			.experience-content-card:hover {
 				border-color: #ff5a2b !important;
+				transform: translateY(-3px);
+			}
+
+			.entry-topline {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 0.8rem;
+				margin-bottom: 1rem;
 			}
 
 			.date-tag {
 				color: #ff5a2b !important;
-				font-size: 0.9rem;
+				font-size: 0.88rem;
 				font-weight: 700;
 				text-transform: uppercase;
-				letter-spacing: 0.1em;
-				margin-bottom: 0.8rem;
-				display: block;
+				letter-spacing: 0.09em;
+			}
+
+			.entry-type {
+				display: inline-flex;
+				align-items: center;
+				padding: 0.4rem 0.8rem;
+				background: rgba(255, 90, 43, 0.08);
+				border: 1px solid rgba(255, 90, 43, 0.25);
+				border-radius: 999px;
+				color: #ff8a68 !important;
+				font-size: 0.78rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.07em;
 			}
 
 			.role-title {
@@ -117,138 +191,595 @@ import { SITE_TITLE } from '../consts';
 				font-size: 1.8rem;
 				font-weight: 700;
 				color: #ffffff !important;
-				margin: 0 0 0.5rem 0;
-				letter-spacing: -0.02em;
+				margin: 0 0 0.6rem;
+				letter-spacing: -0.025em;
+				line-height: 1.3;
 			}
 
 			.company-meta {
 				color: #a1a1aa !important;
-				font-size: 1.05rem;
+				font-size: 1.02rem;
 				font-weight: 500;
-				margin-bottom: 1.8rem;
+				line-height: 1.6;
+				margin: 0 0 1.8rem;
 				border-bottom: 1px solid #27272a;
-				padding-bottom: 1.2rem;
+				padding-bottom: 1.3rem;
+			}
+
+			.company-name {
+				color: #ffffff !important;
+				font-weight: 600;
 			}
 
 			.location-tag {
-				font-weight: 600;
-				color: #ffffff !important;
+				color: #d1d5db !important;
+				font-weight: 500;
 			}
 
 			.bullet-container ul {
-				padding-left: 1.2rem;
+				padding-left: 1.25rem;
 				margin: 0;
 				color: #d1d5db !important;
-				font-size: 1.05rem;
+				font-size: 1.03rem;
 				line-height: 1.8;
 				letter-spacing: -0.01em;
 			}
 
 			.bullet-container li {
 				margin-bottom: 0.8rem;
+				padding-left: 0.25rem;
 			}
-			
+
 			.bullet-container li:last-child {
 				margin-bottom: 0;
 			}
 
+			.bullet-container li::marker {
+				color: #ff5a2b;
+			}
+
+			.skill-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.65rem;
+				margin-top: 1.8rem;
+			}
+
+			.skill-tag {
+				display: inline-flex;
+				align-items: center;
+				padding: 0.48rem 0.85rem;
+				background: #202023;
+				border: 1px solid #303034;
+				border-radius: 999px;
+				color: #c4c4cc !important;
+				font-size: 0.8rem;
+				font-weight: 600;
+			}
+
+			.summary-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.2rem;
+				margin-top: 5rem;
+			}
+
+			.summary-card {
+				background: #151517;
+				border: 1px solid #27272a;
+				border-radius: 18px;
+				padding: 1.8rem;
+			}
+
+			.summary-card strong {
+				display: block;
+				color: #ffffff !important;
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.1rem;
+				margin-bottom: 0.45rem;
+			}
+
+			.summary-card span {
+				color: #8f8f98 !important;
+				font-size: 0.9rem;
+				line-height: 1.55;
+			}
+
+			@media (max-width: 900px) {
+				main {
+					padding: 5rem 1.5rem;
+				}
+
+				.page-title {
+					font-size: 3rem;
+				}
+
+				.summary-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
 			@media (max-width: 768px) {
-				.page-title { font-size: 2.8rem; }
-				.role-title { font-size: 1.5rem; }
-				.experience-content-card { padding: 2rem; }
+				main {
+					padding: 4.5rem 1.2rem;
+				}
+
+				.page-header {
+					padding-left: 1.25rem;
+					margin-bottom: 3.5rem;
+				}
+
+				.page-title {
+					font-size: 2.7rem;
+				}
+
+				.page-subtitle {
+					font-size: 1.05rem;
+				}
+
+				.timeline-container {
+					padding-left: 1.75rem;
+				}
+
+				.timeline-marker {
+					left: -1.75rem;
+				}
+
+				.experience-content-card {
+					padding: 2rem;
+				}
+
+				.role-title {
+					font-size: 1.45rem;
+				}
+
+				.section-title {
+					font-size: 1.6rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.experience-content-card {
+					padding: 1.5rem;
+					border-radius: 16px;
+				}
+
+				.entry-topline {
+					align-items: flex-start;
+					flex-direction: column;
+				}
+
+				.bullet-container ul {
+					font-size: 0.98rem;
+					line-height: 1.7;
+				}
 			}
 		</style>
 	</head>
+
 	<body>
 		<Header />
+
 		<main>
-			
 			<div class="page-header">
-				<h1 class="page-title">Work Experience</h1>
-				<p class="page-subtitle">Professional track specialized in industrial quality control, equipment inspection, and logistics systems data analysis.</p>
+				<span class="page-label">Professional Journey</span>
+
+				<h1 class="page-title">Experience</h1>
+
+				<p class="page-subtitle">
+					A combined professional and research track across mechanical
+					inspection, renewable energy, industrial maintenance,
+					additive manufacturing, and high-pressure hydrogen-system
+					modelling.
+				</p>
 			</div>
 
-			<div class="timeline-container">
-				
-				<!-- Role 1: Freelance Technical Inspector -->
-				<article class="experience-entry">
-					<div class="timeline-marker"></div>
-					<div class="experience-content-card">
-						<span class="date-tag">Oct 2022 – Present</span>
-						<h2 class="role-title">Freelance Technical Inspector (Mechanical & Industrial Equipment)</h2>
-						<p class="company-meta">
-							Independent Operations • <span class="location-tag">Mogadishu, Somalia / Europe</span>
-						</p>
-						<div class="bullet-container">
-							<ul>
-								<li>Conducted high-level inspections of rotary and stationary equipment, including axial/centrifugal compressors and oil rig rotary tables, ensuring compliance with ISO 10438, API 617, and API 6D.</li>
-								<li>Performed Factory Acceptance Tests (FAT), functional testing, and hydrostatic leak testing on various valve types (Globe, Butterfly, Control) and piping systems (HDPE, Welded, SMLS) per ASME B31.3 and ASTM F2164.</li>
-								<li>Executed comprehensive quality control for instrumentation and coating, including surface preparation inspections according to NACE MR0175 and ISO 12944.</li>
-								<li>Verified technical documentation (WPS-PQR) and material certificates for ferrous and non-ferrous materials as per ASME Sec. IX and DIN standards.</li>
-								<li>Witnessed operational and calibration tests for control valve actuators, including bore-scope inspections and vibration/noise measurement for gearboxes.</li>
-							</ul>
-						</div>
-					</div>
-				</article>
+			<section>
+				<div class="section-header">
+					<h2 class="section-title">Professional Experience</h2>
+					<div class="section-line"></div>
+				</div>
 
-				<!-- Role 2: RGIS -->
-				<article class="experience-entry">
-					<div class="timeline-marker"></div>
-					<div class="experience-content-card">
-						<span class="date-tag">Dec 2025 – Mar 2026</span>
-						<h2 class="role-title">Inventory & Operations Auditor</h2>
-						<p class="company-meta">
-							RGIS Specialisti in Inventari SRL • <span class="location-tag">Milan, Italy</span>
-						</p>
-						<div class="bullet-container">
-							<ul>
-								<li>Conducted systematic stock verification and product detection across multiple commercial sites, utilizing digital inventory systems to ensure data integrity.</li>
-								<li>Monitored supply chain levels and reported quantitative discrepancies, supporting broader logistics and retail operations.</li>
-							</ul>
-						</div>
-					</div>
-				</article>
+				<div class="timeline-container">
+					<article class="experience-entry">
+						<div class="timeline-marker" aria-hidden="true"></div>
 
-				<!-- Role 3: INVENTORY SRL -->
-				<article class="experience-entry">
-					<div class="timeline-marker"></div>
-					<div class="experience-content-card">
-						<span class="date-tag">Jan 2025 – Feb 2026</span>
-						<h2 class="role-title">Technical Inventory Collaborator</h2>
-						<p class="company-meta">
-							INVENTORY SRL • <span class="location-tag">Alessandria, Italy</span>
-						</p>
-						<div class="bullet-container">
-							<ul>
-								<li>Managed autonomous inventory data collection projects, coordinating directly with headquarters to ensure timely and accurate execution of stock audits.</li>
-								<li>Applied systematic approaches to reconcile physical assets with digital records, minimizing tracking errors for client organizations.</li>
-							</ul>
-						</div>
-					</div>
-				</article>
+						<div class="experience-content-card">
+							<div class="entry-topline">
+								<span class="date-tag">
+									October 2023 – Present
+								</span>
 
-				<!-- Role 4: BRC Italia -->
-				<article class="experience-entry">
-					<div class="timeline-marker"></div>
-					<div class="experience-content-card">
-						<span class="date-tag">Aug 2024 – Jan 2026</span>
-						<h2 class="role-title">Inventory Operations Associate</h2>
-						<p class="company-meta">
-							BRC Italia • <span class="location-tag">Milan, Italy</span>
-						</p>
-						<div class="bullet-container">
-							<ul>
-								<li>Executed qualitative and differential stock analyses for large-scale retail and commercial distribution centers.</li>
-								<li>Operated specialized weighing and scanning equipment to validate warehouse inventory, maintaining high standards of quality control.</li>
-								<li>Ensured continuous compliance with workplace safety standards while processing logistical data under strict deadlines.</li>
-							</ul>
-						</div>
-					</div>
-				</article>
+								<span class="entry-type">
+									Quality & Inspection
+								</span>
+							</div>
 
+							<h3 class="role-title">
+								Mechanical Inspector / QA-QC Inspector
+							</h3>
+
+							<p class="company-meta">
+								<span class="company-name">
+									Freelance Consultant
+								</span>
+								•
+								<span class="location-tag">
+									Italy / International
+								</span>
+							</p>
+
+							<div class="bullet-container">
+								<ul>
+									<li>
+										Perform mechanical inspection and QA/QC
+										documentation for industrial systems,
+										gas vessels, pressure-related equipment,
+										and technical components.
+									</li>
+
+									<li>
+										Prepare inspection reports, maintenance
+										verification documents, compliance
+										records, and structured technical
+										documentation.
+									</li>
+
+									<li>
+										Apply quality and documentation practices
+										aligned with ISO, ASME, API, and EN
+										standards.
+									</li>
+
+									<li>
+										Support measurement accuracy,
+										pressure-equipment safety, documentation
+										control, compliance verification, and
+										risk prevention.
+									</li>
+								</ul>
+							</div>
+
+							<div class="skill-row">
+								<span class="skill-tag">QA/QC</span>
+								<span class="skill-tag">
+									Mechanical Inspection
+								</span>
+								<span class="skill-tag">
+									Pressure Equipment
+								</span>
+								<span class="skill-tag">
+									Technical Documentation
+								</span>
+								<span class="skill-tag">ISO / ASME / API</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="experience-entry">
+						<div class="timeline-marker" aria-hidden="true"></div>
+
+						<div class="experience-content-card">
+							<div class="entry-topline">
+								<span class="date-tag">
+									February 2022 – August 2022
+								</span>
+
+								<span class="entry-type">
+									Renewable Energy
+								</span>
+							</div>
+
+							<h3 class="role-title">Solar Energy Engineer</h3>
+
+							<p class="company-meta">
+								<span class="company-name">
+									Tamarso Company
+								</span>
+								•
+								<span class="location-tag">
+									Mogadishu, Somalia
+								</span>
+							</p>
+
+							<div class="bullet-container">
+								<ul>
+									<li>
+										Supported residential and commercial
+										solar-PV projects through load analysis,
+										system sizing, inverter selection, and
+										layout preparation.
+									</li>
+
+									<li>
+										Assisted with site assessments,
+										installation support, system testing, and
+										performance verification.
+									</li>
+
+									<li>
+										Contributed to practical renewable-energy
+										solutions designed around local energy
+										demand and infrastructure constraints.
+									</li>
+
+									<li>
+										Developed field-level understanding of PV
+										performance, customer requirements,
+										installation conditions, and system
+										reliability.
+									</li>
+								</ul>
+							</div>
+
+							<div class="skill-row">
+								<span class="skill-tag">Solar PV</span>
+								<span class="skill-tag">Load Analysis</span>
+								<span class="skill-tag">System Sizing</span>
+								<span class="skill-tag">
+									Inverter Selection
+								</span>
+								<span class="skill-tag">
+									Performance Testing
+								</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="experience-entry">
+						<div class="timeline-marker" aria-hidden="true"></div>
+
+						<div class="experience-content-card">
+							<div class="entry-topline">
+								<span class="date-tag">
+									May 2020 – November 2021
+								</span>
+
+								<span class="entry-type">
+									Maintenance Engineering
+								</span>
+							</div>
+
+							<h3 class="role-title">
+								Maintenance Engineer Assistant
+							</h3>
+
+							<p class="company-meta">
+								<span class="company-name">
+									Somtel International Ltd
+								</span>
+								•
+								<span class="location-tag">
+									Mogadishu, Somalia
+								</span>
+							</p>
+
+							<div class="bullet-container">
+								<ul>
+									<li>
+										Supported preventive and corrective
+										maintenance for generators, pumps, HVAC
+										units, and associated mechanical systems.
+									</li>
+
+									<li>
+										Assisted with fault diagnosis,
+										root-cause analysis, maintenance
+										scheduling, and reliability improvement.
+									</li>
+
+									<li>
+										Supported spare-parts control and
+										maintenance documentation for operational
+										equipment.
+									</li>
+
+									<li>
+										Developed practical experience in
+										mechanical troubleshooting, operational
+										reliability, and technical coordination.
+									</li>
+								</ul>
+							</div>
+
+							<div class="skill-row">
+								<span class="skill-tag">
+									Preventive Maintenance
+								</span>
+								<span class="skill-tag">
+									Fault Diagnosis
+								</span>
+								<span class="skill-tag">Generators</span>
+								<span class="skill-tag">HVAC</span>
+								<span class="skill-tag">
+									Reliability Support
+								</span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section>
+				<div class="section-header">
+					<h2 class="section-title">Research Experience</h2>
+					<div class="section-line"></div>
+				</div>
+
+				<div class="timeline-container">
+					<article class="experience-entry">
+						<div class="timeline-marker" aria-hidden="true"></div>
+
+						<div class="experience-content-card">
+							<div class="entry-topline">
+								<span class="date-tag">
+									October 2024 – February 2025
+								</span>
+
+								<span class="entry-type">
+									Additive Manufacturing
+								</span>
+							</div>
+
+							<h3 class="role-title">
+								Research Intern — Additive Manufacturing &
+								Reverse Engineering
+							</h3>
+
+							<p class="company-meta">
+								<span class="company-name">
+									University of Tuscia
+								</span>
+								•
+								<span class="location-tag">
+									Viterbo, Italy
+								</span>
+							</p>
+
+							<div class="bullet-container">
+								<ul>
+									<li>
+										Supported research on polymeric FDM
+										additive manufacturing, dimensional
+										accuracy, prototype development, and
+										design-for-additive-manufacturing methods.
+									</li>
+
+									<li>
+										Applied SolidWorks and AutoCAD for
+										modelling and CAD-based interpretation of
+										measured dimensional deviations.
+									</li>
+
+									<li>
+										Worked with experimental planning,
+										measurement reliability, data
+										interpretation, and technical writing.
+									</li>
+
+									<li>
+										Contributed to the validation of
+										non-contact measurement and engineering
+										analysis methods.
+									</li>
+								</ul>
+							</div>
+
+							<div class="skill-row">
+								<span class="skill-tag">FDM</span>
+								<span class="skill-tag">
+									Reverse Engineering
+								</span>
+								<span class="skill-tag">SolidWorks</span>
+								<span class="skill-tag">AutoCAD</span>
+								<span class="skill-tag">
+									Dimensional Analysis
+								</span>
+							</div>
+						</div>
+					</article>
+
+					<article class="experience-entry">
+						<div class="timeline-marker" aria-hidden="true"></div>
+
+						<div class="experience-content-card">
+							<div class="entry-topline">
+								<span class="date-tag">2024 – 2025</span>
+
+								<span class="entry-type">
+									Hydrogen Modelling
+								</span>
+							</div>
+
+							<h3 class="role-title">
+								Research Project — Dynamic Modelling of
+								Hydrogen Storage Blowdown
+							</h3>
+
+							<p class="company-meta">
+								<span class="company-name">
+									SkillBill Sustainable Energy Programme
+								</span>
+								•
+								<span class="location-tag">
+									European Specialisation Programme
+								</span>
+							</p>
+
+							<div class="bullet-container">
+								<ul>
+									<li>
+										Developed a MATLAB model for the
+										adiabatic blowdown of a 700-bar Type IV
+										hydrogen-storage tank under
+										high-pressure discharge conditions.
+									</li>
+
+									<li>
+										Applied mass and energy conservation
+										equations to simulate transient tank
+										behaviour.
+									</li>
+
+									<li>
+										Compared a fixed-step fourth-order
+										Runge–Kutta method with MATLAB’s adaptive
+										ode45 solver.
+									</li>
+
+									<li>
+										Analysed pressure and temperature changes
+										relevant to hydrogen-refuelling stations,
+										storage performance, process safety, and
+										thermal behaviour.
+									</li>
+								</ul>
+							</div>
+
+							<div class="skill-row">
+								<span class="skill-tag">MATLAB</span>
+								<span class="skill-tag">RK4</span>
+								<span class="skill-tag">ode45</span>
+								<span class="skill-tag">
+									Thermodynamic Modelling
+								</span>
+								<span class="skill-tag">
+									Hydrogen Storage
+								</span>
+							</div>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<div class="summary-grid">
+				<div class="summary-card">
+					<strong>Industrial Quality</strong>
+					<span>
+						Mechanical inspection, structured QA/QC procedures,
+						technical reporting, and standards awareness.
+					</span>
+				</div>
+
+				<div class="summary-card">
+					<strong>Sustainable Energy</strong>
+					<span>
+						Solar-PV implementation, hydrogen storage, energy
+						systems, and practical infrastructure requirements.
+					</span>
+				</div>
+
+				<div class="summary-card">
+					<strong>Research & Modelling</strong>
+					<span>
+						MATLAB simulation, experimental validation, additive
+						manufacturing, reverse engineering, and data analysis.
+					</span>
+				</div>
 			</div>
-
 		</main>
+
 		<Footer />
 	</body>
 </html>
+```
