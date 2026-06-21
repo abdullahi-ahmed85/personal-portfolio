@@ -2,444 +2,456 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Work & Contact | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-		
+		<BaseHead
+			title="Projects & Research | Abdullahi Abubakar Ahmed"
+			description="Academic research and engineering projects in additive manufacturing, dimensional metrology, reverse engineering, and hydrogen-storage modelling."
+		/>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+
 		<style is:inline>
-			html, body {
-				background-color: #0d0d0e !important;
-				background-image: none !important;
-				color: #ffffff !important;
-				font-family: 'Inter', system-ui, sans-serif;
+			:root {
+				--background: #0d0d0e;
+				--surface: #171719;
+				--surface-soft: #1d1d20;
+				--border: #2b2b30;
+				--text: #ffffff;
+				--muted: #a1a1aa;
+				--accent: #ff5a2b;
+			}
+
+			* { box-sizing: border-box; }
+			html { background: var(--background); scroll-behavior: smooth; }
+			body {
 				margin: 0;
-				padding: 0;
+				background:
+					radial-gradient(circle at 85% 4%, rgba(255, 90, 43, 0.08), transparent 30rem),
+					var(--background);
+				color: var(--text);
+				font-family: 'Inter', system-ui, sans-serif;
 				-webkit-font-smoothing: antialiased;
 			}
-			
-			main {
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 6rem 2rem;
-				background-color: #0d0d0e !important;
-			}
+
+			main { max-width: 1200px; margin: 0 auto; padding: 6.5rem 2rem 5rem; }
+			h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
 
 			.page-header {
-				margin-bottom: 5rem;
-				border-left: 5px solid #ff5a2b;
+				max-width: 850px;
+				margin-bottom: 4.5rem;
 				padding-left: 2rem;
+				border-left: 5px solid var(--accent);
 			}
-
-			.page-title {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 3.5rem;
-				font-weight: 800;
-				color: #ffffff !important;
-				margin: 0 0 0.5rem 0;
-				letter-spacing: -0.03em;
-				line-height: 1.1;
-			}
-
-			.page-subtitle {
-				color: #a1a1aa !important;
-				font-size: 1.3rem;
-				font-weight: 500;
-				margin: 0;
-				max-width: 700px;
-				line-height: 1.6;
-			}
-
-			.section-heading {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.8rem;
-				color: #ffffff !important;
-				margin-top: 5rem;
-				margin-bottom: 2rem;
+			.eyebrow {
+				display: block;
+				margin-bottom: 1rem;
+				color: var(--accent);
+				font-size: 0.78rem;
 				font-weight: 700;
-				letter-spacing: -0.02em;
-			}
-
-			.project-showcase-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-				gap: 2.5rem;
-				margin-top: 3rem;
-			}
-
-			.work-card {
-				display: flex;
-				flex-direction: column;
-				background: #1a1a1c !important;
-				border: 1px solid #27272a !important;
-				border-radius: 24px;
-				overflow: hidden;
-				transition: transform 0.3s ease, border-color 0.3s ease;
-			}
-
-			.work-card:hover {
-				transform: translateY(-6px);
-				border-color: #ff5a2b !important;
-			}
-
-			.card-image-display {
-				width: 100%;
-				height: 280px;
-				background-color: #161618;
-				background-size: cover;
-				background-position: center;
-				border-bottom: 1px solid #27272a;
-				transition: background-image 0.2s ease-in-out;
-			}
-
-			.image-thumbnail-strip {
-				display: flex;
-				gap: 10px;
-				padding: 0.6rem 2rem;
-				background: #131315;
-				border-bottom: 1px solid #27272a;
-			}
-
-			.thumb-preview {
-				width: 50px;
-				height: 35px;
-				border-radius: 6px;
-				border: 1px solid #3f3f46;
-				background-size: cover;
-				background-position: center;
-				opacity: 0.5;
-				cursor: pointer;
-				transition: all 0.2s ease;
-			}
-			.thumb-preview:hover {
-				opacity: 1;
-				border-color: #ff5a2b;
-			}
-
-			.card-inner-content {
-				padding: 2rem;
-				display: flex;
-				flex-direction: column;
-				flex-grow: 1;
-			}
-
-			.work-meta-tag {
-				color: #ff5a2b !important;
-				font-size: 0.85rem;
-				font-weight: 700;
+				letter-spacing: 0.14em;
 				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				margin-bottom: 0.5rem;
+			}
+			.page-header h1 {
+				margin: 0 0 1rem;
+				font-size: clamp(2.8rem, 6vw, 4.6rem);
+				line-height: 1.04;
+				letter-spacing: -0.05em;
+			}
+			.page-header p {
+				margin: 0;
+				color: var(--muted);
+				font-size: 1.12rem;
+				line-height: 1.75;
 			}
 
-			.work-card h3 {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.6rem;
-				font-weight: 700;
-				color: #ffffff !important;
-				margin: 0 0 1rem 0;
+			.featured-project,
+			.project-card {
+				overflow: hidden;
+				border: 1px solid var(--border);
+				background: var(--surface);
 			}
+			.featured-project { border-radius: 28px; }
+			.project-card { border-radius: 24px; transition: transform .2s ease, border-color .2s ease; }
+			.project-card:hover { transform: translateY(-4px); border-color: rgba(255, 90, 43, 0.65); }
 
-			.work-description {
-				color: #a1a1aa !important;
-				font-size: 1rem;
-				line-height: 1.6;
-				margin-bottom: 2rem;
-				min-height: 95px;
+			.featured-image,
+			.card-image {
+				width: 100%;
+				display: block;
+				object-fit: cover;
+				border-bottom: 1px solid var(--border);
 			}
+			.featured-image { aspect-ratio: 16 / 8; }
+			.card-image { aspect-ratio: 16 / 9; }
 
-			.card-actions {
-				margin-top: auto;
-				display: flex;
-				gap: 10px;
+			.featured-content {
+				display: grid;
+				grid-template-columns: 1.15fr .85fr;
+				gap: 3rem;
+				padding: 2.6rem;
 			}
-
-			.pill-action-btn {
+			.project-label {
 				display: inline-flex;
 				align-items: center;
-				padding: 0.6rem 1.4rem;
-				border-radius: 9999px;
-				font-size: 0.9rem;
-				font-weight: 600;
-				text-decoration: none;
-				transition: all 0.2s ease;
+				gap: .55rem;
+				margin-bottom: 1rem;
+				color: var(--accent);
+				font-size: .78rem;
+				font-weight: 700;
+				letter-spacing: .1em;
+				text-transform: uppercase;
 			}
-
-			.btn-filled {
-				background-color: #ff5a2b;
-				color: #ffffff;
+			.project-label::before { content: ''; width: 1.7rem; height: 2px; background: var(--accent); }
+			.featured-content h2 {
+				margin: 0 0 1rem;
+				font-size: clamp(2rem, 4vw, 3rem);
+				line-height: 1.12;
+				letter-spacing: -.04em;
 			}
-
-			.btn-filled:hover {
-				background-color: #e0481b;
+			.project-copy,
+			.card-content p {
+				color: var(--muted);
+				line-height: 1.75;
 			}
+			.project-copy { margin: 0 0 1rem; }
 
-			.contact-wrapper {
-				background: #1a1a1c !important;
-				border: 1px solid #27272a !important;
-				border-radius: 24px;
-				padding: 3rem;
-				margin-top: 4rem;
+			.metrics,
+			.card-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+			.metrics { margin-bottom: 1.5rem; }
+			.metric,
+			.card-metric {
+				padding: 1rem;
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				background: var(--surface-soft);
 			}
-
-			.contact-grid {
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				gap: 3rem;
-			}
-
-			.contact-info p {
-				color: #a1a1aa !important;
-				font-size: 1.1rem;
-				line-height: 1.6;
-				margin-bottom: 2rem;
-			}
-
-			.contact-method {
-				font-size: 1.2rem;
-				font-weight: 600;
-				color: #ffffff;
-				margin-bottom: 0.8rem;
-			}
-
-			.contact-method a {
-				color: #ff5a2b;
-				text-decoration: none;
-				transition: color 0.2s ease;
-			}
-
-			.contact-method a:hover {
-				color: #ffffff;
-			}
-
-			.form-group {
-				margin-bottom: 1.5rem;
-			}
-
-			.form-group label {
+			.metric strong,
+			.card-metric strong {
 				display: block;
-				font-size: 0.9rem;
+				margin-bottom: .25rem;
+				color: var(--text);
+				font-family: 'Plus Jakarta Sans', sans-serif;
+			}
+			.metric strong { font-size: 1.4rem; }
+			.card-metric strong { font-size: 1rem; }
+			.metric span,
+			.card-metric span { color: var(--muted); line-height: 1.4; }
+			.metric span { font-size: .8rem; }
+			.card-metric span { font-size: .72rem; }
+
+			.side-panel {
+				align-self: start;
+				padding: 1.5rem;
+				border: 1px solid var(--border);
+				border-radius: 20px;
+				background: var(--surface-soft);
+			}
+			.side-panel h3 { margin: 0 0 1rem; font-size: 1.1rem; }
+			.tag-list { display: flex; flex-wrap: wrap; gap: .6rem; }
+			.tag {
+				display: inline-flex;
+				padding: .48rem .78rem;
+				border: 1px solid #393940;
+				border-radius: 999px;
+				color: #d4d4da;
+				font-size: .78rem;
 				font-weight: 600;
-				color: #a1a1aa;
-				margin-bottom: 0.5rem;
 			}
 
-			.form-group input, .form-group textarea {
-				width: 100%;
-				padding: 0.8rem 1rem;
-				background-color: #0d0d0e;
-				border: 1px solid #27272a;
-				border-radius: 8px;
-				color: #ffffff;
-				font-family: inherit;
-				box-sizing: border-box;
+			.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3rem; margin-top: 1.3rem; }
+			.card-content { padding: 2rem; }
+			.card-content h2 { margin: 0 0 .9rem; font-size: 1.65rem; line-height: 1.25; letter-spacing: -.03em; }
+			.card-content p { margin: 0 0 1rem; }
+			.card-metrics { gap: .65rem; margin: 1.3rem 0; }
+			.card-metric { padding: .8rem; border-radius: 14px; }
+
+			.hydrogen-visual {
+				position: relative;
+				aspect-ratio: 16 / 9;
+				overflow: hidden;
+				border-bottom: 1px solid var(--border);
+				background:
+					radial-gradient(circle at 72% 30%, rgba(255, 90, 43, .35), transparent 20%),
+					linear-gradient(135deg, #131922, #0f1116 58%, #191117);
+			}
+			.tank {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 38%;
+				height: 58%;
+				transform: translate(-50%, -50%);
+				border: 2px solid rgba(255,255,255,.7);
+				border-radius: 999px;
+				box-shadow: inset 0 0 0 10px rgba(255,255,255,.03), 0 0 45px rgba(255,90,43,.18);
+			}
+			.tank::before,
+			.tank::after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 18%;
+				height: 12%;
+				border: 2px solid rgba(255,255,255,.55);
+				background: #13151a;
+			}
+			.tank::before { top: -11%; border-radius: 8px 8px 0 0; }
+			.tank::after { bottom: -11%; border-radius: 0 0 8px 8px; }
+			.signal {
+				position: absolute;
+				left: 8%;
+				right: 8%;
+				top: 50%;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, var(--accent), transparent);
+				box-shadow: 0 -42px 0 rgba(255,90,43,.28), 0 42px 0 rgba(255,90,43,.28);
+			}
+			.visual-caption {
+				position: absolute;
+				left: 1rem;
+				bottom: 1rem;
+				padding: .6rem .8rem;
+				border: 1px solid rgba(255,255,255,.13);
+				border-radius: 10px;
+				background: rgba(13,13,14,.78);
+				color: #fff;
+				font-size: .78rem;
+				font-weight: 700;
+				letter-spacing: .05em;
+				text-transform: uppercase;
 			}
 
-			.form-group input:focus, .form-group textarea:focus {
-				border-color: #ff5a2b;
-				outline: none;
+			.cta {
+				display: grid;
+				grid-template-columns: 1fr auto;
+				gap: 2rem;
+				align-items: center;
+				margin-top: 5rem;
+				padding: 2.3rem;
+				border: 1px solid rgba(255,90,43,.35);
+				border-radius: 24px;
+				background: linear-gradient(135deg, rgba(255,90,43,.13), rgba(255,90,43,.03)), var(--surface);
 			}
+			.cta h2 { margin: 0 0 .6rem; font-size: clamp(1.7rem, 3vw, 2.3rem); letter-spacing: -.035em; }
+			.cta p { max-width: 680px; margin: 0; color: var(--muted); line-height: 1.65; }
+			.button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 3.1rem;
+				padding: .82rem 1.35rem;
+				border-radius: 999px;
+				background: var(--accent);
+				color: #fff;
+				font-size: .9rem;
+				font-weight: 700;
+				text-decoration: none;
+				transition: transform .2s ease, background .2s ease;
+			}
+			.button:hover { transform: translateY(-2px); background: #ff7149; }
 
-			@media (max-width: 968px) {
-				.page-title { font-size: 2.8rem; }
-				.project-showcase-grid { grid-template-columns: 1fr; }
-				.contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-				.contact-wrapper { padding: 1.8rem; }
+			@media (max-width: 900px) {
+				main { padding-top: 5rem; }
+				.featured-content { grid-template-columns: 1fr; }
+				.projects-grid { grid-template-columns: 1fr; }
+			}
+			@media (max-width: 650px) {
+				main { padding: 4rem 1.2rem; }
+				.page-header { padding-left: 1.2rem; margin-bottom: 3rem; }
+				.featured-content, .card-content { padding: 1.5rem; }
+				.metrics, .card-metrics { grid-template-columns: 1fr; }
+				.cta { grid-template-columns: 1fr; padding: 1.7rem; }
+				.button { width: 100%; }
 			}
 		</style>
 	</head>
+
 	<body>
 		<Header />
+
 		<main>
-			<div class="page-header">
-				<h1 class="page-title">Selected Works</h1>
-				<p class="page-subtitle">Academic research models, simulation algorithms, and dynamic system architectures.</p>
+			<header class="page-header">
+				<span class="eyebrow">Academic Work</span>
+				<h1>Projects & Research</h1>
+				<p>
+					A selection of my work in additive manufacturing, dimensional
+					metrology, reverse engineering, prototype optimisation, and
+					hydrogen-storage modelling.
+				</p>
+			</header>
+
+			<section id="thesis" class="featured-project">
+				<img
+					class="featured-image"
+					src="/projects/thesis-dimensional-validation.png"
+					alt="Structured-light scanning workflow used for dimensional validation of a PETG FDM test part"
+				/>
+
+				<div class="featured-content">
+					<div>
+						<span class="project-label">Featured Master's Thesis</span>
+						<h2>
+							Structured-Light-Assisted Dimensional Validation and
+							Axis-Specific Shrinkage Compensation of PETG FDM Parts
+						</h2>
+						<p class="project-copy">
+							My Master's thesis investigated how structured-light 3D
+							scanning can be used to measure, analyse, and compensate for
+							dimensional errors in PETG components manufactured through
+							Fused Deposition Modelling.
+						</p>
+						<p class="project-copy">
+							I developed an uncertainty-aware workflow connecting CAD
+							modelling, FDM printing, optical scanning, scan-to-CAD
+							comparison, reverse-engineering bias correction,
+							axis-specific shrinkage calculation, compensated reprinting,
+							and independent calliper validation.
+						</p>
+
+						<div class="metrics">
+							<div class="metric"><strong>56%</strong><span>reduction in X-axis mean absolute error</span></div>
+							<div class="metric"><strong>53%</strong><span>reduction in Y-axis mean absolute error</span></div>
+							<div class="metric"><strong>44%</strong><span>reduction in Z-axis mean absolute error</span></div>
+						</div>
+
+						<p class="project-copy">
+							The results showed that structured-light scanning can support
+							practical dimensional compensation when calibration,
+							registration, surface preparation, uncertainty, and
+							feature-size limitations are treated as part of the
+							measurement process.
+						</p>
+					</div>
+
+					<aside class="side-panel">
+						<h3>Methods and tools</h3>
+						<div class="tag-list">
+							<span class="tag">PETG FDM</span>
+							<span class="tag">Structured-light scanning</span>
+							<span class="tag">Scan-to-CAD</span>
+							<span class="tag">Geomagic Control X</span>
+							<span class="tag">Reverse engineering</span>
+							<span class="tag">Uncertainty analysis</span>
+							<span class="tag">Shrinkage compensation</span>
+							<span class="tag">Calliper validation</span>
+						</div>
+					</aside>
+				</div>
+			</section>
+
+			<div class="projects-grid">
+				<section id="internship" class="project-card">
+					<img
+						class="card-image"
+						src="/projects/outdoor-furniture-prototype.jpg"
+						alt="Colourful modular outdoor-furniture prototype produced through 3D printing"
+						loading="lazy"
+					/>
+
+					<div class="card-content">
+						<span class="project-label">Internship Project</span>
+						<h2>3D Printing and Optimisation of a Modular Outdoor Furniture Prototype</h2>
+						<p>
+							This project focused on preparing, optimising, slicing,
+							printing, and assembling modular components for an
+							outdoor-furniture prototype using PETG.
+						</p>
+						<p>
+							I evaluated 100%, 85%, and 75% scales, compared assembled
+							and disassembled printing strategies, and optimised settings
+							for print time, material use, fit, and structural integrity.
+						</p>
+
+						<div class="card-metrics">
+							<div class="card-metric"><strong>9 CFU</strong><span>officially awarded</span></div>
+							<div class="card-metric"><strong>26%</strong><span>time reduction at 85% scale</span></div>
+							<div class="card-metric"><strong>28.6%</strong><span>material reduction at 85% scale</span></div>
+						</div>
+
+						<p>
+							The 85% scale provided the best balance between production
+							savings and assembly precision. The final prototype was
+							assembled from colour-coded modular parts printed with
+							Zortrax M300 Plus and Raise3D systems.
+						</p>
+
+						<div class="tag-list">
+							<span class="tag">PETG</span>
+							<span class="tag">Z-SUITE</span>
+							<span class="tag">IdeaMaker</span>
+							<span class="tag">Zortrax M300 Plus</span>
+							<span class="tag">Raise3D</span>
+							<span class="tag">Design optimisation</span>
+							<span class="tag">Assembly prototyping</span>
+						</div>
+					</div>
+				</section>
+
+				<section id="hydrogen" class="project-card">
+					<div class="hydrogen-visual" aria-hidden="true">
+						<div class="signal"></div>
+						<div class="tank"></div>
+						<div class="visual-caption">MATLAB transient model</div>
+					</div>
+
+					<div class="card-content">
+						<span class="project-label">Sustainable Energy Project</span>
+						<h2>Modelling of a Hydrogen Storage Tank</h2>
+						<p>
+							I developed a MATLAB-based transient model to analyse the
+							behaviour of a hydrogen-storage tank during adiabatic
+							discharge.
+						</p>
+						<p>
+							The model applied mass and energy conservation equations to
+							calculate pressure and temperature changes over time. I
+							implemented a fixed-step fourth-order Runge-Kutta method and
+							compared its results with MATLAB's adaptive ode45 solver.
+						</p>
+						<p>
+							The project strengthened my understanding of
+							hydrogen-storage thermodynamics, numerical accuracy,
+							transient simulation, and safety considerations relevant to
+							hydrogen-refuelling infrastructure.
+						</p>
+
+						<div class="tag-list">
+							<span class="tag">MATLAB</span>
+							<span class="tag">RK4</span>
+							<span class="tag">ode45</span>
+							<span class="tag">Thermodynamics</span>
+							<span class="tag">Mass conservation</span>
+							<span class="tag">Energy conservation</span>
+							<span class="tag">Transient analysis</span>
+						</div>
+					</div>
+				</section>
 			</div>
 
-			<section>
-				<h2 class="section-heading">Systems Frameworks & Dynamic Modeling Matrix</h2>
-				<div class="project-showcase-grid">
-					
-					<div class="work-card">
-						<div id="twin-viewport" class="card-image-display" style="background-image: url('/Picture1.png'); background-position: top center;"></div>
-						<div class="image-thumbnail-strip">
-							<div class="thumb-preview" style="background-image: url('/Picture1.png');" onclick="document.getElementById('twin-viewport').style.backgroundImage='url(/Picture1.png)'" title="Dashboard View"></div>
-							<div class="thumb-preview" style="background-image: url('/image_e15b1e.jpg');" onclick="document.getElementById('twin-viewport').style.backgroundImage='url(/image_e15b1e.jpg)'" title="Physical Laboratory Track"></div>
-							<div class="thumb-preview" style="background-image: url('/dashboard_controls.png');" onclick="document.getElementById('twin-viewport').style.backgroundImage='url(/dashboard_controls.png)'" title="Control Settings Engine"></div>
-						</div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Thesis Research</div>
-							<h3>Digital Twin Model Parameter Calibration Framework</h3>
-							<p class="work-description">Engineered a synchronized validation dashboard using Python, MQTT, and InfluxDB linked directly to a physical mechatronic line using bootstrap particle filtering.</p>
-							<div class="card-actions">
-								<a href="/digital-twin-report.pdf" target="_blank" class="pill-action-btn btn-filled">📄 Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div class="card-image-display" style="background-image: url('/lego-flowchart.png'); background-position: center center;"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Simulation</div>
-							<h3>Lego Production Line Discrete-Event Simulation</h3>
-							<p class="work-description">Constructed discrete-event simulation models in Arena for a closed-loop semi-automatic factory line layout, executing bottleneck identification scenarios at Station 2.</p>
-							<div class="card-actions">
-								<a href="/lego-factory-improving.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div class="card-image-display" style="background-image: url('/stochastic-matlab.png'); background-position: center center;"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Operations</div>
-							<h3>Two-Stage Stochastic Model Planning & OEE Matrix</h3>
-							<p class="work-description">Developed two-stage stochastic models in MATLAB to minimize machinery and labor costs under operational uncertainty. Processed logs to analyze OEE indices, MTTR/MTTF parameters, and buffer allocations.</p>
-							<div class="card-actions">
-								<a href="/stochastic-planning-report.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div id="ctrl1-viewport" class="card-image-display" style="background-image: url('/control-bode.png');"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Control Systems</div>
-							<h3>Mechanical Actuation Loop Stability Loop Optimization</h3>
-							<p class="work-description">Derived linearized Laplace equations of system motion to formulate P, PD, and PI controllers, checking loop margins via Root Locus, Bode, and Nyquist criteria.</p>
-							<div class="card-actions">
-								<a href="/control-systems-assignment.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div class="card-image-display" style="background-image: url('/control-nyquist.png');"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Automation</div>
-							<h3>Non-Collocated Motor Speed Closed-Loop Stability Analysis</h3>
-							<p class="work-description">Modeled multi-variable asymmetric stiffness structures to assess non-collocated feedback instabilities induced at elevated proportional controller gains.</p>
-							<div class="card-actions">
-								<a href="/control-systems-assignment.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div id="ctrl3-viewport" class="card-image-display" style="background-image: url('/simulink-ff.png');"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Simulink</div>
-							<h3>Feedforward & PI Feedback Trajectory Tracking Logic</h3>
-							<p class="work-description">Programmed motion law algorithms inside MATLAB Simulink to isolate tracking precision metrics under high mechanical damping variations and torque noise constraints.</p>
-							<div class="card-actions">
-								<a href="/trajectory-optimization-report.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div id="beam-viewport" class="card-image-display" style="background-image: url('/beam-modes.png');"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Dynamics</div>
-							<h3>Continuous Beam Vibration & Modal Shapes Modality</h3>
-							<p class="work-description">Solved slender beam partial differential wave equations to calculate continuous mode shapes $\Phi(x)$ and frequency response functions under concentrated boundary moments.</p>
-							<div class="card-actions">
-								<a href="/mechanical-dynamics-report.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div id="wheel-viewport" class="card-image-display" style="background-image: url('/wheel-frf.png');"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • Testing</div>
-							<h3>Experimental Modal Analysis of Resilient Rail Wheels</h3>
-							<p class="work-description">Processed experimental Frequency Response Functions (FRFs) to compute structural damping values via half-power (-3dB) thresholds and identify modal transformations.</p>
-							<div class="card-actions">
-								<a href="/mechanical-dynamics-report.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div id="bridge-viewport" class="card-image-display" style="background-image: url('/bridge-fe-mesh.png');"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">Politecnico di Milano • FEA Structural</div>
-							<h3>In-Plane Truss FE Structural Bridge & TMD Optimization</h3>
-							<p class="work-description">Assembled global coordinate matrix configurations over 36 nodes under moving train loads, configuring Tuned Mass Dampers to secure a 21.47% resonance peak reduction.</p>
-							<div class="card-actions">
-								<a href="/bridge-fe-report.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div class="card-image-display" style="background-image: url('/hydrogen-storage-analysis.png'); background-position: center;"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">University of Tuscia • Renewable Energy</div>
-							<h3>Dynamic Variable-Pressure Refilling of Hydrogen Tanks</h3>
-							<p class="work-description">Completed transient fluid-structure computational investigations of solid metal hydride storage configurations under dynamic high-pressure refilling cycles.</p>
-							<div class="card-actions">
-								<a href="/hydrogen-storage-analysis.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="work-card">
-						<div class="card-image-display" style="background-image: url('/somalia-grid-transition.png'); background-position: center;"></div>
-						<div class="card-inner-content">
-							<div class="work-meta-tag">University of Tuscia • Infrastructure Grid</div>
-							<h3>Decarbonization Transitions & Load Optimization for Somalia</h3>
-							<p class="work-description">Designed high-capacity hybrid solar renewable infrastructure and demand-side management schedules using the Banadir Electric Company (BECO) asset grid.</p>
-							<div class="card-actions">
-								<a href="/somalia-grid-transition.pdf" target="_blank" class="pill-action-btn btn-filled">📄  Open Report</a>
-							</div>
-						</div>
-					</div>
-
+			<section class="cta">
+				<div>
+					<h2>Interested in my technical work?</h2>
+					<p>
+						I am open to research and engineering opportunities involving
+						additive manufacturing, dimensional metrology, hydrogen
+						technologies, numerical modelling, and sustainable energy.
+					</p>
 				</div>
-			</section>
 
-			<section id="contact">
-				<h2 class="section-heading">Get In Touch</h2>
-				<div class="contact-wrapper">
-					<div class="contact-grid">
-						<div class="contact-info">
-							<p>Have an operational challenge, a technical project scope, or looking to discuss industrial automation and structural mechanics? Let's connect.</p>
-							<div class="contact-method">Email: <a href="mailto:Abdirahmans.dhore@gmail.com">Abdirahmans.dhore@gmail.com</a></div>
-							<div class="contact-method">LinkedIn: <a href="https://www.linkedin.com/in/dhore" target="_blank" rel="noopener noreferrer">linkedin.com/in/dhore ↗</a></div>
-							<div class="contact-method">Location: <span style="color: #ffffff;">Mogadishu, Somalia / Lombardy, Italy</span></div>
-						</div>
-						
-						<form action="https://formspree.io/f/xvGolkOL" method="POST">
-							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" id="name" name="name" required placeholder="Your name" />
-							</div>
-							<div class="form-group">
-								<label for="email">Email</label>
-								<input type="email" id="email" name="email" required placeholder="your@email.com" />
-							</div>
-							
-							<input type="hidden" name="_to" value="Abdirahmans.dhore@gmail.com" />
-							<input type="hidden" name="_replyto" value="%{email}" />
-							
-							<div class="form-group">
-								<label for="message">Message</label>
-								<textarea id="message" name="message" rows="4" required placeholder="Describe your parameters..."></textarea>
-							</div>
-							<button type="submit" class="pill-action-btn btn-filled" style="border:none; cursor:pointer; width:100%; justify-content:center; font-size:1rem; padding:0.8rem;">Send Message →</button>
-						</form>
-					</div>
-				</div>
+				<a class="button" href="mailto:abdullahiabubakar.ahmed85@gmail.com">Contact me</a>
 			</section>
 		</main>
+
 		<Footer />
 	</body>
 </html>
