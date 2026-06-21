@@ -1,3 +1,4 @@
+```astro
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
@@ -14,6 +15,7 @@ import Footer from '../components/Footer.astro';
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
 		<link
 			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
 			rel="stylesheet"
@@ -43,7 +45,11 @@ import Footer from '../components/Footer.astro';
 			body {
 				margin: 0;
 				background:
-					radial-gradient(circle at 85% 10%, rgba(255, 90, 43, 0.08), transparent 28rem),
+					radial-gradient(
+						circle at 85% 10%,
+						rgba(255, 90, 43, 0.08),
+						transparent 28rem
+					),
 					var(--background);
 				color: var(--text);
 				font-family: 'Inter', system-ui, sans-serif;
@@ -53,12 +59,14 @@ import Footer from '../components/Footer.astro';
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
-				padding: 3.5rem 2rem 3rem;
+				padding: 6.5rem 2rem 5rem;
 			}
 
 			.hero {
 				display: grid;
-				grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+				grid-template-columns:
+					minmax(0, 1.25fr)
+					minmax(300px, 0.75fr);
 				gap: 5rem;
 				align-items: center;
 			}
@@ -89,12 +97,13 @@ import Footer from '../components/Footer.astro';
 			}
 
 			h1 {
-				max-width: 780px;
+				max-width: 760px;
 				margin: 0;
-				font-size: clamp(3.1rem, 7vw, 5.4rem);
+				font-size: clamp(2.15rem, 4.3vw, 3.65rem);
 				font-weight: 800;
-				line-height: 1.02;
-				letter-spacing: -0.055em;
+				line-height: 1.08;
+				letter-spacing: -0.045em;
+				text-wrap: balance;
 			}
 
 			h1 span {
@@ -105,7 +114,7 @@ import Footer from '../components/Footer.astro';
 				max-width: 700px;
 				margin: 1.8rem 0 0;
 				color: var(--muted);
-				font-size: 1.16rem;
+				font-size: 1.08rem;
 				line-height: 1.78;
 			}
 
@@ -181,7 +190,11 @@ import Footer from '../components/Footer.astro';
 				border: 1px solid var(--border);
 				border-radius: 30px;
 				background:
-					linear-gradient(to top, rgba(13, 13, 14, 0.22), transparent 35%),
+					linear-gradient(
+						to top,
+						rgba(13, 13, 14, 0.22),
+						transparent 35%
+					),
 					url('/my-portrait.jpg') center 20% / cover no-repeat,
 					var(--surface);
 				box-shadow: 0 30px 80px rgba(0, 0, 0, 0.48);
@@ -254,7 +267,7 @@ import Footer from '../components/Footer.astro';
 
 			.section-heading h2 {
 				margin: 0;
-				font-size: clamp(2rem, 4vw, 3.1rem);
+				font-size: clamp(1.8rem, 3.5vw, 2.7rem);
 				letter-spacing: -0.04em;
 			}
 
@@ -295,7 +308,7 @@ import Footer from '../components/Footer.astro';
 
 			.focus-card h3 {
 				margin: 1rem 0 0.8rem;
-				font-size: 1.35rem;
+				font-size: 1.25rem;
 				letter-spacing: -0.025em;
 			}
 
@@ -357,13 +370,17 @@ import Footer from '../components/Footer.astro';
 				border: 1px solid rgba(255, 90, 43, 0.35);
 				border-radius: 26px;
 				background:
-					linear-gradient(135deg, rgba(255, 90, 43, 0.14), rgba(255, 90, 43, 0.03)),
+					linear-gradient(
+						135deg,
+						rgba(255, 90, 43, 0.14),
+						rgba(255, 90, 43, 0.03)
+					),
 					var(--surface);
 			}
 
 			.cta h2 {
 				margin: 0 0 0.7rem;
-				font-size: clamp(1.8rem, 4vw, 2.6rem);
+				font-size: clamp(1.7rem, 3.5vw, 2.4rem);
 				letter-spacing: -0.035em;
 			}
 
@@ -400,6 +417,10 @@ import Footer from '../components/Footer.astro';
 
 				.hero {
 					gap: 3rem;
+				}
+
+				h1 {
+					font-size: clamp(2rem, 9vw, 2.8rem);
 				}
 
 				.actions {
@@ -443,34 +464,38 @@ import Footer from '../components/Footer.astro';
 		<main>
 			<section class="hero">
 				<div>
-					<span class="eyebrow">Mechanical Engineer · Sustainable Energy</span>
+					<span class="eyebrow">
+						Mechanical Engineer · Hydrogen & Sustainable Energy
+					</span>
 
 					<h1>
-						Engineering safer, cleaner, and more
-						<span>sustainable systems.</span>
+						Hi, I'm <span>Abdullahi.</span><br />
+						I turn engineering analysis into practical solutions.
 					</h1>
 
 					<p class="hero-copy">
-						I am <strong>Abdullahi Abubakar Ahmed</strong>, a Mechanical
-						Engineer specialising in hydrogen-storage modelling, sustainable
-						energy systems, additive manufacturing, mechanical inspection,
-						and QA/QC documentation.
+						I am a <strong>Mechanical Engineer</strong> specialising in
+						hydrogen-storage modelling, sustainable energy systems,
+						additive manufacturing, mechanical inspection, and QA/QC.
+						I combine numerical simulation, experimental research, and
+						hands-on engineering experience to develop solutions that are
+						safe, efficient, and reliable.
 					</p>
 
 					<div class="actions">
 						<a class="button button-primary" href="/blog">
-							View my projects
+							Explore my projects
 						</a>
 
 						<a class="button button-secondary" href="/experience">
-							Explore my experience
+							View my experience
 						</a>
 
 						<a
 							class="button button-secondary"
 							href="mailto:abdullahiabubakar.ahmed85@gmail.com"
 						>
-							Contact me
+							Let's connect
 						</a>
 					</div>
 				</div>
@@ -484,63 +509,83 @@ import Footer from '../components/Footer.astro';
 					</div>
 
 					<div class="portrait-note">
-						Abdullahi Abubakar Ahmed
+						Abdullahi Ahmed
 						<span>Mechanical Engineer</span>
 					</div>
 				</div>
 			</section>
 
-			<section class="stats" aria-label="Selected academic and project highlights">
+			<section
+				class="stats"
+				aria-label="Selected academic and project highlights"
+			>
 				<div class="stat">
 					<strong>700 bar</strong>
-					<span>Type IV hydrogen-storage tank modelling project</span>
+					<span>
+						Type IV hydrogen-storage tank modelling project
+					</span>
 				</div>
 
 				<div class="stat">
 					<strong>98/110</strong>
-					<span>M.Sc. Mechanical Engineering, University of Tuscia</span>
+					<span>
+						M.Sc. Mechanical Engineering, University of Tuscia
+					</span>
 				</div>
 
 				<div class="stat">
 					<strong>Grade A</strong>
-					<span>Postgraduate specialisation in Sustainable Energy</span>
+					<span>
+						Postgraduate specialisation in Sustainable Energy
+					</span>
 				</div>
 			</section>
 
 			<section class="section">
 				<div class="section-heading">
-					<h2>Engineering focus</h2>
+					<h2>What I do</h2>
+
 					<p>
-						My work brings together modelling, experimental research,
-						technical documentation, and practical engineering support.
+						I apply engineering analysis, modelling, experimentation,
+						and practical field experience to solve complex technical
+						challenges.
 					</p>
 				</div>
 
 				<div class="focus-grid">
 					<article class="focus-card">
 						<span class="card-number">01</span>
+
 						<h3>Hydrogen storage modelling</h3>
+
 						<p>
-							Transient thermodynamic analysis of a 700-bar Type IV
-							hydrogen tank using MATLAB, RK4, and ode45.
+							I model high-pressure hydrogen-storage systems and analyse
+							transient pressure and temperature behaviour using MATLAB,
+							RK4, and ode45.
 						</p>
 					</article>
 
 					<article class="focus-card">
 						<span class="card-number">02</span>
-						<h3>Additive manufacturing</h3>
+
+						<h3>Additive manufacturing research</h3>
+
 						<p>
-							Research on non-contact methods for estimating distortion in
-							polymeric FDM components.
+							I investigate dimensional distortion in polymeric FDM
+							components using experimental methods, CAD analysis, and
+							reverse-engineering principles.
 						</p>
 					</article>
 
 					<article class="focus-card">
 						<span class="card-number">03</span>
+
 						<h3>Energy and industrial quality</h3>
+
 						<p>
-							Solar-PV engineering, mechanical maintenance, inspection,
-							QA/QC, and structured technical reporting.
+							I support solar-PV systems, mechanical maintenance,
+							industrial inspection, QA/QC documentation, and technical
+							compliance activities.
 						</p>
 					</article>
 				</div>
@@ -548,38 +593,45 @@ import Footer from '../components/Footer.astro';
 
 			<section class="section">
 				<div class="section-heading">
-					<h2>Explore my profile</h2>
+					<h2>Explore my work</h2>
+
 					<p>
-						Learn more about my education, professional experience, research,
-						and technical capabilities.
+						Discover my professional journey, engineering education,
+						research projects, and technical expertise.
 					</p>
 				</div>
 
 				<div class="profile-grid">
 					<a class="profile-card" href="/about">
 						<small>Profile</small>
+
 						<h3>About me</h3>
+
 						<p>
-							My engineering background, interests, and professional
-							direction.
+							Learn more about my engineering background, interests,
+							and professional goals.
 						</p>
 					</a>
 
 					<a class="profile-card" href="/experience">
 						<small>Career</small>
+
 						<h3>Experience</h3>
+
 						<p>
-							Mechanical inspection, solar energy, maintenance, and
-							research experience.
+							Explore my experience in mechanical inspection,
+							solar energy, maintenance, and engineering research.
 						</p>
 					</a>
 
 					<a class="profile-card" href="/qualifications">
 						<small>Education</small>
+
 						<h3>Qualifications</h3>
+
 						<p>
-							Degrees, postgraduate specialisation, certifications, and
-							scholarships.
+							View my degrees, sustainable-energy specialisation,
+							certifications, and scholarships.
 						</p>
 					</a>
 				</div>
@@ -587,11 +639,13 @@ import Footer from '../components/Footer.astro';
 
 			<section class="cta">
 				<div>
-					<h2>Open to engineering and research opportunities</h2>
+					<h2>Let's build something meaningful</h2>
+
 					<p>
-						I am interested in hydrogen technologies, sustainable energy,
-						mechanical engineering, modelling, additive manufacturing,
-						industrial quality, and technical inspection roles.
+						I am open to engineering and research opportunities involving
+						hydrogen technologies, sustainable energy, mechanical
+						engineering, modelling, additive manufacturing, industrial
+						quality, and technical inspection.
 					</p>
 				</div>
 
@@ -607,3 +661,4 @@ import Footer from '../components/Footer.astro';
 		<Footer />
 	</body>
 </html>
+```
