@@ -1,282 +1,649 @@
----
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_TITLE } from '../consts';
----
-
+```astro
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={`Qualifications | ${SITE_TITLE}`} description="Academic degrees, professional diplomas, and credentials." />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-		
-		<style is:inline>
-			html, body {
-				background-color: #0d0d0e !important;
-				background-image: none !important;
-				color: #ffffff !important;
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<meta
+			name="description"
+			content="Education, professional development, scholarships, and language skills of Abdullahi Abubakar Ahmed."
+		/>
+
+		<title>Qualifications | Abdullahi Abubakar Ahmed</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style>
+			:root {
+				--background: #0d0d0e;
+				--surface: #1a1a1c;
+				--surface-light: #202023;
+				--border: #2c2c30;
+				--text: #ffffff;
+				--text-secondary: #d1d5db;
+				--text-muted: #a1a1aa;
+				--accent: #ff5a2b;
+				--accent-hover: #ff7147;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				margin: 0;
+				background: var(--background);
+				color: var(--text);
 				font-family: 'Inter', system-ui, sans-serif;
 				-webkit-font-smoothing: antialiased;
-				margin: 0;
-				padding: 0;
 			}
-			
+
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			.site-header {
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				background: rgba(13, 13, 14, 0.92);
+				border-bottom: 1px solid var(--border);
+				backdrop-filter: blur(14px);
+			}
+
+			.navigation {
+				max-width: 1200px;
+				min-height: 76px;
+				margin: 0 auto;
+				padding: 0 2rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 2rem;
+			}
+
+			.brand {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+				font-size: 1.15rem;
+				font-weight: 800;
+				letter-spacing: -0.03em;
+				white-space: nowrap;
+			}
+
+			.brand span {
+				color: var(--accent);
+			}
+
+			.nav-links {
+				display: flex;
+				align-items: center;
+				gap: 1.8rem;
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.nav-links a {
+				color: var(--text-muted);
+				font-size: 0.95rem;
+				font-weight: 600;
+				transition: color 0.2s ease;
+			}
+
+			.nav-links a:hover,
+			.nav-links a.active {
+				color: var(--accent);
+			}
+
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
 				padding: 7rem 2rem;
-				background-color: #0d0d0e !important;
 			}
 
-			/* Page Title Block Typography */
 			.page-header {
 				margin-bottom: 5rem;
-				border-left: 5px solid #ff5a2b;
 				padding-left: 2rem;
+				border-left: 5px solid var(--accent);
+			}
+
+			.page-label {
+				display: inline-block;
+				margin-bottom: 1rem;
+				color: var(--accent);
+				font-size: 0.85rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
 			}
 
 			.page-title {
+				margin: 0 0 0.8rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 3.8rem;
+				font-size: clamp(2.8rem, 7vw, 4.5rem);
 				font-weight: 800;
-				color: #ffffff !important;
-				margin: 0 0 0.6rem 0;
-				letter-spacing: -0.04em;
 				line-height: 1.05;
+				letter-spacing: -0.05em;
 			}
 
 			.page-subtitle {
-				color: #a1a1aa !important;
-				font-size: 1.2rem;
-				font-weight: 500;
+				max-width: 780px;
 				margin: 0;
-				max-width: 700px;
-				line-height: 1.65;
-				letter-spacing: -0.01em;
+				color: var(--text-muted);
+				font-size: 1.15rem;
+				font-weight: 500;
+				line-height: 1.7;
 			}
 
-			/* Section Headers Layout */
 			.section-heading {
+				margin: 5.5rem 0 2rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
 				font-size: 1.9rem;
-				color: #ffffff !important;
-				margin-top: 5.5rem;
-				margin-bottom: 2rem;
 				font-weight: 700;
 				letter-spacing: -0.03em;
 			}
 
-			/* Polished Minimalist Card Design */
 			.qual-card {
-				background: #1a1a1c !important;
-				border: 1px solid #27272a !important;
-				border-radius: 22px;
-				padding: 2.8rem;
 				margin-bottom: 1.8rem;
-				transition: border-color 0.25s ease;
+				padding: 2.8rem;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 22px;
+				transition:
+					border-color 0.25s ease,
+					transform 0.25s ease;
 			}
 
 			.qual-card:hover {
-				border-color: #ff5a2b !important;
+				border-color: var(--accent);
+				transform: translateY(-3px);
 			}
 
 			.qual-card h3 {
+				margin: 0 0 0.7rem;
 				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 1.7rem;
+				font-size: 1.65rem;
 				font-weight: 700;
-				color: #ffffff !important;
-				margin: 0 0 0.6rem 0;
-				letter-spacing: -0.02em;
+				line-height: 1.3;
+				letter-spacing: -0.025em;
 			}
 
-			/* Meta Tag Labels */
-			.meta-tag-line {
+			.meta-line {
 				display: flex;
+				flex-wrap: wrap;
 				align-items: center;
-				gap: 8px;
-				color: #ff5a2b !important;
-				font-weight: 600;
-				font-size: 0.95rem;
-				letter-spacing: -0.01em;
+				gap: 0.55rem;
 				margin-bottom: 1.8rem;
+				color: var(--accent);
+				font-size: 0.95rem;
+				font-weight: 600;
 			}
 
-			/* Description Typography Formatting */
+			.meta-dot {
+				font-size: 0.75rem;
+			}
+
 			.qual-card-details {
-				color: #d1d5db !important;
-				font-size: 1.05rem;
-				line-height: 1.75;
-				letter-spacing: -0.01em;
+				color: var(--text-secondary);
+				font-size: 1.03rem;
+				line-height: 1.8;
 			}
 
 			.qual-card-details p {
-				margin: 0 0 1rem 0;
+				margin: 0 0 1rem;
 			}
+
 			.qual-card-details p:last-child {
-				margin: 0;
+				margin-bottom: 0;
 			}
 
 			.qual-card-details strong {
-				color: #ffffff !important;
+				color: var(--text);
 				font-weight: 600;
 			}
 
-			/* Credentials List Styling */
-			.certifications-container {
-				background: #1a1a1c !important;
-				border: 1px solid #27272a !important;
-				border-radius: 22px;
+			.credentials-container {
 				padding: 2.8rem;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 22px;
 			}
 
-			.cert-list {
+			.credentials-list {
 				display: flex;
 				flex-direction: column;
-				gap: 1.4rem;
+				gap: 1.5rem;
 				margin: 0;
 				padding: 0;
 				list-style: none;
 			}
 
-			.cert-item {
-				color: #d1d5db !important;
-				font-size: 1.05rem;
-				line-height: 1.6;
-				letter-spacing: -0.01em;
+			.credential-item {
+				padding-bottom: 1.5rem;
+				color: var(--text-secondary);
+				font-size: 1.03rem;
+				line-height: 1.65;
+				border-bottom: 1px solid var(--border);
 			}
 
-			.cert-item strong {
-				color: #ffffff !important;
-				display: inline-block;
-				min-width: 200px;
+			.credential-item:last-child {
+				padding-bottom: 0;
+				border-bottom: none;
+			}
+
+			.credential-item strong {
+				display: block;
+				margin-bottom: 0.35rem;
+				color: var(--text);
+				font-size: 1.1rem;
 				font-weight: 600;
 			}
 
-			/* Languages Framework Grid */
+			.credential-meta {
+				color: var(--accent);
+				font-size: 0.92rem;
+				font-weight: 600;
+			}
+
 			.language-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 				gap: 1.2rem;
 			}
 
 			.language-block {
-				background: #1a1a1c !important;
-				border: 1px solid #27272a !important;
-				border-radius: 16px;
 				padding: 1.6rem;
-				transition: border-color 0.2s ease;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				transition:
+					border-color 0.2s ease,
+					transform 0.2s ease;
 			}
 
 			.language-block:hover {
-				border-color: #ff5a2b !important;
+				border-color: var(--accent);
+				transform: translateY(-2px);
 			}
 
 			.language-block strong {
-				color: #ffffff !important;
-				font-size: 1.15rem;
 				display: block;
-				margin-bottom: 0.3rem;
+				margin-bottom: 0.4rem;
+				font-size: 1.15rem;
 				letter-spacing: -0.02em;
 			}
 
 			.language-block span {
-				color: #a1a1aa !important;
+				color: var(--text-muted);
 				font-size: 0.95rem;
 				font-weight: 500;
 			}
 
-			@media (max-width: 768px) {
-				.page-title { font-size: 2.8rem; }
-				.qual-card, .certifications-container { padding: 2rem; }
-				.cert-item strong { display: block; margin-bottom: 0.3rem; }
+			.site-footer {
+				border-top: 1px solid var(--border);
+			}
+
+			.footer-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2.5rem 2rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1.5rem;
+				color: var(--text-muted);
+				font-size: 0.9rem;
+			}
+
+			.footer-content a {
+				color: var(--text-secondary);
+				transition: color 0.2s ease;
+			}
+
+			.footer-content a:hover {
+				color: var(--accent);
+			}
+
+			@media (max-width: 850px) {
+				.navigation {
+					padding: 1rem 1.25rem;
+					align-items: flex-start;
+					flex-direction: column;
+					gap: 1rem;
+				}
+
+				.nav-links {
+					width: 100%;
+					gap: 1.2rem;
+					overflow-x: auto;
+					padding-bottom: 0.4rem;
+				}
+
+				main {
+					padding: 5rem 1.25rem;
+				}
+
+				.page-header {
+					padding-left: 1.25rem;
+					margin-bottom: 3.5rem;
+				}
+
+				.qual-card,
+				.credentials-container {
+					padding: 2rem;
+				}
+
+				.qual-card h3 {
+					font-size: 1.4rem;
+				}
+
+				.footer-content {
+					padding: 2rem 1.25rem;
+					align-items: flex-start;
+					flex-direction: column;
+				}
+			}
+
+			@media (max-width: 520px) {
+				.qual-card,
+				.credentials-container {
+					padding: 1.5rem;
+					border-radius: 16px;
+				}
+
+				.page-subtitle {
+					font-size: 1rem;
+				}
+
+				.section-heading {
+					font-size: 1.6rem;
+				}
 			}
 		</style>
 	</head>
+
 	<body>
-		<Header />
+		<header class="site-header">
+			<nav class="navigation" aria-label="Main navigation">
+				<a class="brand" href="/">
+					ABDULLAHI<span>.</span>ENGINEERING
+				</a>
+
+				<ul class="nav-links">
+					<li><a href="/">Home</a></li>
+					<li>
+						<a class="active" href="/qualifications">
+							Qualifications
+						</a>
+					</li>
+					<li><a href="/projects">Projects</a></li>
+					<li><a href="/experience">Experience</a></li>
+					<li><a href="/skills">Skills</a></li>
+					<li><a href="/contact">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+
 		<main>
-			
 			<div class="page-header">
-				<h1 class="page-title">Education</h1>
-				<p class="page-subtitle">Academic degrees, master tracks, professional diplomas, and communication frameworks.</p>
+				<span class="page-label">Academic Profile</span>
+
+				<h1 class="page-title">Education & Qualifications</h1>
+
+				<p class="page-subtitle">
+					Academic degrees, sustainable-energy specialisation,
+					professional development, scholarships, and international
+					communication skills.
+				</p>
 			</div>
 
 			<section>
-				<h2 class="section-heading">University Degrees & Specializations</h2>
-				
-				<!-- Degree Card 1: Politecnico di Milano -->
-				<div class="qual-card">
-					<h3>M.Sc. in Mechanical Engineering</h3>
-					<div class="meta-tag-line">
-						<span>●</span> Politecnico di Milano, Italy — Sep 2022 - Oct 2025
-					</div>
-					<div class="qual-card-details">
-						<p><strong>Key Focus:</strong> Integrated Manufacturing Systems, Production Planning & Control, Industrial Risk Management, Data Analysis for Mechanical Systems, and Energy Systems.</p>
-						<p><strong>Thesis output:</strong> Real-time validation and online input parameters calibration within a digital twin framework: an approach based on bootstrap particle filtering.</p>
-					</div>
-				</div>
+				<h2 class="section-heading">
+					University Degrees & Specialisations
+				</h2>
 
-				<!-- Degree Card 2: University of Tuscia -->
-				<div class="qual-card">
-					<h3>First Level Master in Sustainable Energy</h3>
-					<div class="meta-tag-line">
-						<span>●</span> University of Tuscia, Italy (SKILLBILL Program) — Sep 2024 - Present
-					</div>
-					<div class="qual-card-details">
-						<p><strong>Thesis Focus:</strong> Investigation of the Dynamic Behaviour of Hydrogen Storage Tanks During Refilling at H70 and H35 Under Various Operating Conditions (Under review).</p>
-					</div>
-				</div>
+				<article class="qual-card">
+					<h3>
+						Master Universitario di I Livello in Sustainable Energy
+					</h3>
 
-				<!-- Degree Card 3: Somali National University -->
-				<div class="qual-card">
-					<h3>Laurea (B.Sc.) in Mechanical Engineering</h3>
-					<div class="meta-tag-line">
-						<span>●</span> Somali National University, Somalia — Aug 2017 - Mar 2022
+					<div class="meta-line">
+						<span class="meta-dot">●</span>
+						<span>European Specialization School – SkillBill</span>
+						<span>•</span>
+						<span>October 2024 – February 2026</span>
 					</div>
-					<div class="qual-card-details">
-						<p><strong>Thesis Output:</strong> Automatic Conveyor belt using PLC.</p>
-					</div>
-				</div>
 
-				<!-- Degree Card 4: Mogadishu University -->
-				<div class="qual-card">
+					<div class="qual-card-details">
+						<p>
+							<strong>Qualification:</strong>
+							First-Level University Master, 60 ECTS, Grade A.
+						</p>
+
+						<p>
+							<strong>Primary focus:</strong>
+							Hydrogen technologies, renewable fuels, ammonia and
+							e-fuels, energy storage, sustainable mobility,
+							circular economy, energy management, and sustainable
+							energy-system integration.
+						</p>
+
+						<p>
+							<strong>Final project:</strong>
+							Hydrogen Refuelling Stations, Storage Tank Behaviour,
+							and Adiabatic Blowdown Simulation.
+						</p>
+
+						<p>
+							Developed a MATLAB numerical model of a 700-bar
+							Type IV hydrogen storage tank using mass and energy
+							conservation equations, fourth-order Runge–Kutta
+							integration, and MATLAB ode45.
+						</p>
+					</div>
+				</article>
+
+				<article class="qual-card">
+					<h3>Master of Science in Mechanical Engineering</h3>
+
+					<div class="meta-line">
+						<span class="meta-dot">●</span>
+						<span>University of Tuscia, Italy</span>
+						<span>•</span>
+						<span>September 2022 – May 2025</span>
+					</div>
+
+					<div class="qual-card-details">
+						<p>
+							<strong>Qualification:</strong>
+							M.Sc. in Mechanical Engineering, 120 ECTS,
+							Final Grade 98/110.
+						</p>
+
+						<p>
+							<strong>Language of instruction:</strong>
+							English.
+						</p>
+
+						<p>
+							<strong>Relevant coursework:</strong>
+							Numerical thermo-fluid dynamics, sensors and data
+							acquisition systems, advanced manufacturing,
+							machine design, virtual prototyping,
+							non-destructive testing, environmental monitoring,
+							and project and industrial management.
+						</p>
+
+						<p>
+							<strong>Thesis:</strong>
+							Use of Non-contact Techniques to Estimate the
+							Distortion of Parts Built by Additive Manufacturing,
+							Particularly Polymeric FDM.
+						</p>
+					</div>
+				</article>
+
+				<article class="qual-card">
+					<h3>Bachelor’s Degree in Mechanical Engineering</h3>
+
+					<div class="meta-line">
+						<span class="meta-dot">●</span>
+						<span>Somali National University, Somalia</span>
+						<span>•</span>
+						<span>February 2017 – March 2022</span>
+					</div>
+
+					<div class="qual-card-details">
+						<p>
+							<strong>Final Grade:</strong>
+							110/110.
+						</p>
+
+						<p>
+							<strong>Thesis:</strong>
+							Analysis of the Factors Influencing Fuel Consumption
+							in Passenger Vehicles.
+						</p>
+					</div>
+				</article>
+
+				<article class="qual-card">
 					<h3>Professional Diploma in Project Management</h3>
-					<div class="meta-tag-line">
-						<span>●</span> Mogadishu University, Somalia — Sep 2019 - Sep 2020
+
+					<div class="meta-line">
+						<span class="meta-dot">●</span>
+						<span>Mogadishu University, Somalia</span>
+						<span>•</span>
+						<span>September 2019 – October 2020</span>
 					</div>
+
+					<div class="qual-card-details">
+						<p>
+							<strong>Programme focus:</strong>
+							Project planning, scheduling, budgeting, risk
+							management, monitoring, reporting, and evaluation.
+						</p>
+					</div>
+				</article>
+			</section>
+
+			<section>
+				<h2 class="section-heading">
+					Certifications & Professional Development
+				</h2>
+
+				<div class="credentials-container">
+					<ul class="credentials-list">
+						<li class="credential-item">
+							<strong>Additive Manufacturing</strong>
+
+							<span class="credential-meta">
+								University of Michigan, Coursera —
+								June to August 2023
+							</span>
+						</li>
+
+						<li class="credential-item">
+							<strong>Digital Manufacturing and Design</strong>
+
+							<span class="credential-meta">
+								University at Buffalo, Coursera —
+								March to April 2023
+							</span>
+						</li>
+
+						<li class="credential-item">
+							<strong>
+								Solar Energy and Electrical System Design
+							</strong>
+
+							<span class="credential-meta">
+								University at Buffalo, Coursera —
+								December 2021 to January 2022
+							</span>
+						</li>
+					</ul>
 				</div>
 			</section>
 
 			<section>
-				<h2 class="section-heading">Certifications & Professional Development</h2>
-				<div class="certifications-container">
-					<ul class="cert-list">
-						<li class="cert-item"><strong>AutoCAD Professional:</strong> Autodesk Certified Professional (2023)</li>
-						<li class="cert-item"><strong>Infrastructure O&M:</strong> ADBI Operations and Maintenance (2024)</li>
-						<li class="cert-item"><strong>Solar Energy Systems:</strong> University at Buffalo Overview (2022)</li>
-						<li class="cert-item"><strong>Circular Economy:</strong> ADBI Designing Out Waste (2024)</li>
-						<li class="cert-item"><strong>Green Investments:</strong> ADBI Renewable Energy (2021)</li>
-						<li class="cert-item"><strong>Project Finance:</strong> Philanthropy University Managing Project Finances (2021)</li>
-						<li class="cert-item"><strong>M&E Frameworks:</strong> Philanthropy University Planning for Monitoring and Evaluation (2020)</li>
-						<li class="cert-item"><strong>Cybersecurity Assets:</strong> ADBI Security Validation (2024)</li>
+				<h2 class="section-heading">
+					Scholarships & Academic Awards
+				</h2>
+
+				<div class="credentials-container">
+					<ul class="credentials-list">
+						<li class="credential-item">
+							<strong>MED-OR Foundation Scholarship</strong>
+
+							<span class="credential-meta">
+								M.Sc. Mechanical Engineering,
+								University of Tuscia — 2022 to 2024
+							</span>
+						</li>
+
+						<li class="credential-item">
+							<strong>Erasmus+ Scholarship</strong>
+
+							<span class="credential-meta">
+								SkillBill European Sustainable Energy Programme —
+								2024 to 2025
+							</span>
+						</li>
 					</ul>
 				</div>
 			</section>
 
 			<section>
 				<h2 class="section-heading">Language Skills</h2>
+
 				<div class="language-grid">
-					<div class="language-block"><strong>English</strong> <span>Full Professional Proficiency (C1)</span></div>
-					<div class="language-block"><strong>Somali</strong> <span>Native Proficiency</span></div>
-					<div class="language-block"><strong>Arabic</strong> <span>Intermediate Proficiency (B1)</span></div>
-					<div class="language-block"><strong>Italian</strong> <span>Elementary Proficiency (A2)</span></div>
+					<div class="language-block">
+						<strong>Somali</strong>
+						<span>Mother tongue</span>
+					</div>
+
+					<div class="language-block">
+						<strong>English</strong>
+						<span>Advanced / proficient</span>
+					</div>
+
+					<div class="language-block">
+						<strong>Arabic</strong>
+						<span>Advanced / proficient</span>
+					</div>
+
+					<div class="language-block">
+						<strong>Italian</strong>
+						<span>Basic to intermediate</span>
+					</div>
 				</div>
 			</section>
-
 		</main>
-		<Footer />
+
+		<footer class="site-footer">
+			<div class="footer-content">
+				<p>
+					© 2026 Abdullahi Abubakar Ahmed. All rights reserved.
+				</p>
+
+				<a href="mailto:abdullahiabubakar.ahmed85@gmail.com">
+					abdullahiabubakar.ahmed85@gmail.com
+				</a>
+			</div>
+		</footer>
 	</body>
 </html>
+```
