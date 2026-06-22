@@ -1,12 +1,12 @@
 /* src/styles/global.css */
 :root {
-	--black: #0d0d0e;
-	--gray: #a1a1aa;
-	--accent: #ff5a2b;
+	--black: #08130d;
+	--gray: #a8b8ad;
+	--accent: #22c55e;
 }
 
 html, body {
-	background-color: #0d0d0e !important;
+	background-color: #08130d !important;
 	background-image: none !important;
 	color: #ffffff !important;
 	font-family: 'Inter', system-ui, sans-serif;
@@ -16,7 +16,7 @@ html, body {
 }
 
 main {
-	background-color: #0d0d0e !important;
+	background-color: #08130d !important;
 }
 
 a {
