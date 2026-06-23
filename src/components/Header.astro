@@ -1,79 +1,267 @@
 ---
-import HeaderLink from './HeaderLink.astro';
+const base = import.meta.env.BASE_URL;
+
+const makeUrl = (route = '') => `${base}${route}`;
+const normalize = (value) => value.replace(/\/+$/, '') || '/';
+const currentPath = normalize(Astro.url.pathname);
+
+const navigation = [
+	{ label: 'Home', route: '' },
+	{ label: 'About', route: 'about/' },
+	{ label: 'Projects', route: 'projects/' },
+	{ label: 'Experience', route: 'experience/' },
+	{ label: 'Qualifications', route: 'qualifications/' },
+];
+
+const isActive = (route) =>
+	currentPath === normalize(makeUrl(route));
 ---
 
-<header>
-	<nav class="nav-container">
-		<div class="brand">
-			<a href="/">Ahmed<span class="dot">.</span></a>
-		</div>
-		<div class="internal-links">
-			<HeaderLink href="/">Services</HeaderLink>
-			<HeaderLink href="/blog">Work</HeaderLink>
-			<HeaderLink href="/qualifications">Qualifications</HeaderLink>
-			<HeaderLink href="/experience">Experience</HeaderLink>
-		</div>
-		<div class="nav-cta">
-			<a href="mailto:abdullahiabubakar.ahmed85@gmail.com" class="hire-btn">Hire me →</a>
-		</div>
-	</nav>
+<header class="site-header">
+	<div class="header-inner">
+		<a class="brand" href={makeUrl('')} aria-label="Abdullahi Ahmed homepage">
+			<span class="brand-mark">AA</span>
+			<span class="brand-name">Abdullahi Ahmed</span>
+		</a>
+
+		<nav class="desktop-nav" aria-label="Primary navigation">
+			{navigation.map((item) => (
+				<a
+					href={makeUrl(item.route)}
+					class:list={['nav-link', { active: isActive(item.route) }]}
+					aria-current={isActive(item.route) ? 'page' : undefined}
+				>
+					{item.label}
+				</a>
+			))}
+		</nav>
+
+		<a
+			class="contact-button desktop-contact"
+			href="mailto:abdullahiabubakar.ahmed85@gmail.com"
+		>
+			Contact
+		</a>
+
+		<details class="mobile-menu">
+			<summary aria-label="Open navigation menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</summary>
+
+			<nav aria-label="Mobile navigation">
+				{navigation.map((item) => (
+					<a
+						href={makeUrl(item.route)}
+						class:list={['mobile-link', { active: isActive(item.route) }]}
+					>
+						{item.label}
+					</a>
+				))}
+
+				<a
+					class="mobile-contact"
+					href="mailto:abdullahiabubakar.ahmed85@gmail.com"
+				>
+					Contact me
+				</a>
+			</nav>
+		</details>
+	</div>
 </header>
 
 <style>
-	header {
-		background-color: #08130d;
-		padding: 1.5rem 0;
+	.site-header {
 		position: sticky;
 		top: 0;
 		z-index: 100;
+		border-bottom: 1px solid rgba(40, 69, 51, 0.78);
+		background: rgba(8, 19, 13, 0.88);
+		backdrop-filter: blur(18px);
 	}
-	.nav-container {
+
+	.header-inner {
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 2rem;
 		max-width: 1200px;
+		min-height: 78px;
 		margin: 0 auto;
 		padding: 0 2rem;
-		display: flex;
+	}
+
+	.brand {
+		display: inline-flex;
 		align-items: center;
-		justify-content: space-between;
-	}
-	.brand a {
-		font-family: 'Inter', system-ui, sans-serif;
-		font-weight: 700;
-		font-size: 1.4rem;
+		gap: 0.8rem;
 		color: #ffffff;
+		font-weight: 800;
 		text-decoration: none;
-		letter-spacing: -0.03em;
+		letter-spacing: -0.02em;
 	}
-	.brand .dot {
-		color: #22c55e;
+
+	.brand-mark {
+		display: grid;
+		width: 2.35rem;
+		height: 2.35rem;
+		place-items: center;
+		border-radius: 12px;
+		background: #22c55e;
+		color: #07130b;
+		font-size: 0.78rem;
+		letter-spacing: 0.04em;
+		box-shadow: 0 8px 24px rgba(34, 197, 94, 0.18);
 	}
-	.internal-links {
+
+	.brand-name {
+		white-space: nowrap;
+	}
+
+	.desktop-nav {
 		display: flex;
-		gap: 2rem;
+		justify-content: center;
+		gap: 0.25rem;
 	}
-	.internal-links :global(a) {
-		color: #71717a;
-		text-decoration: none;
-		font-size: 0.95rem;
-		font-weight: 500;
-		transition: color 0.2s ease;
-	}
-	.internal-links :global(a:hover), .internal-links :global(a.active) {
-		color: #ffffff;
-	}
-	.hire-btn {
-		background-color: #22c55e;
-		color: #ffffff;
-		text-decoration: none;
-		padding: 0.6rem 1.4rem;
-		border-radius: 9999px;
-		font-size: 0.9rem;
+
+	.nav-link {
+		position: relative;
+		padding: 0.72rem 0.85rem;
+		border-radius: 10px;
+		color: #a8b8ad;
+		font-size: 0.88rem;
 		font-weight: 600;
-		transition: background-color 0.2s ease;
+		text-decoration: none;
+		transition:
+			color 0.2s ease,
+			background 0.2s ease;
 	}
-	.hire-btn:hover {
-		background-color: #15803d;
+
+	.nav-link:hover,
+	.nav-link.active {
+		background: rgba(34, 197, 94, 0.1);
+		color: #ffffff;
 	}
-	@media (max-width: 768px) {
-		.internal-links { display: none; }
+
+	.nav-link.active::after {
+		content: '';
+		position: absolute;
+		right: 0.85rem;
+		bottom: 0.35rem;
+		left: 0.85rem;
+		height: 2px;
+		border-radius: 999px;
+		background: #22c55e;
+	}
+
+	.contact-button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.8rem;
+		padding: 0.7rem 1.2rem;
+		border-radius: 999px;
+		background: #22c55e;
+		color: #07130b;
+		font-size: 0.88rem;
+		font-weight: 800;
+		text-decoration: none;
+		transition:
+			transform 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.contact-button:hover {
+		transform: translateY(-2px);
+		background: #4ade80;
+	}
+
+	.mobile-menu {
+		display: none;
+		position: relative;
+	}
+
+	.mobile-menu summary {
+		display: grid;
+		width: 2.8rem;
+		height: 2.8rem;
+		place-content: center;
+		gap: 5px;
+		border: 1px solid #284533;
+		border-radius: 12px;
+		background: #111c16;
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.mobile-menu summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.mobile-menu summary span {
+		display: block;
+		width: 18px;
+		height: 2px;
+		border-radius: 999px;
+		background: #ffffff;
+	}
+
+	.mobile-menu nav {
+		position: absolute;
+		top: calc(100% + 0.75rem);
+		right: 0;
+		display: grid;
+		width: min(290px, calc(100vw - 2.4rem));
+		padding: 0.75rem;
+		border: 1px solid #284533;
+		border-radius: 18px;
+		background: #111c16;
+		box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
+	}
+
+	.mobile-link,
+	.mobile-contact {
+		padding: 0.9rem 1rem;
+		border-radius: 11px;
+		color: #dce8df;
+		font-weight: 650;
+		text-decoration: none;
+	}
+
+	.mobile-link:hover,
+	.mobile-link.active {
+		background: rgba(34, 197, 94, 0.1);
+		color: #ffffff;
+	}
+
+	.mobile-contact {
+		margin-top: 0.4rem;
+		background: #22c55e;
+		color: #07130b;
+		text-align: center;
+	}
+
+	@media (max-width: 900px) {
+		.header-inner {
+			grid-template-columns: 1fr auto;
+			min-height: 70px;
+			padding: 0 1.2rem;
+		}
+
+		.desktop-nav,
+		.desktop-contact {
+			display: none;
+		}
+
+		.mobile-menu {
+			display: block;
+		}
+	}
+
+	@media (max-width: 440px) {
+		.brand-name {
+			font-size: 0.92rem;
+		}
 	}
 </style>

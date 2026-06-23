@@ -1,53 +1,138 @@
 ---
-const today = new Date();
+const year = new Date().getFullYear();
+const base = import.meta.env.BASE_URL;
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Ahmed. All rights reserved.
-	<div class="social-links">
-		<!-- Your LinkedIn Profile -->
-		<a href="https://www.linkedin.com/in/engdalmar" target="_blank" aria-label="Connect on LinkedIn">
-			<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-				<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-			</svg>
-		</a>
+<footer class="site-footer">
+	<div class="footer-inner">
+		<div class="footer-intro">
+			<a class="footer-brand" href={base}>Abdullahi Ahmed</a>
+			<p>
+				Mechanical engineer focused on hydrogen-storage modelling,
+				sustainable energy, additive manufacturing, and engineering quality.
+			</p>
+		</div>
 
-		<!-- Your Facebook Profile -->
-		<a href="https://www.facebook.com/share/18tfHH2wg2/?mibextid=wwXIfr" target="_blank" aria-label="Connect on Facebook">
-			<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-				<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-			</svg>
-		</a>
+		<div class="footer-links" aria-label="Professional profiles">
+			<a
+				href="mailto:abdullahiabubakar.ahmed85@gmail.com"
+			>
+				Email
+			</a>
+			<a
+				href="https://www.linkedin.com/in/abdullahi-abubakar-ahmed-b6baab26b"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				LinkedIn
+			</a>
+			<a
+				href="https://github.com/abdullahi-ahmed85"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				GitHub
+			</a>
+		</div>
+	</div>
 
-		<!-- Your GitHub Profile -->
-		<a href="https://github.com/abdullahi-ahmed85" target="_blank" aria-label="View Projects on GitHub">
-			<svg viewBox="0 0 16 16" width="28" height="28" fill="currentColor">
-				<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-			</svg>
-		</a>
+	<div class="footer-bottom">
+		<span>© {year} Abdullahi Abubakar Ahmed</span>
+		<span>Designed for engineering and research opportunities</span>
 	</div>
 </footer>
 
 <style>
-	footer {
-		padding: 4rem 2rem;
-		background: #08130d !important;
-		color: #71717a !important;
-		text-align: center;
-		font-size: 0.95rem;
+	.site-footer {
 		border-top: 1px solid #284533;
+		background: #08130d;
 	}
-	.social-links {
+
+	.footer-inner,
+	.footer-bottom {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding-right: 2rem;
+		padding-left: 2rem;
+	}
+
+	.footer-inner {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 3rem;
+		padding-top: 3.5rem;
+		padding-bottom: 2.5rem;
+	}
+
+	.footer-brand {
+		color: #ffffff;
+		font-size: 1.15rem;
+		font-weight: 800;
+		text-decoration: none;
+	}
+
+	.footer-intro p {
+		max-width: 620px;
+		margin: 0.8rem 0 0;
+		color: #a8b8ad;
+		line-height: 1.7;
+	}
+
+	.footer-links {
 		display: flex;
-		justify-content: center;
-		gap: 1.5rem;
-		margin-top: 1.2rem;
+		flex-wrap: wrap;
+		align-content: start;
+		justify-content: flex-end;
+		gap: 0.65rem;
 	}
-	.social-links a {
-		color: #71717a;
-		transition: color 0.2s ease;
+
+	.footer-links a {
+		padding: 0.65rem 0.9rem;
+		border: 1px solid #284533;
+		border-radius: 999px;
+		color: #dce8df;
+		font-size: 0.85rem;
+		font-weight: 650;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			transform 0.2s ease;
 	}
-	.social-links a:hover {
-		color: #22c55e; /* Glow orange on hover to match layout styles! */
+
+	.footer-links a:hover {
+		transform: translateY(-2px);
+		border-color: #22c55e;
+		color: #ffffff;
+	}
+
+	.footer-bottom {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-top: 1.2rem;
+		padding-bottom: 1.7rem;
+		border-top: 1px solid rgba(40, 69, 51, 0.7);
+		color: #7f9585;
+		font-size: 0.78rem;
+	}
+
+	@media (max-width: 720px) {
+		.footer-inner {
+			grid-template-columns: 1fr;
+			gap: 1.6rem;
+			padding-right: 1.2rem;
+			padding-left: 1.2rem;
+		}
+
+		.footer-links {
+			justify-content: flex-start;
+		}
+
+		.footer-bottom {
+			flex-direction: column;
+			padding-right: 1.2rem;
+			padding-left: 1.2rem;
+		}
 	}
 </style>
