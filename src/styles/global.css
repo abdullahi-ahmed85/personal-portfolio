@@ -1,24 +1,36 @@
 /* src/styles/global.css */
+
 :root {
-	--black: #08130d;
-	--gray: #a8b8ad;
-	--accent: #22c55e;
+--background: #ffffff;
+--surface: #f7f7f5;
+--text: #0b0b0b;
+--gray: #4b5563;
+--accent: #2f3b5c;
+--accent-hover: #1f293f;
+--border: #e5e7eb;
+
+```
+/* Legacy variable retained for compatibility */
+--black: #0b0b0b;
+```
+
 }
 
-html, body {
-	background-color: #08130d !important;
-	background-image: none !important;
-	color: #ffffff !important;
-	font-family: 'Inter', system-ui, sans-serif;
-	margin: 0;
-	padding: 0;
-	-webkit-font-smoothing: antialiased;
+html,
+body {
+margin: 0;
+padding: 0;
+background-color: var(--background) !important;
+background-image: none !important;
+color: var(--text) !important;
+font-family: 'Inter', system-ui, sans-serif;
+-webkit-font-smoothing: antialiased;
 }
 
 main {
-	background-color: #08130d !important;
+background-color: var(--background) !important;
 }
 
 a {
-	color: inherit;
+color: inherit;
 }

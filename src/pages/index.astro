@@ -3,6 +3,11 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const base = import.meta.env.BASE_URL;
+const portraitUrl = `${base}my-portrait.jpg`;
+const projectsUrl = `${base}projects/`;
+const cvUrl = `${base}Abdullahi-Abubakar-Ahmed-CV.pdf`;
 ---
 
 <!doctype html>
@@ -14,254 +19,355 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 		<link
-			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
 			rel="stylesheet"
 		/>
 
 		<style is:inline>
-			html,
+			:root {
+				--page-background: #f7f7f5;
+				--surface: #ffffff;
+				--surface-soft: #eef1f4;
+				--text: #0b0b0b;
+				--muted: #4b5563;
+				--accent: #2f3b5c;
+				--accent-hover: #1f293f;
+				--border: #e2e5e9;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				background: var(--page-background);
+				scroll-behavior: smooth;
+			}
+
 			body {
-				background-color: #08130d !important;
-				background-image: none !important;
-				color: #ffffff !important;
+				margin: 0;
+				background: var(--page-background);
+				color: var(--text);
 				font-family: 'Inter', system-ui, sans-serif;
 				-webkit-font-smoothing: antialiased;
-				margin: 0;
-				padding: 0;
 			}
 
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
-				padding: 7rem 2rem;
-				background-color: #08130d !important;
+				padding: 5.5rem 2rem 6rem;
 			}
 
-			.hero-split {
+			h1,
+			h2,
+			h3 {
+				font-family: 'Plus Jakarta Sans', sans-serif;
+			}
+
+			.intro-section {
 				display: grid;
-				grid-template-columns: 1.25fr 0.75fr;
+				grid-template-columns: minmax(300px, 0.8fr) minmax(0, 1.2fr);
 				gap: 5rem;
 				align-items: center;
-				margin-bottom: 6rem;
+				min-height: 70vh;
+				padding-bottom: 5rem;
+				border-bottom: 1px solid var(--border);
 			}
 
-			.badge-status {
-				color: #22c55e !important;
-				font-size: 0.8rem;
+			.portrait-frame {
+				position: relative;
+			}
+
+			.portrait-frame::before {
+				content: '';
+				position: absolute;
+				top: 1.3rem;
+				right: -1.3rem;
+				bottom: -1.3rem;
+				left: 1.3rem;
+				border-radius: 28px;
+				background: var(--accent);
+				opacity: 0.1;
+			}
+
+			.portrait {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				aspect-ratio: 4 / 5;
+				display: block;
+				object-fit: cover;
+				object-position: center 18%;
+				border: 1px solid var(--border);
+				border-radius: 28px;
+				background: var(--surface-soft);
+				box-shadow: 0 24px 60px rgba(47, 59, 92, 0.16);
+			}
+
+			.availability {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				margin-bottom: 1.4rem;
+				color: var(--accent);
+				font-size: 0.78rem;
 				font-weight: 700;
+				letter-spacing: 0.12em;
 				text-transform: uppercase;
-				letter-spacing: 0.14em;
-				margin-bottom: 1.5rem;
 			}
 
-			.main-headline {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 4.6rem;
+			.availability::before {
+				content: '';
+				width: 0.65rem;
+				height: 0.65rem;
+				border-radius: 50%;
+				background: var(--accent);
+				box-shadow: 0 0 0 5px rgba(47, 59, 92, 0.1);
+			}
+
+			.intro-title {
+				max-width: 780px;
+				margin: 0 0 1.5rem;
+				color: var(--text);
+				font-size: clamp(3rem, 6.3vw, 5.3rem);
 				font-weight: 800;
-				line-height: 1.05;
-				letter-spacing: -0.04em;
-				margin: 0 0 1.8rem 0;
-				color: #ffffff !important;
+				line-height: 1.02;
+				letter-spacing: -0.055em;
 			}
 
-			.main-headline span {
-				color: #22c55e !important;
-				letter-spacing: -0.02em;
+			.intro-title span {
+				color: var(--accent);
 			}
 
-			.sub-bio {
-				color: #a8b8ad !important;
-				font-size: 1.2rem;
-				line-height: 1.7;
-				letter-spacing: -0.01em;
-				margin-bottom: 3rem;
-				max-width: 620px;
+			.intro-copy {
+				max-width: 720px;
+				margin: 0 0 1rem;
+				color: var(--muted);
+				font-size: 1.12rem;
+				line-height: 1.78;
 			}
 
-			.sub-bio strong {
-				color: #ffffff !important;
-				font-weight: 600;
+			.intro-copy strong {
+				color: var(--text);
+				font-weight: 650;
 			}
 
-			.btn-row {
+			.action-row {
 				display: flex;
 				flex-wrap: wrap;
-				gap: 1.2rem;
+				gap: 0.8rem;
+				margin-top: 2rem;
 			}
 
-			.pill-btn {
+			.button {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
-				padding: 0.9rem 2rem;
-				border-radius: 9999px;
-				font-size: 0.95rem;
-				font-weight: 600;
-				letter-spacing: -0.01em;
-				text-decoration: none;
-				transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-			}
-
-			.btn-white {
-				background-color: #ffffff;
-				color: #08130d;
-			}
-
-			.btn-white:hover {
-				background-color: #e2e8f0;
-				transform: translateY(-2px);
-			}
-
-			.btn-outline {
-				background-color: transparent;
-				color: #ffffff;
-				border: 1px solid #284533;
-			}
-
-			.btn-outline:hover {
-				background-color: #141416;
-				border-color: #444446;
-				transform: translateY(-2px);
-			}
-
-			.media-container {
-				position: relative;
-			}
-
-			.media-container::after {
-				content: '';
-				position: absolute;
-				top: -15%;
-				right: -15%;
-				width: 130%;
-				height: 130%;
-				background: radial-gradient(
-					circle,
-					rgba(34, 197, 94, 0.09) 0%,
-					transparent 65%
-				);
-				z-index: 1;
-				pointer-events: none;
-			}
-
-			.photo-card {
-				position: relative;
-				z-index: 2;
-				width: 100%;
-				aspect-ratio: 1 / 1;
-				background-color: #111c16;
-				background-image: url('/my-portrait.jpg');
-				background-size: cover;
-				background-position: center 20%;
-				background-repeat: no-repeat;
-				border: 1px solid #284533;
-				border-radius: 32px;
-				box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
-			}
-
-			.floating-tag {
-				position: absolute;
-				bottom: -10px;
-				left: -10px;
-				background-color: #22c55e;
-				color: #ffffff;
-				padding: 0.6rem 1.4rem;
-				border-radius: 14px;
-				font-size: 0.85rem;
+				min-height: 3rem;
+				padding: 0.78rem 1.25rem;
+				border: 1px solid var(--accent);
+				border-radius: 10px;
+				font-size: 0.9rem;
 				font-weight: 700;
-				letter-spacing: 0.02em;
 				text-decoration: none;
-				z-index: 3;
-				box-shadow: 0 6px 20px rgba(34, 197, 94, 0.35);
-				transition: transform 0.2s ease;
+				transition:
+					transform 0.2s ease,
+					background 0.2s ease,
+					color 0.2s ease;
 			}
 
-			.floating-tag:hover {
-				transform: scale(1.04);
+			.button:hover {
+				transform: translateY(-2px);
 			}
 
-			.counter-row {
+			.button-primary {
+				background: var(--accent);
+				color: #ffffff;
+			}
+
+			.button-primary:hover {
+				background: var(--accent-hover);
+			}
+
+			.button-secondary {
+				background: transparent;
+				color: var(--accent);
+			}
+
+			.button-secondary:hover {
+				background: var(--surface);
+			}
+
+			.about-section {
+				display: grid;
+				grid-template-columns: 0.72fr 1.28fr;
+				gap: 5rem;
+				padding: 6rem 0 4rem;
+			}
+
+			.section-label {
+				margin: 0 0 0.8rem;
+				color: var(--accent);
+				font-size: 0.78rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+			}
+
+			.section-title {
+				margin: 0;
+				color: var(--text);
+				font-size: clamp(2rem, 4vw, 3.2rem);
+				line-height: 1.12;
+				letter-spacing: -0.04em;
+			}
+
+			.about-copy p {
+				margin: 0 0 1.25rem;
+				color: var(--muted);
+				font-size: 1.03rem;
+				line-height: 1.8;
+			}
+
+			.about-copy p:first-child {
+				color: var(--text);
+				font-size: 1.16rem;
+				font-weight: 500;
+			}
+
+			.focus-section {
+				padding: 2rem 0 5rem;
+			}
+
+			.focus-heading {
+				max-width: 720px;
+				margin-bottom: 2rem;
+			}
+
+			.focus-grid {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
-				gap: 3rem;
-				border-top: 1px solid #111c16;
-				padding-top: 3.5rem;
+				gap: 1rem;
 			}
 
-			.counter-block {
-				padding-right: 1rem;
+			.focus-card {
+				padding: 1.8rem;
+				border: 1px solid var(--border);
+				border-radius: 18px;
+				background: var(--surface);
+				box-shadow: 0 14px 36px rgba(47, 59, 92, 0.06);
 			}
 
-			.counter-block h4 {
-				font-family: 'Plus Jakarta Sans', sans-serif;
-				font-size: 2.6rem;
+			.focus-number {
+				display: block;
+				margin-bottom: 1rem;
+				color: var(--accent);
+				font-size: 0.76rem;
 				font-weight: 800;
-				margin: 0 0 0.35rem 0;
-				letter-spacing: -0.03em;
-				color: #ffffff !important;
+				letter-spacing: 0.12em;
 			}
 
-			.counter-block p {
-				color: #71717a;
-				font-size: 0.9rem;
-				line-height: 1.5;
+			.focus-card h3 {
+				margin: 0 0 0.8rem;
+				color: var(--text);
+				font-size: 1.25rem;
+				letter-spacing: -0.025em;
+			}
+
+			.focus-card p {
 				margin: 0;
-				font-weight: 500;
-				letter-spacing: -0.01em;
+				color: var(--muted);
+				line-height: 1.7;
 			}
 
-			@media (max-width: 968px) {
+			.closing-section {
+				display: grid;
+				grid-template-columns: 1fr auto;
+				gap: 2rem;
+				align-items: center;
+				padding: 2.3rem;
+				border: 1px solid var(--border);
+				border-radius: 20px;
+				background: var(--surface);
+			}
+
+			.closing-section h2 {
+				margin: 0 0 0.6rem;
+				font-size: clamp(1.7rem, 3vw, 2.4rem);
+				letter-spacing: -0.035em;
+			}
+
+			.closing-section p {
+				max-width: 720px;
+				margin: 0;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+
+			@media (max-width: 900px) {
 				main {
-					padding: 5rem 1.5rem;
+					padding-top: 4rem;
 				}
 
-				.hero-split {
+				.intro-section {
 					grid-template-columns: 1fr;
-					gap: 4rem;
+					gap: 3rem;
+					min-height: auto;
 				}
 
-				.main-headline {
-					font-size: 3.2rem;
+				.portrait-frame {
+					max-width: 480px;
 				}
 
-				.media-container {
-					max-width: 520px;
-				}
-
-				.counter-row {
-					grid-template-columns: repeat(2, 1fr);
-					gap: 2.5rem;
-				}
-			}
-
-			@media (max-width: 560px) {
-				main {
-					padding: 4rem 1.2rem;
-				}
-
-				.main-headline {
-					font-size: 2.7rem;
-				}
-
-				.sub-bio {
-					font-size: 1.05rem;
-				}
-
-				.btn-row {
-					flex-direction: column;
-				}
-
-				.pill-btn {
-					width: 100%;
-				}
-
-				.counter-row {
+				.about-section {
 					grid-template-columns: 1fr;
 					gap: 2rem;
 				}
 
-				.photo-card {
-					border-radius: 24px;
+				.focus-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.closing-section {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 600px) {
+				main {
+					padding: 3.5rem 1.2rem 4rem;
+				}
+
+				.intro-title {
+					font-size: 2.8rem;
+				}
+
+				.intro-copy {
+					font-size: 1rem;
+				}
+
+				.action-row {
+					flex-direction: column;
+				}
+
+				.button {
+					width: 100%;
+				}
+
+				.portrait-frame::before {
+					display: none;
+				}
+
+				.portrait {
+					border-radius: 20px;
+				}
+
+				.about-section {
+					padding-top: 4rem;
+				}
+
+				.closing-section {
+					padding: 1.6rem;
 				}
 			}
 		</style>
@@ -271,84 +377,181 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Header />
 
 		<main>
-			<div class="hero-split">
-				<div class="hero-intro">
-					<div class="badge-status">
-						Open to research & engineering opportunities
+			<section class="intro-section" aria-labelledby="intro-title">
+				<div class="portrait-frame">
+					<img
+						class="portrait"
+						src={portraitUrl}
+						alt="Professional portrait of Abdullahi Abubakar Ahmed"
+					/>
+				</div>
+
+				<div class="intro-content">
+					<div class="availability">
+						Open to engineering and research opportunities
 					</div>
 
-					<h1 class="main-headline">
-						Hi, I'm <span>Abdullahi</span>
+					<h1 id="intro-title" class="intro-title">
+						I'm Abdullahi Ahmed, <span>a Mechanical Engineer.</span>
 					</h1>
 
-					<p class="sub-bio">
-						Mechanical Engineer specialising in
+					<p class="intro-copy">
+						I specialise in
 						<strong>
-							hydrogen storage modelling, sustainable energy
-							systems and QA/QC inspection
+							sustainable energy, hydrogen-storage modelling,
+							additive manufacturing, and engineering quality
 						</strong>.
-						I use MATLAB, Python, CAD/CAE and experimental methods
-						to analyse high-pressure energy systems, support
-						renewable-energy projects and prepare structured
-						technical documentation.
 					</p>
 
-					<div class="btn-row">
-						<a href="/blog" class="pill-btn btn-white">
-							View my projects ↓
+					<p class="intro-copy">
+						My work combines numerical simulation, experimental
+						validation, and practical engineering experience to
+						support reliable energy systems, accurate manufacturing
+						processes, and sustainable technical solutions.
+					</p>
+
+					<div class="action-row">
+						<a
+							class="button button-primary"
+							href="https://www.linkedin.com/in/abdullahi-abubakar-ahmed-b6baab26b"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							LinkedIn ↗
+						</a>
+
+						<a class="button button-secondary" href={projectsUrl}>
+							View Projects
 						</a>
 
 						<a
-							href="mailto:abdullahiabubakar.ahmed85@gmail.com"
-							class="pill-btn btn-outline"
+							class="button button-secondary"
+							href={cvUrl}
+							download
 						>
-							Get in touch ↗
+							Download My CV
 						</a>
 					</div>
 				</div>
+			</section>
 
-				<div class="media-container">
-					<div
-						class="photo-card"
-						role="img"
-						aria-label="Professional portrait of Abdullahi Abubakar Ahmed"
-					>
-					</div>
+			<section id="about" class="about-section" aria-labelledby="about-title">
+				<div>
+					<p class="section-label">About Me</p>
 
-					<a href="/qualifications" class="floating-tag">
-						View qualifications
-					</a>
+					<h2 id="about-title" class="section-title">
+						Engineering analysis connected to practical application.
+					</h2>
 				</div>
-			</div>
 
-			<div class="counter-row">
-				<div class="counter-block">
-					<h4>700 bar</h4>
+				<div class="about-copy">
 					<p>
-						Type IV hydrogen-storage tank model developed using
-						RK4 and MATLAB ode45.
+						I am Abdullahi Abubakar Ahmed, a Mechanical Engineer
+						with an M.Sc. in Mechanical Engineering and postgraduate
+						specialisation in Sustainable Energy.
+					</p>
+
+					<p>
+						My background combines engineering modelling,
+						experimental research, renewable-energy systems,
+						additive manufacturing, mechanical inspection, and
+						QA/QC practice. I enjoy working on technical problems
+						where analysis, measurement, and practical
+						implementation must work together.
+					</p>
+
+					<p>
+						I have developed MATLAB-based thermodynamic models for
+						hydrogen-storage systems using mass and energy
+						conservation equations, Runge-Kutta methods, and
+						adaptive numerical solvers. I have also worked with
+						PETG FDM printing, structured-light scanning, reverse
+						engineering, dimensional validation, and shrinkage
+						compensation.
+					</p>
+
+					<p>
+						Alongside research, I have gained practical experience
+						in solar-PV engineering, mechanical maintenance,
+						technical inspection, measurement, documentation, and
+						engineering quality.
+					</p>
+
+					<p>
+						I am interested in engineering and research
+						opportunities involving hydrogen technologies,
+						renewable energy, digital manufacturing, industrial
+						reliability, and sustainable infrastructure.
+					</p>
+				</div>
+			</section>
+
+			<section class="focus-section" aria-labelledby="focus-title">
+				<div class="focus-heading">
+					<p class="section-label">Areas of Focus</p>
+
+					<h2 id="focus-title" class="section-title">
+						Three areas that connect my technical interests and experience.
+					</h2>
+				</div>
+
+				<div class="focus-grid">
+					<article class="focus-card">
+						<span class="focus-number">01 / ENERGY</span>
+
+						<h3>Hydrogen & Sustainable Energy</h3>
+
+						<p>
+							Hydrogen-storage modelling, thermodynamic analysis,
+							renewable-energy systems, solar PV, energy storage,
+							and sustainable mobility.
+						</p>
+					</article>
+
+					<article class="focus-card">
+						<span class="focus-number">02 / MODELLING</span>
+
+						<h3>Engineering Modelling & Validation</h3>
+
+						<p>
+							MATLAB, numerical methods, transient simulation,
+							engineering calculations, experimental measurement,
+							and technical data interpretation.
+						</p>
+					</article>
+
+					<article class="focus-card">
+						<span class="focus-number">03 / MANUFACTURING</span>
+
+						<h3>Additive Manufacturing & Quality</h3>
+
+						<p>
+							CAD preparation, PETG FDM printing, slicing
+							optimisation, structured-light scanning, dimensional
+							inspection, reverse engineering, and QA/QC
+							documentation.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section class="closing-section">
+				<div>
+					<h2>Open to practical engineering collaboration.</h2>
+
+					<p>
+						I welcome conversations about sustainable energy,
+						hydrogen technologies, additive manufacturing,
+						engineering modelling, and industrial quality.
 					</p>
 				</div>
 
-				<div class="counter-block">
-					<h4>98/110</h4>
-					<p>
-						M.Sc. Mechanical Engineering final grade from the
-						University of Tuscia.
-					</p>
-				</div>
-
-				<div class="counter-block">
-					<h4>Grade A</h4>
-					<p>
-						Postgraduate specialisation in Sustainable Energy
-						through the SkillBill programme.
-					</p>
-				</div>
-			</div>
+				<a class="button button-primary" href={projectsUrl}>
+					Explore My Projects
+				</a>
+			</section>
 		</main>
 
 		<Footer />
 	</body>
 </html>
-

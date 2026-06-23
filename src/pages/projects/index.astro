@@ -2,6 +2,11 @@
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+const thesisImage = `${base}projects/thesis-dimensional-validation.png`;
+const internshipImage = `${base}projects/outdoor-furniture-prototype.jpg`;
+const hydrogenImage = `${base}projects/hydrogen-storage-model.png`;
 ---
 
 <!doctype html>
@@ -14,6 +19,7 @@ import Footer from '../../components/Footer.astro';
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
 		<link
 			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
 			rel="stylesheet"
@@ -21,13 +27,15 @@ import Footer from '../../components/Footer.astro';
 
 		<style is:inline>
 			:root {
-				--background: #08130d;
-				--surface: #111c16;
-				--surface-soft: #17261c;
-				--border: #284533;
-				--text: #ffffff;
-				--muted: #a8b8ad;
-				--accent: #22c55e;
+				--page-background: #f7f7f5;
+				--surface: #ffffff;
+				--surface-soft: #f0f2f5;
+				--text: #0b0b0b;
+				--muted: #4b5563;
+				--accent: #2f3b5c;
+				--accent-hover: #1f293f;
+				--border: #e2e5e9;
+				--shadow: rgba(47, 59, 92, 0.1);
 			}
 
 			* {
@@ -35,19 +43,13 @@ import Footer from '../../components/Footer.astro';
 			}
 
 			html {
-				background: var(--background);
+				background: var(--page-background);
 				scroll-behavior: smooth;
 			}
 
 			body {
 				margin: 0;
-				background:
-					radial-gradient(
-						circle at 85% 4%,
-						rgba(34, 197, 94, 0.08),
-						transparent 30rem
-					),
-					var(--background);
+				background: var(--page-background);
 				color: var(--text);
 				font-family: 'Inter', system-ui, sans-serif;
 				-webkit-font-smoothing: antialiased;
@@ -56,7 +58,7 @@ import Footer from '../../components/Footer.astro';
 			main {
 				max-width: 1200px;
 				margin: 0 auto;
-				padding: 6.5rem 2rem 5rem;
+				padding: 5.5rem 2rem 6rem;
 			}
 
 			h1,
@@ -67,56 +69,64 @@ import Footer from '../../components/Footer.astro';
 
 			.page-header {
 				max-width: 850px;
-				margin-bottom: 4.5rem;
-				padding-left: 2rem;
-				border-left: 5px solid var(--accent);
+				margin-bottom: 3.5rem;
+			}
+
+			.eyebrow,
+			.project-label {
+				color: var(--accent);
+				font-size: 0.76rem;
+				font-weight: 800;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
 			}
 
 			.eyebrow {
 				display: block;
 				margin-bottom: 1rem;
-				color: var(--accent);
-				font-size: 0.78rem;
-				font-weight: 700;
-				letter-spacing: 0.14em;
-				text-transform: uppercase;
 			}
 
 			.page-header h1 {
 				margin: 0 0 1rem;
-				font-size: clamp(2.8rem, 6vw, 4.6rem);
+				font-size: clamp(2.8rem, 6vw, 4.8rem);
 				line-height: 1.04;
 				letter-spacing: -0.05em;
 			}
 
 			.page-header p {
+				max-width: 760px;
 				margin: 0;
 				color: var(--muted);
-				font-size: 1.12rem;
+				font-size: 1.08rem;
 				line-height: 1.75;
 			}
 
 			.featured-project,
-			.project-card {
-				overflow: hidden;
+			.project-card,
+			.cta {
 				border: 1px solid var(--border);
 				background: var(--surface);
+				box-shadow: 0 18px 45px var(--shadow);
 			}
 
 			.featured-project {
-				border-radius: 28px;
+				overflow: hidden;
+				border-radius: 24px;
 			}
 
 			.project-card {
-				border-radius: 24px;
+				overflow: hidden;
+				border-radius: 20px;
 				transition:
 					transform 0.2s ease,
-					border-color 0.2s ease;
+					border-color 0.2s ease,
+					box-shadow 0.2s ease;
 			}
 
 			.project-card:hover {
 				transform: translateY(-4px);
-				border-color: rgba(34, 197, 94, 0.65);
+				border-color: #cbd1d9;
+				box-shadow: 0 24px 54px rgba(47, 59, 92, 0.14);
 			}
 
 			.featured-image,
@@ -124,6 +134,7 @@ import Footer from '../../components/Footer.astro';
 				width: 100%;
 				display: block;
 				border-bottom: 1px solid var(--border);
+				background: var(--surface-soft);
 			}
 
 			.featured-image {
@@ -138,12 +149,13 @@ import Footer from '../../components/Footer.astro';
 
 			.hydrogen-image {
 				object-fit: contain;
-				background: #08130d;
+				padding: 0.8rem;
+				background: #eef1f4;
 			}
 
 			.featured-content {
 				display: grid;
-				grid-template-columns: 1.15fr 0.85fr;
+				grid-template-columns: 1.2fr 0.8fr;
 				gap: 3rem;
 				padding: 2.6rem;
 			}
@@ -153,24 +165,20 @@ import Footer from '../../components/Footer.astro';
 				align-items: center;
 				gap: 0.55rem;
 				margin-bottom: 1rem;
-				color: var(--accent);
-				font-size: 0.78rem;
-				font-weight: 700;
-				letter-spacing: 0.1em;
-				text-transform: uppercase;
 			}
 
 			.project-label::before {
 				content: '';
-				width: 1.7rem;
+				width: 1.5rem;
 				height: 2px;
+				border-radius: 999px;
 				background: var(--accent);
 			}
 
 			.featured-content h2 {
 				margin: 0 0 1rem;
 				font-size: clamp(2rem, 4vw, 3rem);
-				line-height: 1.12;
+				line-height: 1.14;
 				letter-spacing: -0.04em;
 			}
 
@@ -188,18 +196,18 @@ import Footer from '../../components/Footer.astro';
 			.card-metrics {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
-				gap: 0.8rem;
+				gap: 0.75rem;
 			}
 
 			.metrics {
-				margin-bottom: 1.5rem;
+				margin: 1.5rem 0;
 			}
 
 			.metric,
 			.card-metric {
 				padding: 1rem;
 				border: 1px solid var(--border);
-				border-radius: 16px;
+				border-radius: 14px;
 				background: var(--surface-soft);
 			}
 
@@ -207,7 +215,7 @@ import Footer from '../../components/Footer.astro';
 			.card-metric strong {
 				display: block;
 				margin-bottom: 0.25rem;
-				color: var(--text);
+				color: var(--accent);
 				font-family: 'Plus Jakarta Sans', sans-serif;
 			}
 
@@ -237,36 +245,37 @@ import Footer from '../../components/Footer.astro';
 				align-self: start;
 				padding: 1.5rem;
 				border: 1px solid var(--border);
-				border-radius: 20px;
+				border-radius: 18px;
 				background: var(--surface-soft);
 			}
 
 			.side-panel h3 {
 				margin: 0 0 1rem;
-				font-size: 1.1rem;
+				font-size: 1.08rem;
 			}
 
 			.tag-list {
 				display: flex;
 				flex-wrap: wrap;
-				gap: 0.6rem;
+				gap: 0.55rem;
 			}
 
 			.tag {
 				display: inline-flex;
-				padding: 0.48rem 0.78rem;
-				border: 1px solid #355c43;
+				padding: 0.48rem 0.75rem;
+				border: 1px solid #d6dbe2;
 				border-radius: 999px;
-				color: #dce8df;
-				font-size: 0.78rem;
-				font-weight: 600;
+				background: #ffffff;
+				color: var(--accent);
+				font-size: 0.76rem;
+				font-weight: 700;
 			}
 
 			.projects-grid {
 				display: grid;
-				grid-template-columns: repeat(2, 1fr);
-				gap: 1.3rem;
-				margin-top: 1.3rem;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 1.25rem;
+				margin-top: 1.25rem;
 			}
 
 			.card-content {
@@ -285,13 +294,11 @@ import Footer from '../../components/Footer.astro';
 			}
 
 			.card-metrics {
-				gap: 0.65rem;
 				margin: 1.3rem 0;
 			}
 
 			.card-metric {
 				padding: 0.8rem;
-				border-radius: 14px;
 			}
 
 			.cta {
@@ -299,17 +306,9 @@ import Footer from '../../components/Footer.astro';
 				grid-template-columns: 1fr auto;
 				gap: 2rem;
 				align-items: center;
-				margin-top: 5rem;
+				margin-top: 4rem;
 				padding: 2.3rem;
-				border: 1px solid rgba(34, 197, 94, 0.35);
-				border-radius: 24px;
-				background:
-					linear-gradient(
-						135deg,
-						rgba(34, 197, 94, 0.13),
-						rgba(34, 197, 94, 0.03)
-					),
-					var(--surface);
+				border-radius: 20px;
 			}
 
 			.cta h2 {
@@ -329,9 +328,10 @@ import Footer from '../../components/Footer.astro';
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
-				min-height: 3.1rem;
-				padding: 0.82rem 1.35rem;
-				border-radius: 999px;
+				min-height: 3rem;
+				padding: 0.8rem 1.3rem;
+				border: 1px solid var(--accent);
+				border-radius: 10px;
 				background: var(--accent);
 				color: #ffffff;
 				font-size: 0.9rem;
@@ -344,12 +344,12 @@ import Footer from '../../components/Footer.astro';
 
 			.button:hover {
 				transform: translateY(-2px);
-				background: #4ade80;
+				background: var(--accent-hover);
 			}
 
 			@media (max-width: 900px) {
 				main {
-					padding-top: 5rem;
+					padding-top: 4.5rem;
 				}
 
 				.featured-content {
@@ -363,17 +363,16 @@ import Footer from '../../components/Footer.astro';
 
 			@media (max-width: 650px) {
 				main {
-					padding: 4rem 1.2rem;
+					padding: 3.5rem 1.2rem 4rem;
 				}
 
 				.page-header {
-					padding-left: 1.2rem;
-					margin-bottom: 3rem;
+					margin-bottom: 2.5rem;
 				}
 
 				.featured-content,
 				.card-content {
-					padding: 1.5rem;
+					padding: 1.4rem;
 				}
 
 				.metrics,
@@ -383,7 +382,7 @@ import Footer from '../../components/Footer.astro';
 
 				.cta {
 					grid-template-columns: 1fr;
-					padding: 1.7rem;
+					padding: 1.6rem;
 				}
 
 				.button {
@@ -412,7 +411,7 @@ import Footer from '../../components/Footer.astro';
 			<section id="thesis" class="featured-project">
 				<img
 					class="featured-image"
-					src="/projects/thesis-dimensional-validation.png"
+					src={thesisImage}
 					alt="Structured-light scanning workflow used for dimensional validation of a PETG FDM test part"
 				/>
 
@@ -446,23 +445,17 @@ import Footer from '../../components/Footer.astro';
 						<div class="metrics">
 							<div class="metric">
 								<strong>56%</strong>
-								<span>
-									reduction in X-axis mean absolute error
-								</span>
+								<span>reduction in X-axis mean absolute error</span>
 							</div>
 
 							<div class="metric">
 								<strong>53%</strong>
-								<span>
-									reduction in Y-axis mean absolute error
-								</span>
+								<span>reduction in Y-axis mean absolute error</span>
 							</div>
 
 							<div class="metric">
 								<strong>44%</strong>
-								<span>
-									reduction in Z-axis mean absolute error
-								</span>
+								<span>reduction in Z-axis mean absolute error</span>
 							</div>
 						</div>
 
@@ -496,7 +489,7 @@ import Footer from '../../components/Footer.astro';
 				<section id="internship" class="project-card">
 					<img
 						class="card-image"
-						src="/projects/outdoor-furniture-prototype.jpg"
+						src={internshipImage}
 						alt="Colourful modular outdoor-furniture prototype produced through 3D printing"
 						loading="lazy"
 					/>
@@ -563,7 +556,7 @@ import Footer from '../../components/Footer.astro';
 				<section id="hydrogen" class="project-card">
 					<img
 						class="card-image hydrogen-image"
-						src="/projects/hydrogen-storage-model.png"
+						src={hydrogenImage}
 						alt="Hydrogen storage tank modelling project showing the tank model, assumptions, numerical methods, and pressure, temperature, and mass results"
 						loading="lazy"
 					/>
